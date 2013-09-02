@@ -1,0 +1,1430 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SAPEModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="SAPEModelStoreContainer">
+          <EntitySet Name="Ciudad" EntityType="SAPEModel.Store.Ciudad" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Contacto" EntityType="SAPEModel.Store.Contacto" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ContactoXEmpresa" EntityType="SAPEModel.Store.ContactoXEmpresa" store:Type="Tables" store:Schema="dbo" store:Name="ContactoXEmpresa">
+            <DefiningQuery>SELECT 
+      [ContactoXEmpresa].[FK_Empresa] AS [FK_Empresa], 
+      [ContactoXEmpresa].[FK_Contacto] AS [FK_Contacto]
+      FROM [dbo].[ContactoXEmpresa] AS [ContactoXEmpresa]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Curso" EntityType="SAPEModel.Store.Curso" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CursoXEstudiante" EntityType="SAPEModel.Store.CursoXEstudiante" store:Type="Tables" store:Schema="dbo" store:Name="CursoXEstudiante">
+            <DefiningQuery>SELECT 
+      [CursoXEstudiante].[FK_Estudiante] AS [FK_Estudiante], 
+      [CursoXEstudiante].[FK_Curso] AS [FK_Curso], 
+      [CursoXEstudiante].[Cursado] AS [Cursado]
+      FROM [dbo].[CursoXEstudiante] AS [CursoXEstudiante]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Empresa" EntityType="SAPEModel.Store.Empresa" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EstadoProyecto" EntityType="SAPEModel.Store.EstadoProyecto" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Estudiante" EntityType="SAPEModel.Store.Estudiante" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Evaluacion" EntityType="SAPEModel.Store.Evaluacion" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Pais" EntityType="SAPEModel.Store.Pais" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Persona" EntityType="SAPEModel.Store.Persona" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PreferenciaDireccion" EntityType="SAPEModel.Store.PreferenciaDireccion" store:Type="Tables" store:Schema="dbo" store:Name="PreferenciaDireccion">
+            <DefiningQuery>SELECT 
+      [PreferenciaDireccion].[FK_Profesor] AS [FK_Profesor], 
+      [PreferenciaDireccion].[FK_Direccion] AS [FK_Direccion]
+      FROM [dbo].[PreferenciaDireccion] AS [PreferenciaDireccion]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PreferenciaProfesor" EntityType="SAPEModel.Store.PreferenciaProfesor" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Profesor" EntityType="SAPEModel.Store.Profesor" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Provincia" EntityType="SAPEModel.Store.Provincia" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Proyecto" EntityType="SAPEModel.Store.Proyecto" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="SAPEModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TipoContacto" EntityType="SAPEModel.Store.TipoContacto" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TipoEvaluacion" EntityType="SAPEModel.Store.TipoEvaluacion" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TipoUsuario" EntityType="SAPEModel.Store.TipoUsuario" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Usuario" EntityType="SAPEModel.Store.Usuario" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Ciudad_Provincia" Association="SAPEModel.Store.FK_Ciudad_Provincia">
+            <End Role="Provincia" EntitySet="Provincia" />
+            <End Role="Ciudad" EntitySet="Ciudad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contacto_Persona" Association="SAPEModel.Store.FK_Contacto_Persona">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Contacto" EntitySet="Contacto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contacto_TipoContacto" Association="SAPEModel.Store.FK_Contacto_TipoContacto">
+            <End Role="TipoContacto" EntitySet="TipoContacto" />
+            <End Role="Contacto" EntitySet="Contacto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContactoXEmpresa_Contacto" Association="SAPEModel.Store.FK_ContactoXEmpresa_Contacto">
+            <End Role="Contacto" EntitySet="Contacto" />
+            <End Role="ContactoXEmpresa" EntitySet="ContactoXEmpresa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContactoXEmpresa_Empresa" Association="SAPEModel.Store.FK_ContactoXEmpresa_Empresa">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="ContactoXEmpresa" EntitySet="ContactoXEmpresa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CursoXEstudiante_Curso" Association="SAPEModel.Store.FK_CursoXEstudiante_Curso">
+            <End Role="Curso" EntitySet="Curso" />
+            <End Role="CursoXEstudiante" EntitySet="CursoXEstudiante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CursoXEstudiante_Estudiante" Association="SAPEModel.Store.FK_CursoXEstudiante_Estudiante">
+            <End Role="Estudiante" EntitySet="Estudiante" />
+            <End Role="CursoXEstudiante" EntitySet="CursoXEstudiante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empresa_Ciudad" Association="SAPEModel.Store.FK_Empresa_Ciudad">
+            <End Role="Ciudad" EntitySet="Ciudad" />
+            <End Role="Empresa" EntitySet="Empresa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estudiante_Persona" Association="SAPEModel.Store.FK_Estudiante_Persona">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Estudiante" EntitySet="Estudiante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estudiante_Proyecto" Association="SAPEModel.Store.FK_Estudiante_Proyecto">
+            <End Role="Proyecto" EntitySet="Proyecto" />
+            <End Role="Estudiante" EntitySet="Estudiante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evaluacion_Empresa" Association="SAPEModel.Store.FK_Evaluacion_Empresa">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="Evaluacion" EntitySet="Evaluacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evaluacion_Estudiante" Association="SAPEModel.Store.FK_Evaluacion_Estudiante">
+            <End Role="Estudiante" EntitySet="Estudiante" />
+            <End Role="Evaluacion" EntitySet="Evaluacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evaluacion_Profesor" Association="SAPEModel.Store.FK_Evaluacion_Profesor">
+            <End Role="Profesor" EntitySet="Profesor" />
+            <End Role="Evaluacion" EntitySet="Evaluacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evaluacion_TipoEvaluacion" Association="SAPEModel.Store.FK_Evaluacion_TipoEvaluacion">
+            <End Role="TipoEvaluacion" EntitySet="TipoEvaluacion" />
+            <End Role="Evaluacion" EntitySet="Evaluacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PreferenciaDireccion_Profesor" Association="SAPEModel.Store.FK_PreferenciaDireccion_Profesor">
+            <End Role="Profesor" EntitySet="Profesor" />
+            <End Role="PreferenciaDireccion" EntitySet="PreferenciaDireccion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PreferenciaProfesor_Estudiante" Association="SAPEModel.Store.FK_PreferenciaProfesor_Estudiante">
+            <End Role="Estudiante" EntitySet="Estudiante" />
+            <End Role="PreferenciaProfesor" EntitySet="PreferenciaProfesor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PreferenciaProfesor_Profesor" Association="SAPEModel.Store.FK_PreferenciaProfesor_Profesor">
+            <End Role="Profesor" EntitySet="Profesor" />
+            <End Role="PreferenciaProfesor" EntitySet="PreferenciaProfesor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PreferenciasDireccion_Ciudad" Association="SAPEModel.Store.FK_PreferenciasDireccion_Ciudad">
+            <End Role="Ciudad" EntitySet="Ciudad" />
+            <End Role="PreferenciaDireccion" EntitySet="PreferenciaDireccion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Profesor_Persona" Association="SAPEModel.Store.FK_Profesor_Persona">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Profesor" EntitySet="Profesor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Provincia_Pais" Association="SAPEModel.Store.FK_Provincia_Pais">
+            <End Role="Pais" EntitySet="Pais" />
+            <End Role="Provincia" EntitySet="Provincia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proyecto_Empresa" Association="SAPEModel.Store.FK_Proyecto_Empresa">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="Proyecto" EntitySet="Proyecto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proyecto_EstadoProyecto" Association="SAPEModel.Store.FK_Proyecto_EstadoProyecto">
+            <End Role="EstadoProyecto" EntitySet="EstadoProyecto" />
+            <End Role="Proyecto" EntitySet="Proyecto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Persona" Association="SAPEModel.Store.FK_Usuario_Persona">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_TipoUsuario" Association="SAPEModel.Store.FK_Usuario_TipoUsuario">
+            <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Ciudad">
+          <Key>
+            <PropertyRef Name="idCiudad" />
+          </Key>
+          <Property Name="idCiudad" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="15" />
+          <Property Name="FK_Provincia" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Contacto">
+          <Key>
+            <PropertyRef Name="idContacto" />
+          </Key>
+          <Property Name="idContacto" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Valor" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="FK_TipoContacto" Type="int" Nullable="false" />
+          <Property Name="FK_Empresa" Type="int" />
+          <Property Name="FK_Persona" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'SAPE.dbo.ContactoXEmpresa' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="ContactoXEmpresa">
+          <Key>
+            <PropertyRef Name="FK_Empresa" />
+            <PropertyRef Name="FK_Contacto" />
+          </Key>
+          <Property Name="FK_Empresa" Type="int" Nullable="false" />
+          <Property Name="FK_Contacto" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Curso">
+          <Key>
+            <PropertyRef Name="idCurso" />
+          </Key>
+          <Property Name="idCurso" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="20" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'SAPE.dbo.CursoXEstudiante' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="CursoXEstudiante">
+          <Key>
+            <PropertyRef Name="FK_Estudiante" />
+            <PropertyRef Name="FK_Curso" />
+            <PropertyRef Name="Cursado" />
+          </Key>
+          <Property Name="FK_Estudiante" Type="int" Nullable="false" />
+          <Property Name="FK_Curso" Type="int" Nullable="false" />
+          <Property Name="Cursado" Type="varchar" Nullable="false" MaxLength="2" />
+        </EntityType>
+        <EntityType Name="Empresa">
+          <Key>
+            <PropertyRef Name="idEmpresa" />
+          </Key>
+          <Property Name="idEmpresa" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="FK_Persona" Type="int" Nullable="false" />
+          <Property Name="FK_Direccion" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EstadoProyecto">
+          <Key>
+            <PropertyRef Name="idEstado" />
+          </Key>
+          <Property Name="idEstado" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Estudiante">
+          <Key>
+            <PropertyRef Name="idEstudiante" />
+          </Key>
+          <Property Name="idEstudiante" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FK_Persona" Type="int" Nullable="false" />
+          <Property Name="FK_Proyecto" Type="int" />
+          <Property Name="Carnet" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Evaluacion">
+          <Key>
+            <PropertyRef Name="idEvaluacion" />
+          </Key>
+          <Property Name="idEvaluacion" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nota" Type="decimal" Nullable="false" Precision="3" />
+          <Property Name="FK_TipoEvaluacion" Type="int" Nullable="false" />
+          <Property Name="FK_Estudiante" Type="int" Nullable="false" />
+          <Property Name="Evaluador" Type="int" Nullable="false" />
+          <Property Name="FK_Empresa" Type="int" />
+          <Property Name="FK_Profesor" Type="int" />
+        </EntityType>
+        <EntityType Name="Pais">
+          <Key>
+            <PropertyRef Name="idPais" />
+          </Key>
+          <Property Name="idPais" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="idPersona" />
+          </Key>
+          <Property Name="idPersona" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Apellido1" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Apellido2" Type="varchar" Nullable="false" MaxLength="20" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'SAPE.dbo.PreferenciaDireccion' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="PreferenciaDireccion">
+          <Key>
+            <PropertyRef Name="FK_Profesor" />
+            <PropertyRef Name="FK_Direccion" />
+          </Key>
+          <Property Name="FK_Profesor" Type="int" Nullable="false" />
+          <Property Name="FK_Direccion" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PreferenciaProfesor">
+          <Key>
+            <PropertyRef Name="idPreferencia" />
+          </Key>
+          <Property Name="idPreferencia" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FK_Estudiante" Type="int" Nullable="false" />
+          <Property Name="FK_Profesor" Type="int" Nullable="false" />
+          <Property Name="Valor" Type="int" Nullable="false" />
+          <Property Name="Comentario" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Profesor">
+          <Key>
+            <PropertyRef Name="idProfesor" />
+          </Key>
+          <Property Name="idProfesor" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FK_Persona" Type="int" Nullable="false" />
+          <Property Name="Asesora" Type="int" Nullable="false" />
+          <Property Name="CargaMinima" Type="int" />
+          <Property Name="MargaMaxima" Type="int" />
+        </EntityType>
+        <EntityType Name="Provincia">
+          <Key>
+            <PropertyRef Name="idProvincia" />
+          </Key>
+          <Property Name="idProvincia" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="FK_Pais" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Proyecto">
+          <Key>
+            <PropertyRef Name="idProyecto" />
+          </Key>
+          <Property Name="idProyecto" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="400" />
+          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="FK_Empresa" Type="int" Nullable="false" />
+          <Property Name="FK_Estado" Type="int" />
+          <Property Name="Observacion" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TipoContacto">
+          <Key>
+            <PropertyRef Name="idTipoContacto" />
+          </Key>
+          <Property Name="idTipoContacto" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="TipoEvaluacion">
+          <Key>
+            <PropertyRef Name="idTipoEvaluacion" />
+          </Key>
+          <Property Name="idTipoEvaluacion" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="TipoUsuario">
+          <Key>
+            <PropertyRef Name="idTipoUsuario" />
+          </Key>
+          <Property Name="idTipoUsuario" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="Permisos" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Contrasena" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="FK_idPersona" Type="int" Nullable="false" />
+          <Property Name="FK_TipoUsuario" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Ciudad_Provincia">
+          <End Role="Provincia" Type="SAPEModel.Store.Provincia" Multiplicity="1" />
+          <End Role="Ciudad" Type="SAPEModel.Store.Ciudad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincia">
+              <PropertyRef Name="idProvincia" />
+            </Principal>
+            <Dependent Role="Ciudad">
+              <PropertyRef Name="FK_Provincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contacto_Persona">
+          <End Role="Persona" Type="SAPEModel.Store.Persona" Multiplicity="0..1" />
+          <End Role="Contacto" Type="SAPEModel.Store.Contacto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="idPersona" />
+            </Principal>
+            <Dependent Role="Contacto">
+              <PropertyRef Name="FK_Persona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contacto_TipoContacto">
+          <End Role="TipoContacto" Type="SAPEModel.Store.TipoContacto" Multiplicity="1" />
+          <End Role="Contacto" Type="SAPEModel.Store.Contacto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoContacto">
+              <PropertyRef Name="idTipoContacto" />
+            </Principal>
+            <Dependent Role="Contacto">
+              <PropertyRef Name="FK_TipoContacto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContactoXEmpresa_Contacto">
+          <End Role="Contacto" Type="SAPEModel.Store.Contacto" Multiplicity="1" />
+          <End Role="ContactoXEmpresa" Type="SAPEModel.Store.ContactoXEmpresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contacto">
+              <PropertyRef Name="idContacto" />
+            </Principal>
+            <Dependent Role="ContactoXEmpresa">
+              <PropertyRef Name="FK_Contacto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContactoXEmpresa_Empresa">
+          <End Role="Empresa" Type="SAPEModel.Store.Empresa" Multiplicity="1" />
+          <End Role="ContactoXEmpresa" Type="SAPEModel.Store.ContactoXEmpresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="idEmpresa" />
+            </Principal>
+            <Dependent Role="ContactoXEmpresa">
+              <PropertyRef Name="FK_Empresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CursoXEstudiante_Curso">
+          <End Role="Curso" Type="SAPEModel.Store.Curso" Multiplicity="1" />
+          <End Role="CursoXEstudiante" Type="SAPEModel.Store.CursoXEstudiante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Curso">
+              <PropertyRef Name="idCurso" />
+            </Principal>
+            <Dependent Role="CursoXEstudiante">
+              <PropertyRef Name="FK_Curso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CursoXEstudiante_Estudiante">
+          <End Role="Estudiante" Type="SAPEModel.Store.Estudiante" Multiplicity="1" />
+          <End Role="CursoXEstudiante" Type="SAPEModel.Store.CursoXEstudiante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estudiante">
+              <PropertyRef Name="idEstudiante" />
+            </Principal>
+            <Dependent Role="CursoXEstudiante">
+              <PropertyRef Name="FK_Estudiante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empresa_Ciudad">
+          <End Role="Ciudad" Type="SAPEModel.Store.Ciudad" Multiplicity="1" />
+          <End Role="Empresa" Type="SAPEModel.Store.Empresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ciudad">
+              <PropertyRef Name="idCiudad" />
+            </Principal>
+            <Dependent Role="Empresa">
+              <PropertyRef Name="FK_Direccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estudiante_Persona">
+          <End Role="Persona" Type="SAPEModel.Store.Persona" Multiplicity="1" />
+          <End Role="Estudiante" Type="SAPEModel.Store.Estudiante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="idPersona" />
+            </Principal>
+            <Dependent Role="Estudiante">
+              <PropertyRef Name="FK_Persona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estudiante_Proyecto">
+          <End Role="Proyecto" Type="SAPEModel.Store.Proyecto" Multiplicity="0..1" />
+          <End Role="Estudiante" Type="SAPEModel.Store.Estudiante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proyecto">
+              <PropertyRef Name="idProyecto" />
+            </Principal>
+            <Dependent Role="Estudiante">
+              <PropertyRef Name="FK_Proyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evaluacion_Empresa">
+          <End Role="Empresa" Type="SAPEModel.Store.Empresa" Multiplicity="0..1" />
+          <End Role="Evaluacion" Type="SAPEModel.Store.Evaluacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="idEmpresa" />
+            </Principal>
+            <Dependent Role="Evaluacion">
+              <PropertyRef Name="FK_Empresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evaluacion_Estudiante">
+          <End Role="Estudiante" Type="SAPEModel.Store.Estudiante" Multiplicity="1" />
+          <End Role="Evaluacion" Type="SAPEModel.Store.Evaluacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estudiante">
+              <PropertyRef Name="idEstudiante" />
+            </Principal>
+            <Dependent Role="Evaluacion">
+              <PropertyRef Name="FK_Estudiante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evaluacion_Profesor">
+          <End Role="Profesor" Type="SAPEModel.Store.Profesor" Multiplicity="0..1" />
+          <End Role="Evaluacion" Type="SAPEModel.Store.Evaluacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesor">
+              <PropertyRef Name="idProfesor" />
+            </Principal>
+            <Dependent Role="Evaluacion">
+              <PropertyRef Name="FK_Profesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evaluacion_TipoEvaluacion">
+          <End Role="TipoEvaluacion" Type="SAPEModel.Store.TipoEvaluacion" Multiplicity="1" />
+          <End Role="Evaluacion" Type="SAPEModel.Store.Evaluacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoEvaluacion">
+              <PropertyRef Name="idTipoEvaluacion" />
+            </Principal>
+            <Dependent Role="Evaluacion">
+              <PropertyRef Name="FK_TipoEvaluacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PreferenciaDireccion_Profesor">
+          <End Role="Profesor" Type="SAPEModel.Store.Profesor" Multiplicity="1" />
+          <End Role="PreferenciaDireccion" Type="SAPEModel.Store.PreferenciaDireccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesor">
+              <PropertyRef Name="idProfesor" />
+            </Principal>
+            <Dependent Role="PreferenciaDireccion">
+              <PropertyRef Name="FK_Profesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PreferenciaProfesor_Estudiante">
+          <End Role="Estudiante" Type="SAPEModel.Store.Estudiante" Multiplicity="1" />
+          <End Role="PreferenciaProfesor" Type="SAPEModel.Store.PreferenciaProfesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estudiante">
+              <PropertyRef Name="idEstudiante" />
+            </Principal>
+            <Dependent Role="PreferenciaProfesor">
+              <PropertyRef Name="FK_Estudiante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PreferenciaProfesor_Profesor">
+          <End Role="Profesor" Type="SAPEModel.Store.Profesor" Multiplicity="1" />
+          <End Role="PreferenciaProfesor" Type="SAPEModel.Store.PreferenciaProfesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesor">
+              <PropertyRef Name="idProfesor" />
+            </Principal>
+            <Dependent Role="PreferenciaProfesor">
+              <PropertyRef Name="FK_Profesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PreferenciasDireccion_Ciudad">
+          <End Role="Ciudad" Type="SAPEModel.Store.Ciudad" Multiplicity="1" />
+          <End Role="PreferenciaDireccion" Type="SAPEModel.Store.PreferenciaDireccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ciudad">
+              <PropertyRef Name="idCiudad" />
+            </Principal>
+            <Dependent Role="PreferenciaDireccion">
+              <PropertyRef Name="FK_Direccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Profesor_Persona">
+          <End Role="Persona" Type="SAPEModel.Store.Persona" Multiplicity="1" />
+          <End Role="Profesor" Type="SAPEModel.Store.Profesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="idPersona" />
+            </Principal>
+            <Dependent Role="Profesor">
+              <PropertyRef Name="FK_Persona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Provincia_Pais">
+          <End Role="Pais" Type="SAPEModel.Store.Pais" Multiplicity="1" />
+          <End Role="Provincia" Type="SAPEModel.Store.Provincia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pais">
+              <PropertyRef Name="idPais" />
+            </Principal>
+            <Dependent Role="Provincia">
+              <PropertyRef Name="FK_Pais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proyecto_Empresa">
+          <End Role="Empresa" Type="SAPEModel.Store.Empresa" Multiplicity="1" />
+          <End Role="Proyecto" Type="SAPEModel.Store.Proyecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="idEmpresa" />
+            </Principal>
+            <Dependent Role="Proyecto">
+              <PropertyRef Name="FK_Empresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proyecto_EstadoProyecto">
+          <End Role="EstadoProyecto" Type="SAPEModel.Store.EstadoProyecto" Multiplicity="0..1" />
+          <End Role="Proyecto" Type="SAPEModel.Store.Proyecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoProyecto">
+              <PropertyRef Name="idEstado" />
+            </Principal>
+            <Dependent Role="Proyecto">
+              <PropertyRef Name="FK_Estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Persona">
+          <End Role="Persona" Type="SAPEModel.Store.Persona" Multiplicity="1" />
+          <End Role="Usuario" Type="SAPEModel.Store.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="idPersona" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="FK_idPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_TipoUsuario">
+          <End Role="TipoUsuario" Type="SAPEModel.Store.TipoUsuario" Multiplicity="1" />
+          <End Role="Usuario" Type="SAPEModel.Store.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoUsuario">
+              <PropertyRef Name="idTipoUsuario" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="FK_TipoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SAPEModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SAPEEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Ciudad" EntityType="SAPEModel.Ciudad" />
+          <EntitySet Name="Contacto" EntityType="SAPEModel.Contacto" />
+          <EntitySet Name="Curso" EntityType="SAPEModel.Curso" />
+          <EntitySet Name="CursoXEstudiante" EntityType="SAPEModel.CursoXEstudiante" />
+          <EntitySet Name="Empresa" EntityType="SAPEModel.Empresa" />
+          <EntitySet Name="EstadoProyecto" EntityType="SAPEModel.EstadoProyecto" />
+          <EntitySet Name="Estudiante" EntityType="SAPEModel.Estudiante" />
+          <EntitySet Name="Evaluacion" EntityType="SAPEModel.Evaluacion" />
+          <EntitySet Name="Pais" EntityType="SAPEModel.Pais" />
+          <EntitySet Name="Persona" EntityType="SAPEModel.Persona" />
+          <EntitySet Name="PreferenciaProfesor" EntityType="SAPEModel.PreferenciaProfesor" />
+          <EntitySet Name="Profesor" EntityType="SAPEModel.Profesor" />
+          <EntitySet Name="Provincia" EntityType="SAPEModel.Provincia" />
+          <EntitySet Name="Proyecto" EntityType="SAPEModel.Proyecto" />
+          <EntitySet Name="sysdiagrams" EntityType="SAPEModel.sysdiagrams" />
+          <EntitySet Name="TipoContacto" EntityType="SAPEModel.TipoContacto" />
+          <EntitySet Name="TipoEvaluacion" EntityType="SAPEModel.TipoEvaluacion" />
+          <EntitySet Name="TipoUsuario" EntityType="SAPEModel.TipoUsuario" />
+          <EntitySet Name="Usuario" EntityType="SAPEModel.Usuario" />
+          <AssociationSet Name="FK_Ciudad_Provincia" Association="SAPEModel.FK_Ciudad_Provincia">
+            <End Role="Provincia" EntitySet="Provincia" />
+            <End Role="Ciudad" EntitySet="Ciudad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empresa_Ciudad" Association="SAPEModel.FK_Empresa_Ciudad">
+            <End Role="Ciudad" EntitySet="Ciudad" />
+            <End Role="Empresa" EntitySet="Empresa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contacto_Persona" Association="SAPEModel.FK_Contacto_Persona">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Contacto" EntitySet="Contacto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contacto_TipoContacto" Association="SAPEModel.FK_Contacto_TipoContacto">
+            <End Role="TipoContacto" EntitySet="TipoContacto" />
+            <End Role="Contacto" EntitySet="Contacto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CursoXEstudiante_Curso" Association="SAPEModel.FK_CursoXEstudiante_Curso">
+            <End Role="Curso" EntitySet="Curso" />
+            <End Role="CursoXEstudiante" EntitySet="CursoXEstudiante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CursoXEstudiante_Estudiante" Association="SAPEModel.FK_CursoXEstudiante_Estudiante">
+            <End Role="Estudiante" EntitySet="Estudiante" />
+            <End Role="CursoXEstudiante" EntitySet="CursoXEstudiante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evaluacion_Empresa" Association="SAPEModel.FK_Evaluacion_Empresa">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="Evaluacion" EntitySet="Evaluacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proyecto_Empresa" Association="SAPEModel.FK_Proyecto_Empresa">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="Proyecto" EntitySet="Proyecto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proyecto_EstadoProyecto" Association="SAPEModel.FK_Proyecto_EstadoProyecto">
+            <End Role="EstadoProyecto" EntitySet="EstadoProyecto" />
+            <End Role="Proyecto" EntitySet="Proyecto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estudiante_Persona" Association="SAPEModel.FK_Estudiante_Persona">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Estudiante" EntitySet="Estudiante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estudiante_Proyecto" Association="SAPEModel.FK_Estudiante_Proyecto">
+            <End Role="Proyecto" EntitySet="Proyecto" />
+            <End Role="Estudiante" EntitySet="Estudiante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evaluacion_Estudiante" Association="SAPEModel.FK_Evaluacion_Estudiante">
+            <End Role="Estudiante" EntitySet="Estudiante" />
+            <End Role="Evaluacion" EntitySet="Evaluacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PreferenciaProfesor_Estudiante" Association="SAPEModel.FK_PreferenciaProfesor_Estudiante">
+            <End Role="Estudiante" EntitySet="Estudiante" />
+            <End Role="PreferenciaProfesor" EntitySet="PreferenciaProfesor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evaluacion_Profesor" Association="SAPEModel.FK_Evaluacion_Profesor">
+            <End Role="Profesor" EntitySet="Profesor" />
+            <End Role="Evaluacion" EntitySet="Evaluacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evaluacion_TipoEvaluacion" Association="SAPEModel.FK_Evaluacion_TipoEvaluacion">
+            <End Role="TipoEvaluacion" EntitySet="TipoEvaluacion" />
+            <End Role="Evaluacion" EntitySet="Evaluacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Provincia_Pais" Association="SAPEModel.FK_Provincia_Pais">
+            <End Role="Pais" EntitySet="Pais" />
+            <End Role="Provincia" EntitySet="Provincia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Profesor_Persona" Association="SAPEModel.FK_Profesor_Persona">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Profesor" EntitySet="Profesor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Persona" Association="SAPEModel.FK_Usuario_Persona">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PreferenciaProfesor_Profesor" Association="SAPEModel.FK_PreferenciaProfesor_Profesor">
+            <End Role="Profesor" EntitySet="Profesor" />
+            <End Role="PreferenciaProfesor" EntitySet="PreferenciaProfesor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_TipoUsuario" Association="SAPEModel.FK_Usuario_TipoUsuario">
+            <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="ContactoXEmpresa" Association="SAPEModel.ContactoXEmpresa">
+            <End Role="Contacto" EntitySet="Contacto" />
+            <End Role="Empresa" EntitySet="Empresa" />
+          </AssociationSet>
+          <AssociationSet Name="PreferenciaDireccion" Association="SAPEModel.PreferenciaDireccion">
+            <End Role="Profesor" EntitySet="Profesor" />
+            <End Role="Ciudad" EntitySet="Ciudad" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Ciudad">
+          <Key>
+            <PropertyRef Name="idCiudad" />
+          </Key>
+          <Property Name="idCiudad" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="FK_Provincia" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Provincia" Relationship="SAPEModel.FK_Ciudad_Provincia" FromRole="Ciudad" ToRole="Provincia" />
+          <NavigationProperty Name="Empresa" Relationship="SAPEModel.FK_Empresa_Ciudad" FromRole="Ciudad" ToRole="Empresa" />
+          <NavigationProperty Name="Profesor" Relationship="SAPEModel.PreferenciaDireccion" FromRole="Ciudad" ToRole="Profesor" />
+        </EntityType>
+        <EntityType Name="Contacto">
+          <Key>
+            <PropertyRef Name="idContacto" />
+          </Key>
+          <Property Name="idContacto" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Valor" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="FK_TipoContacto" Type="Int32" Nullable="false" />
+          <Property Name="FK_Empresa" Type="Int32" />
+          <Property Name="FK_Persona" Type="Int32" />
+          <NavigationProperty Name="Persona" Relationship="SAPEModel.FK_Contacto_Persona" FromRole="Contacto" ToRole="Persona" />
+          <NavigationProperty Name="TipoContacto" Relationship="SAPEModel.FK_Contacto_TipoContacto" FromRole="Contacto" ToRole="TipoContacto" />
+          <NavigationProperty Name="Empresa" Relationship="SAPEModel.ContactoXEmpresa" FromRole="Contacto" ToRole="Empresa" />
+        </EntityType>
+        <EntityType Name="Curso">
+          <Key>
+            <PropertyRef Name="idCurso" />
+          </Key>
+          <Property Name="idCurso" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="CursoXEstudiante" Relationship="SAPEModel.FK_CursoXEstudiante_Curso" FromRole="Curso" ToRole="CursoXEstudiante" />
+        </EntityType>
+        <EntityType Name="CursoXEstudiante">
+          <Key>
+            <PropertyRef Name="FK_Estudiante" />
+            <PropertyRef Name="FK_Curso" />
+            <PropertyRef Name="Cursado" />
+          </Key>
+          <Property Name="FK_Estudiante" Type="Int32" Nullable="false" />
+          <Property Name="FK_Curso" Type="Int32" Nullable="false" />
+          <Property Name="Cursado" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Curso" Relationship="SAPEModel.FK_CursoXEstudiante_Curso" FromRole="CursoXEstudiante" ToRole="Curso" />
+          <NavigationProperty Name="Estudiante" Relationship="SAPEModel.FK_CursoXEstudiante_Estudiante" FromRole="CursoXEstudiante" ToRole="Estudiante" />
+        </EntityType>
+        <EntityType Name="Empresa">
+          <Key>
+            <PropertyRef Name="idEmpresa" />
+          </Key>
+          <Property Name="idEmpresa" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="FK_Persona" Type="Int32" Nullable="false" />
+          <Property Name="FK_Direccion" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Ciudad" Relationship="SAPEModel.FK_Empresa_Ciudad" FromRole="Empresa" ToRole="Ciudad" />
+          <NavigationProperty Name="Evaluacion" Relationship="SAPEModel.FK_Evaluacion_Empresa" FromRole="Empresa" ToRole="Evaluacion" />
+          <NavigationProperty Name="Proyecto" Relationship="SAPEModel.FK_Proyecto_Empresa" FromRole="Empresa" ToRole="Proyecto" />
+          <NavigationProperty Name="Contacto" Relationship="SAPEModel.ContactoXEmpresa" FromRole="Empresa" ToRole="Contacto" />
+        </EntityType>
+        <EntityType Name="EstadoProyecto">
+          <Key>
+            <PropertyRef Name="idEstado" />
+          </Key>
+          <Property Name="idEstado" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Proyecto" Relationship="SAPEModel.FK_Proyecto_EstadoProyecto" FromRole="EstadoProyecto" ToRole="Proyecto" />
+        </EntityType>
+        <EntityType Name="Estudiante">
+          <Key>
+            <PropertyRef Name="idEstudiante" />
+          </Key>
+          <Property Name="idEstudiante" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_Persona" Type="Int32" Nullable="false" />
+          <Property Name="FK_Proyecto" Type="Int32" />
+          <Property Name="Carnet" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CursoXEstudiante" Relationship="SAPEModel.FK_CursoXEstudiante_Estudiante" FromRole="Estudiante" ToRole="CursoXEstudiante" />
+          <NavigationProperty Name="Persona" Relationship="SAPEModel.FK_Estudiante_Persona" FromRole="Estudiante" ToRole="Persona" />
+          <NavigationProperty Name="Proyecto" Relationship="SAPEModel.FK_Estudiante_Proyecto" FromRole="Estudiante" ToRole="Proyecto" />
+          <NavigationProperty Name="Evaluacion" Relationship="SAPEModel.FK_Evaluacion_Estudiante" FromRole="Estudiante" ToRole="Evaluacion" />
+          <NavigationProperty Name="PreferenciaProfesor" Relationship="SAPEModel.FK_PreferenciaProfesor_Estudiante" FromRole="Estudiante" ToRole="PreferenciaProfesor" />
+        </EntityType>
+        <EntityType Name="Evaluacion">
+          <Key>
+            <PropertyRef Name="idEvaluacion" />
+          </Key>
+          <Property Name="idEvaluacion" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Nota" Type="Decimal" Nullable="false" Precision="3" Scale="0" />
+          <Property Name="FK_TipoEvaluacion" Type="Int32" Nullable="false" />
+          <Property Name="FK_Estudiante" Type="Int32" Nullable="false" />
+          <Property Name="Evaluador" Type="Int32" Nullable="false" />
+          <Property Name="FK_Empresa" Type="Int32" />
+          <Property Name="FK_Profesor" Type="Int32" />
+          <NavigationProperty Name="Empresa" Relationship="SAPEModel.FK_Evaluacion_Empresa" FromRole="Evaluacion" ToRole="Empresa" />
+          <NavigationProperty Name="Estudiante" Relationship="SAPEModel.FK_Evaluacion_Estudiante" FromRole="Evaluacion" ToRole="Estudiante" />
+          <NavigationProperty Name="Profesor" Relationship="SAPEModel.FK_Evaluacion_Profesor" FromRole="Evaluacion" ToRole="Profesor" />
+          <NavigationProperty Name="TipoEvaluacion" Relationship="SAPEModel.FK_Evaluacion_TipoEvaluacion" FromRole="Evaluacion" ToRole="TipoEvaluacion" />
+        </EntityType>
+        <EntityType Name="Pais">
+          <Key>
+            <PropertyRef Name="idPais" />
+          </Key>
+          <Property Name="idPais" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Provincia" Relationship="SAPEModel.FK_Provincia_Pais" FromRole="Pais" ToRole="Provincia" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="idPersona" />
+          </Key>
+          <Property Name="idPersona" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Apellido1" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Apellido2" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Contacto" Relationship="SAPEModel.FK_Contacto_Persona" FromRole="Persona" ToRole="Contacto" />
+          <NavigationProperty Name="Estudiante" Relationship="SAPEModel.FK_Estudiante_Persona" FromRole="Persona" ToRole="Estudiante" />
+          <NavigationProperty Name="Profesor" Relationship="SAPEModel.FK_Profesor_Persona" FromRole="Persona" ToRole="Profesor" />
+          <NavigationProperty Name="Usuario" Relationship="SAPEModel.FK_Usuario_Persona" FromRole="Persona" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="PreferenciaProfesor">
+          <Key>
+            <PropertyRef Name="idPreferencia" />
+          </Key>
+          <Property Name="idPreferencia" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_Estudiante" Type="Int32" Nullable="false" />
+          <Property Name="FK_Profesor" Type="Int32" Nullable="false" />
+          <Property Name="Valor" Type="Int32" Nullable="false" />
+          <Property Name="Comentario" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Estudiante" Relationship="SAPEModel.FK_PreferenciaProfesor_Estudiante" FromRole="PreferenciaProfesor" ToRole="Estudiante" />
+          <NavigationProperty Name="Profesor" Relationship="SAPEModel.FK_PreferenciaProfesor_Profesor" FromRole="PreferenciaProfesor" ToRole="Profesor" />
+        </EntityType>
+        <EntityType Name="Profesor">
+          <Key>
+            <PropertyRef Name="idProfesor" />
+          </Key>
+          <Property Name="idProfesor" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_Persona" Type="Int32" Nullable="false" />
+          <Property Name="Asesora" Type="Int32" Nullable="false" />
+          <Property Name="CargaMinima" Type="Int32" />
+          <Property Name="MargaMaxima" Type="Int32" />
+          <NavigationProperty Name="Evaluacion" Relationship="SAPEModel.FK_Evaluacion_Profesor" FromRole="Profesor" ToRole="Evaluacion" />
+          <NavigationProperty Name="Persona" Relationship="SAPEModel.FK_Profesor_Persona" FromRole="Profesor" ToRole="Persona" />
+          <NavigationProperty Name="PreferenciaProfesor" Relationship="SAPEModel.FK_PreferenciaProfesor_Profesor" FromRole="Profesor" ToRole="PreferenciaProfesor" />
+          <NavigationProperty Name="Ciudad" Relationship="SAPEModel.PreferenciaDireccion" FromRole="Profesor" ToRole="Ciudad" />
+        </EntityType>
+        <EntityType Name="Provincia">
+          <Key>
+            <PropertyRef Name="idProvincia" />
+          </Key>
+          <Property Name="idProvincia" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="FK_Pais" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Ciudad" Relationship="SAPEModel.FK_Ciudad_Provincia" FromRole="Provincia" ToRole="Ciudad" />
+          <NavigationProperty Name="Pais" Relationship="SAPEModel.FK_Provincia_Pais" FromRole="Provincia" ToRole="Pais" />
+        </EntityType>
+        <EntityType Name="Proyecto">
+          <Key>
+            <PropertyRef Name="idProyecto" />
+          </Key>
+          <Property Name="idProyecto" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="400" Unicode="false" FixedLength="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="FK_Empresa" Type="Int32" Nullable="false" />
+          <Property Name="FK_Estado" Type="Int32" />
+          <Property Name="Observacion" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Empresa" Relationship="SAPEModel.FK_Proyecto_Empresa" FromRole="Proyecto" ToRole="Empresa" />
+          <NavigationProperty Name="EstadoProyecto" Relationship="SAPEModel.FK_Proyecto_EstadoProyecto" FromRole="Proyecto" ToRole="EstadoProyecto" />
+          <NavigationProperty Name="Estudiante" Relationship="SAPEModel.FK_Estudiante_Proyecto" FromRole="Proyecto" ToRole="Estudiante" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TipoContacto">
+          <Key>
+            <PropertyRef Name="idTipoContacto" />
+          </Key>
+          <Property Name="idTipoContacto" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Contacto" Relationship="SAPEModel.FK_Contacto_TipoContacto" FromRole="TipoContacto" ToRole="Contacto" />
+        </EntityType>
+        <EntityType Name="TipoEvaluacion">
+          <Key>
+            <PropertyRef Name="idTipoEvaluacion" />
+          </Key>
+          <Property Name="idTipoEvaluacion" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Evaluacion" Relationship="SAPEModel.FK_Evaluacion_TipoEvaluacion" FromRole="TipoEvaluacion" ToRole="Evaluacion" />
+        </EntityType>
+        <EntityType Name="TipoUsuario">
+          <Key>
+            <PropertyRef Name="idTipoUsuario" />
+          </Key>
+          <Property Name="idTipoUsuario" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="Permisos" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="SAPEModel.FK_Usuario_TipoUsuario" FromRole="TipoUsuario" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Contrasena" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="FK_idPersona" Type="Int32" Nullable="false" />
+          <Property Name="FK_TipoUsuario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Persona" Relationship="SAPEModel.FK_Usuario_Persona" FromRole="Usuario" ToRole="Persona" />
+          <NavigationProperty Name="TipoUsuario" Relationship="SAPEModel.FK_Usuario_TipoUsuario" FromRole="Usuario" ToRole="TipoUsuario" />
+        </EntityType>
+        <Association Name="FK_Ciudad_Provincia">
+          <End Role="Provincia" Type="SAPEModel.Provincia" Multiplicity="1" />
+          <End Role="Ciudad" Type="SAPEModel.Ciudad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincia">
+              <PropertyRef Name="idProvincia" />
+            </Principal>
+            <Dependent Role="Ciudad">
+              <PropertyRef Name="FK_Provincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empresa_Ciudad">
+          <End Role="Ciudad" Type="SAPEModel.Ciudad" Multiplicity="1" />
+          <End Role="Empresa" Type="SAPEModel.Empresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ciudad">
+              <PropertyRef Name="idCiudad" />
+            </Principal>
+            <Dependent Role="Empresa">
+              <PropertyRef Name="FK_Direccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contacto_Persona">
+          <End Role="Persona" Type="SAPEModel.Persona" Multiplicity="0..1" />
+          <End Role="Contacto" Type="SAPEModel.Contacto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="idPersona" />
+            </Principal>
+            <Dependent Role="Contacto">
+              <PropertyRef Name="FK_Persona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contacto_TipoContacto">
+          <End Role="TipoContacto" Type="SAPEModel.TipoContacto" Multiplicity="1" />
+          <End Role="Contacto" Type="SAPEModel.Contacto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoContacto">
+              <PropertyRef Name="idTipoContacto" />
+            </Principal>
+            <Dependent Role="Contacto">
+              <PropertyRef Name="FK_TipoContacto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CursoXEstudiante_Curso">
+          <End Role="Curso" Type="SAPEModel.Curso" Multiplicity="1" />
+          <End Role="CursoXEstudiante" Type="SAPEModel.CursoXEstudiante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Curso">
+              <PropertyRef Name="idCurso" />
+            </Principal>
+            <Dependent Role="CursoXEstudiante">
+              <PropertyRef Name="FK_Curso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CursoXEstudiante_Estudiante">
+          <End Role="Estudiante" Type="SAPEModel.Estudiante" Multiplicity="1" />
+          <End Role="CursoXEstudiante" Type="SAPEModel.CursoXEstudiante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estudiante">
+              <PropertyRef Name="idEstudiante" />
+            </Principal>
+            <Dependent Role="CursoXEstudiante">
+              <PropertyRef Name="FK_Estudiante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evaluacion_Empresa">
+          <End Role="Empresa" Type="SAPEModel.Empresa" Multiplicity="0..1" />
+          <End Role="Evaluacion" Type="SAPEModel.Evaluacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="idEmpresa" />
+            </Principal>
+            <Dependent Role="Evaluacion">
+              <PropertyRef Name="FK_Empresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proyecto_Empresa">
+          <End Role="Empresa" Type="SAPEModel.Empresa" Multiplicity="1" />
+          <End Role="Proyecto" Type="SAPEModel.Proyecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="idEmpresa" />
+            </Principal>
+            <Dependent Role="Proyecto">
+              <PropertyRef Name="FK_Empresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proyecto_EstadoProyecto">
+          <End Role="EstadoProyecto" Type="SAPEModel.EstadoProyecto" Multiplicity="0..1" />
+          <End Role="Proyecto" Type="SAPEModel.Proyecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoProyecto">
+              <PropertyRef Name="idEstado" />
+            </Principal>
+            <Dependent Role="Proyecto">
+              <PropertyRef Name="FK_Estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estudiante_Persona">
+          <End Role="Persona" Type="SAPEModel.Persona" Multiplicity="1" />
+          <End Role="Estudiante" Type="SAPEModel.Estudiante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="idPersona" />
+            </Principal>
+            <Dependent Role="Estudiante">
+              <PropertyRef Name="FK_Persona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estudiante_Proyecto">
+          <End Role="Proyecto" Type="SAPEModel.Proyecto" Multiplicity="0..1" />
+          <End Role="Estudiante" Type="SAPEModel.Estudiante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proyecto">
+              <PropertyRef Name="idProyecto" />
+            </Principal>
+            <Dependent Role="Estudiante">
+              <PropertyRef Name="FK_Proyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evaluacion_Estudiante">
+          <End Role="Estudiante" Type="SAPEModel.Estudiante" Multiplicity="1" />
+          <End Role="Evaluacion" Type="SAPEModel.Evaluacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estudiante">
+              <PropertyRef Name="idEstudiante" />
+            </Principal>
+            <Dependent Role="Evaluacion">
+              <PropertyRef Name="FK_Estudiante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PreferenciaProfesor_Estudiante">
+          <End Role="Estudiante" Type="SAPEModel.Estudiante" Multiplicity="1" />
+          <End Role="PreferenciaProfesor" Type="SAPEModel.PreferenciaProfesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estudiante">
+              <PropertyRef Name="idEstudiante" />
+            </Principal>
+            <Dependent Role="PreferenciaProfesor">
+              <PropertyRef Name="FK_Estudiante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evaluacion_Profesor">
+          <End Role="Profesor" Type="SAPEModel.Profesor" Multiplicity="0..1" />
+          <End Role="Evaluacion" Type="SAPEModel.Evaluacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesor">
+              <PropertyRef Name="idProfesor" />
+            </Principal>
+            <Dependent Role="Evaluacion">
+              <PropertyRef Name="FK_Profesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evaluacion_TipoEvaluacion">
+          <End Role="TipoEvaluacion" Type="SAPEModel.TipoEvaluacion" Multiplicity="1" />
+          <End Role="Evaluacion" Type="SAPEModel.Evaluacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoEvaluacion">
+              <PropertyRef Name="idTipoEvaluacion" />
+            </Principal>
+            <Dependent Role="Evaluacion">
+              <PropertyRef Name="FK_TipoEvaluacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Provincia_Pais">
+          <End Role="Pais" Type="SAPEModel.Pais" Multiplicity="1" />
+          <End Role="Provincia" Type="SAPEModel.Provincia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pais">
+              <PropertyRef Name="idPais" />
+            </Principal>
+            <Dependent Role="Provincia">
+              <PropertyRef Name="FK_Pais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Profesor_Persona">
+          <End Role="Persona" Type="SAPEModel.Persona" Multiplicity="1" />
+          <End Role="Profesor" Type="SAPEModel.Profesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="idPersona" />
+            </Principal>
+            <Dependent Role="Profesor">
+              <PropertyRef Name="FK_Persona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Persona">
+          <End Role="Persona" Type="SAPEModel.Persona" Multiplicity="1" />
+          <End Role="Usuario" Type="SAPEModel.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="idPersona" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="FK_idPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PreferenciaProfesor_Profesor">
+          <End Role="Profesor" Type="SAPEModel.Profesor" Multiplicity="1" />
+          <End Role="PreferenciaProfesor" Type="SAPEModel.PreferenciaProfesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesor">
+              <PropertyRef Name="idProfesor" />
+            </Principal>
+            <Dependent Role="PreferenciaProfesor">
+              <PropertyRef Name="FK_Profesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_TipoUsuario">
+          <End Role="TipoUsuario" Type="SAPEModel.TipoUsuario" Multiplicity="1" />
+          <End Role="Usuario" Type="SAPEModel.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoUsuario">
+              <PropertyRef Name="idTipoUsuario" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="FK_TipoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ContactoXEmpresa">
+          <End Role="Contacto" Type="SAPEModel.Contacto" Multiplicity="*" />
+          <End Role="Empresa" Type="SAPEModel.Empresa" Multiplicity="*" />
+        </Association>
+        <Association Name="PreferenciaDireccion">
+          <End Role="Profesor" Type="SAPEModel.Profesor" Multiplicity="*" />
+          <End Role="Ciudad" Type="SAPEModel.Ciudad" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SAPEModelStoreContainer" CdmEntityContainer="SAPEEntities">
+          <EntitySetMapping Name="Ciudad">
+            <EntityTypeMapping TypeName="SAPEModel.Ciudad">
+              <MappingFragment StoreEntitySet="Ciudad">
+                <ScalarProperty Name="idCiudad" ColumnName="idCiudad" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="FK_Provincia" ColumnName="FK_Provincia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contacto">
+            <EntityTypeMapping TypeName="SAPEModel.Contacto">
+              <MappingFragment StoreEntitySet="Contacto">
+                <ScalarProperty Name="idContacto" ColumnName="idContacto" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="FK_TipoContacto" ColumnName="FK_TipoContacto" />
+                <ScalarProperty Name="FK_Empresa" ColumnName="FK_Empresa" />
+                <ScalarProperty Name="FK_Persona" ColumnName="FK_Persona" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Curso">
+            <EntityTypeMapping TypeName="SAPEModel.Curso">
+              <MappingFragment StoreEntitySet="Curso">
+                <ScalarProperty Name="idCurso" ColumnName="idCurso" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CursoXEstudiante">
+            <EntityTypeMapping TypeName="SAPEModel.CursoXEstudiante">
+              <MappingFragment StoreEntitySet="CursoXEstudiante">
+                <ScalarProperty Name="FK_Estudiante" ColumnName="FK_Estudiante" />
+                <ScalarProperty Name="FK_Curso" ColumnName="FK_Curso" />
+                <ScalarProperty Name="Cursado" ColumnName="Cursado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empresa">
+            <EntityTypeMapping TypeName="SAPEModel.Empresa">
+              <MappingFragment StoreEntitySet="Empresa">
+                <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="FK_Persona" ColumnName="FK_Persona" />
+                <ScalarProperty Name="FK_Direccion" ColumnName="FK_Direccion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EstadoProyecto">
+            <EntityTypeMapping TypeName="SAPEModel.EstadoProyecto">
+              <MappingFragment StoreEntitySet="EstadoProyecto">
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estudiante">
+            <EntityTypeMapping TypeName="SAPEModel.Estudiante">
+              <MappingFragment StoreEntitySet="Estudiante">
+                <ScalarProperty Name="idEstudiante" ColumnName="idEstudiante" />
+                <ScalarProperty Name="FK_Persona" ColumnName="FK_Persona" />
+                <ScalarProperty Name="FK_Proyecto" ColumnName="FK_Proyecto" />
+                <ScalarProperty Name="Carnet" ColumnName="Carnet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Evaluacion">
+            <EntityTypeMapping TypeName="SAPEModel.Evaluacion">
+              <MappingFragment StoreEntitySet="Evaluacion">
+                <ScalarProperty Name="idEvaluacion" ColumnName="idEvaluacion" />
+                <ScalarProperty Name="Nota" ColumnName="Nota" />
+                <ScalarProperty Name="FK_TipoEvaluacion" ColumnName="FK_TipoEvaluacion" />
+                <ScalarProperty Name="FK_Estudiante" ColumnName="FK_Estudiante" />
+                <ScalarProperty Name="Evaluador" ColumnName="Evaluador" />
+                <ScalarProperty Name="FK_Empresa" ColumnName="FK_Empresa" />
+                <ScalarProperty Name="FK_Profesor" ColumnName="FK_Profesor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pais">
+            <EntityTypeMapping TypeName="SAPEModel.Pais">
+              <MappingFragment StoreEntitySet="Pais">
+                <ScalarProperty Name="idPais" ColumnName="idPais" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Persona">
+            <EntityTypeMapping TypeName="SAPEModel.Persona">
+              <MappingFragment StoreEntitySet="Persona">
+                <ScalarProperty Name="idPersona" ColumnName="idPersona" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido1" ColumnName="Apellido1" />
+                <ScalarProperty Name="Apellido2" ColumnName="Apellido2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PreferenciaProfesor">
+            <EntityTypeMapping TypeName="SAPEModel.PreferenciaProfesor">
+              <MappingFragment StoreEntitySet="PreferenciaProfesor">
+                <ScalarProperty Name="idPreferencia" ColumnName="idPreferencia" />
+                <ScalarProperty Name="FK_Estudiante" ColumnName="FK_Estudiante" />
+                <ScalarProperty Name="FK_Profesor" ColumnName="FK_Profesor" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Profesor">
+            <EntityTypeMapping TypeName="SAPEModel.Profesor">
+              <MappingFragment StoreEntitySet="Profesor">
+                <ScalarProperty Name="idProfesor" ColumnName="idProfesor" />
+                <ScalarProperty Name="FK_Persona" ColumnName="FK_Persona" />
+                <ScalarProperty Name="Asesora" ColumnName="Asesora" />
+                <ScalarProperty Name="CargaMinima" ColumnName="CargaMinima" />
+                <ScalarProperty Name="MargaMaxima" ColumnName="MargaMaxima" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Provincia">
+            <EntityTypeMapping TypeName="SAPEModel.Provincia">
+              <MappingFragment StoreEntitySet="Provincia">
+                <ScalarProperty Name="idProvincia" ColumnName="idProvincia" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="FK_Pais" ColumnName="FK_Pais" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proyecto">
+            <EntityTypeMapping TypeName="SAPEModel.Proyecto">
+              <MappingFragment StoreEntitySet="Proyecto">
+                <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="FK_Empresa" ColumnName="FK_Empresa" />
+                <ScalarProperty Name="FK_Estado" ColumnName="FK_Estado" />
+                <ScalarProperty Name="Observacion" ColumnName="Observacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SAPEModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoContacto">
+            <EntityTypeMapping TypeName="SAPEModel.TipoContacto">
+              <MappingFragment StoreEntitySet="TipoContacto">
+                <ScalarProperty Name="idTipoContacto" ColumnName="idTipoContacto" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoEvaluacion">
+            <EntityTypeMapping TypeName="SAPEModel.TipoEvaluacion">
+              <MappingFragment StoreEntitySet="TipoEvaluacion">
+                <ScalarProperty Name="idTipoEvaluacion" ColumnName="idTipoEvaluacion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoUsuario">
+            <EntityTypeMapping TypeName="SAPEModel.TipoUsuario">
+              <MappingFragment StoreEntitySet="TipoUsuario">
+                <ScalarProperty Name="idTipoUsuario" ColumnName="idTipoUsuario" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Permisos" ColumnName="Permisos" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="SAPEModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+                <ScalarProperty Name="FK_idPersona" ColumnName="FK_idPersona" />
+                <ScalarProperty Name="FK_TipoUsuario" ColumnName="FK_TipoUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ContactoXEmpresa" TypeName="SAPEModel.ContactoXEmpresa" StoreEntitySet="ContactoXEmpresa">
+            <EndProperty Name="Contacto">
+              <ScalarProperty Name="idContacto" ColumnName="FK_Contacto" />
+            </EndProperty>
+            <EndProperty Name="Empresa">
+              <ScalarProperty Name="idEmpresa" ColumnName="FK_Empresa" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="PreferenciaDireccion" TypeName="SAPEModel.PreferenciaDireccion" StoreEntitySet="PreferenciaDireccion">
+            <EndProperty Name="Profesor">
+              <ScalarProperty Name="idProfesor" ColumnName="FK_Profesor" />
+            </EndProperty>
+            <EndProperty Name="Ciudad">
+              <ScalarProperty Name="idCiudad" ColumnName="FK_Direccion" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,26 @@
+﻿@model SAPE_MVC.Models.Usuario
+
+@{
+    ViewBag.Title = "LogIn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>LogIn</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true, "Login Failed, check details");
+    <div>
+        <fieldset>
+            <legend>Login Form</legend>
+            <div class="editor-label">@Html.LabelFor(usuario=> usuario.Nombre)</div>
+            <div class="editor-field">@Html.TextBoxFor(usuario=> usuario.Nombre)
+                @Html.ValidationMessageFor(usuario=>usuario.Nombre)
+            </div>
+            <div class="editor-label">@Html.LabelFor(usuario=> usuario.Contrasena)</div>
+            <div  class="editor-field">@Html.PasswordFor(usuario=> usuario.Contrasena)
+                @Html.ValidationMessageFor(usuario=> usuario.Contrasena)
+            </div>
+            <input type="submit" value="Log In" />
+        </fieldset>
+    </div>
+}

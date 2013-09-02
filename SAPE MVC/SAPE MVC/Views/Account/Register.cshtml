@@ -1,0 +1,42 @@
+﻿@model SAPE_MVC.Models.Registro
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Register</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true, "Registeration Failed, fields.");
+    <div>
+        <fieldset>
+            <legend>Register Form</legend>
+            <div class="editor-label">@Html.LabelFor(u => u.Username)</div>
+            <div class="editor-field">@Html.TextBoxFor(u => u.Username)
+                @Html.ValidationMessageFor(u => u.Username)
+            </div>
+            <div class="editor-label">@Html.LabelFor(u => u.Contrasena)</div>
+            <div class="editor-field">@Html.PasswordFor(u => u.Contrasena)
+                @Html.ValidationMessageFor(u => u.Contrasena)
+            </div>
+            <div class="editor-label">@Html.LabelFor(u => u.Nombre)</div>
+            <div class="editor-field">@Html.TextBoxFor(u => u.Nombre)
+                @Html.ValidationMessageFor(u => u.Nombre)
+            </div>
+            <div class="editor-label">@Html.LabelFor(u => u.Apellido1)</div>
+            <div class="editor-field">@Html.TextBoxFor(u => u.Apellido1)
+                @Html.ValidationMessageFor(u => u.Apellido1)
+            </div>
+            <div class="editor-label">@Html.LabelFor(u => u.Apellido2)</div>
+            <div class="editor-field">@Html.TextBoxFor(u => u.Apellido2)
+                @Html.ValidationMessageFor(u => u.Apellido2)
+            </div>
+            <div class="editor-label">@Html.LabelFor(u => u.TipoUsuario)</div>
+            <div class="editor-field">@Html.TextBoxFor(u => u.TipoUsuario)
+                @Html.ValidationMessageFor(u => u.TipoUsuario)
+            </div>
+            <input type="submit" value="Register" />
+        </fieldset>
+    </div>
+}
