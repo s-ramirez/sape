@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "RegistroEmpresas";
+    Layout = "~/Views/Shared/_FormLayout.cshtml";
+}
+
+<h2>Registro de Empresas</h2>
+<form method="post">
+    <label for="nombreEmpresa">Nombre de la empresa</label>
+    <input id="nombreEmpresa" type="text" name="nombreEmpresa" />
+    Desea recibir practicantes el semestre que viene?
+    <select name="practicantes">
+        <option value="si">Si</option>
+        <option value="no">No</option>
+    </select>
+    Cuantos? (aprox.)
+    <input type="number" name="cantPracticantes"/>
+    Ubicacion
+    <select name="ciudad">
+        @foreach (SAPE_MVC.Models.Provincia ciudad in ViewBag.Ciudades)
+        {
+         <option value="@ciudad.Nombre">@ciudad.Nombre</option>    
+        }
+    </select>
+    <h2>Informacion de contacto</h2>
+    <h3>Nombre de la Persona Contacto</h3>
+    <label for="nombreContacto">Nombre</label>
+    <input id="nombreContacto" type="text" name="nombreContacto"/>
+    <label for="papellidoContacto">Primer Apellido</label>
+    <input id="papellidoContacto" type="text" name="papellidoContacto"/>
+    <label for="sapellidoContacto">Segundo Apellido</label>
+    <input id="sapellidoContacto" type="text" name="sapellidoContacto"/>
+    <label for="telContacto">Telefono</label>
+    <input id="telContacto" type="text" name="telContacto"/>
+    <input type="submit" />
+</form>
