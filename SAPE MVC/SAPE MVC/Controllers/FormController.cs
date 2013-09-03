@@ -84,7 +84,7 @@ namespace SAPE_MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult RegistroProfesores(string nombreProfesor, string pmrApeProfesor, string sdoApeProfesor, string teleProfesor, string correoProfesor)
+        public ActionResult RegistroProfesores(string nombreProfesor, string pmrApeProf, string sdoApeProf, string teleProfe, string correoProfe)
         {
             SAPEEntities entities = new SAPEEntities();
             Profesor nuevoProfesor = new Profesor();
@@ -104,8 +104,8 @@ namespace SAPE_MVC.Controllers
             
             //Crear nueva persona para el profesor
             nuevaPersona.Nombre = nombreProfesor;
-            nuevaPersona.Apellido1 = pmrApeProfesor;
-            nuevaPersona.Apellido2 = sdoApeProfesor;
+            nuevaPersona.Apellido1 = pmrApeProf;
+            nuevaPersona.Apellido2 = sdoApeProf;
 
             //Agregarla a la DB para obtener su id
             entities.Persona.Add(nuevaPersona);
@@ -116,8 +116,8 @@ namespace SAPE_MVC.Controllers
             telProf.FK_Persona = nuevaPersona.idPersona;
 
             //Agregar los contactos a la base
-            telProf.Valor = teleProfesor;
-            emailProf.Valor = correoProfesor;
+            telProf.Valor = teleProfe;
+            emailProf.Valor = correoProfe;
             entities.Contacto.Add(telProf);
             entities.Contacto.Add(emailProf);
 
@@ -130,7 +130,7 @@ namespace SAPE_MVC.Controllers
 
             //Agregar profesor a la DB
             entities.Profesor.Add(nuevoProfesor);
-
+            entities.SaveChanges();
             
             return View("FormSent");
         }
