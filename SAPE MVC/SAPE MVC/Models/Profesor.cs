@@ -25,7 +25,7 @@ namespace SAPE_MVC.Models
         public int FK_Persona { get; set; }
         public int Asesora { get; set; }
         public Nullable<int> CargaMinima { get; set; }
-        public Nullable<int> MargaMaxima { get; set; }
+        public Nullable<int> CargaMaxima { get; set; }
     
         public virtual ICollection<Evaluacion> Evaluacion { get; set; }
         public virtual Persona Persona { get; set; }

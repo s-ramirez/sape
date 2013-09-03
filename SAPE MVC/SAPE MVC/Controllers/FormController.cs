@@ -125,7 +125,7 @@ namespace SAPE_MVC.Controllers
             nuevoProfesor.FK_Persona = nuevaPersona.idPersona;
             nuevoProfesor.Asesora = 0;
             nuevoProfesor.CargaMinima = 0;
-            nuevoProfesor.MargaMaxima = 0;
+            nuevoProfesor.CargaMaxima = 0;
             
 
             //Agregar profesor a la DB

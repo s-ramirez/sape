@@ -18,7 +18,6 @@ namespace SAPE_MVC.Models
         {
             this.Evaluacion = new HashSet<Evaluacion>();
             this.Proyecto = new HashSet<Proyecto>();
-            this.Contacto = new HashSet<Contacto>();
         }
     
         public int idEmpresa { get; set; }
@@ -27,8 +26,8 @@ namespace SAPE_MVC.Models
         public int FK_Direccion { get; set; }
     
         public virtual Ciudad Ciudad { get; set; }
+        public virtual Persona Persona { get; set; }
         public virtual ICollection<Evaluacion> Evaluacion { get; set; }
         public virtual ICollection<Proyecto> Proyecto { get; set; }
-        public virtual ICollection<Contacto> Contacto { get; set; }
     }
 }

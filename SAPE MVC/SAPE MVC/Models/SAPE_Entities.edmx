@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SAPEModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="SAPEModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="SAPEModelStoreContainer">
           <EntitySet Name="Ciudad" EntityType="SAPEModel.Store.Ciudad" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Contacto" EntityType="SAPEModel.Store.Contacto" store:Type="Tables" Schema="dbo" />
@@ -32,6 +32,7 @@
           <EntitySet Name="Profesor" EntityType="SAPEModel.Store.Profesor" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Provincia" EntityType="SAPEModel.Store.Provincia" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Proyecto" EntityType="SAPEModel.Store.Proyecto" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="SAPEModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="TipoContacto" EntityType="SAPEModel.Store.TipoContacto" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="TipoEvaluacion" EntityType="SAPEModel.Store.TipoEvaluacion" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="TipoUsuario" EntityType="SAPEModel.Store.TipoUsuario" store:Type="Tables" Schema="dbo" />
@@ -40,7 +41,7 @@
             <End Role="Provincia" EntitySet="Provincia" />
             <End Role="Ciudad" EntitySet="Ciudad" />
           </AssociationSet>
-          <AssociationSet Name="FK_Contacto_Persona" Association="SAPEModel.Store.FK_Contacto_Persona">
+          <AssociationSet Name="FK_Contacto_Persona1" Association="SAPEModel.Store.FK_Contacto_Persona1">
             <End Role="Persona" EntitySet="Persona" />
             <End Role="Contacto" EntitySet="Contacto" />
           </AssociationSet>
@@ -58,6 +59,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Empresa_Ciudad" Association="SAPEModel.Store.FK_Empresa_Ciudad">
             <End Role="Ciudad" EntitySet="Ciudad" />
+            <End Role="Empresa" EntitySet="Empresa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empresa_Persona" Association="SAPEModel.Store.FK_Empresa_Persona">
+            <End Role="Persona" EntitySet="Persona" />
             <End Role="Empresa" EntitySet="Empresa" />
           </AssociationSet>
           <AssociationSet Name="FK_Estudiante_Persona" Association="SAPEModel.Store.FK_Estudiante_Persona">
@@ -140,11 +145,8 @@
           <Property Name="idContacto" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Valor" Type="varchar" Nullable="false" MaxLength="20" />
           <Property Name="FK_TipoContacto" Type="int" Nullable="false" />
-          <Property Name="FK_Persona" Type="int" />
+          <Property Name="FK_Persona" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'SAPE.dbo.ContactoXEmpresa' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
         <EntityType Name="Curso">
           <Key>
             <PropertyRef Name="idCurso" />
@@ -247,7 +249,7 @@
           <Property Name="FK_Persona" Type="int" Nullable="false" />
           <Property Name="Asesora" Type="int" Nullable="false" />
           <Property Name="CargaMinima" Type="int" />
-          <Property Name="MargaMaxima" Type="int" />
+          <Property Name="CargaMaxima" Type="int" />
         </EntityType>
         <EntityType Name="Provincia">
           <Key>
@@ -267,6 +269,16 @@
           <Property Name="FK_Empresa" Type="int" Nullable="false" />
           <Property Name="FK_Estado" Type="int" />
           <Property Name="Observacion" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="TipoContacto">
           <Key>
@@ -312,8 +324,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Contacto_Persona">
-          <End Role="Persona" Type="SAPEModel.Store.Persona" Multiplicity="0..1" />
+        <Association Name="FK_Contacto_Persona1">
+          <End Role="Persona" Type="SAPEModel.Store.Persona" Multiplicity="1" />
           <End Role="Contacto" Type="SAPEModel.Store.Contacto" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Persona">
@@ -369,6 +381,18 @@
             </Principal>
             <Dependent Role="Empresa">
               <PropertyRef Name="FK_Direccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empresa_Persona">
+          <End Role="Persona" Type="SAPEModel.Store.Persona" Multiplicity="1" />
+          <End Role="Empresa" Type="SAPEModel.Store.Empresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="idPersona" />
+            </Principal>
+            <Dependent Role="Empresa">
+              <PropertyRef Name="FK_Persona" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -564,7 +588,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SAPEModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -583,6 +608,7 @@
           <EntitySet Name="Profesor" EntityType="SAPEModel.Profesor" />
           <EntitySet Name="Provincia" EntityType="SAPEModel.Provincia" />
           <EntitySet Name="Proyecto" EntityType="SAPEModel.Proyecto" />
+          <EntitySet Name="sysdiagrams" EntityType="SAPEModel.sysdiagrams" />
           <EntitySet Name="TipoContacto" EntityType="SAPEModel.TipoContacto" />
           <EntitySet Name="TipoEvaluacion" EntityType="SAPEModel.TipoEvaluacion" />
           <EntitySet Name="TipoUsuario" EntityType="SAPEModel.TipoUsuario" />
@@ -595,7 +621,7 @@
             <End Role="Ciudad" EntitySet="Ciudad" />
             <End Role="Empresa" EntitySet="Empresa" />
           </AssociationSet>
-          <AssociationSet Name="FK_Contacto_Persona" Association="SAPEModel.FK_Contacto_Persona">
+          <AssociationSet Name="FK_Contacto_Persona1" Association="SAPEModel.FK_Contacto_Persona1">
             <End Role="Persona" EntitySet="Persona" />
             <End Role="Contacto" EntitySet="Contacto" />
           </AssociationSet>
@@ -610,6 +636,10 @@
           <AssociationSet Name="FK_CursoXEstudiante_Estudiante" Association="SAPEModel.FK_CursoXEstudiante_Estudiante">
             <End Role="Estudiante" EntitySet="Estudiante" />
             <End Role="CursoXEstudiante" EntitySet="CursoXEstudiante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empresa_Persona" Association="SAPEModel.FK_Empresa_Persona">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Empresa" EntitySet="Empresa" />
           </AssociationSet>
           <AssociationSet Name="FK_Evaluacion_Empresa" Association="SAPEModel.FK_Evaluacion_Empresa">
             <End Role="Empresa" EntitySet="Empresa" />
@@ -690,8 +720,8 @@
           <Property Name="idContacto" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="Valor" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
           <Property Name="FK_TipoContacto" Type="Int32" Nullable="false" />
-          <Property Name="FK_Persona" Type="Int32" />
-          <NavigationProperty Name="Persona" Relationship="SAPEModel.FK_Contacto_Persona" FromRole="Contacto" ToRole="Persona" />
+          <Property Name="FK_Persona" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Persona" Relationship="SAPEModel.FK_Contacto_Persona1" FromRole="Contacto" ToRole="Persona" />
           <NavigationProperty Name="TipoContacto" Relationship="SAPEModel.FK_Contacto_TipoContacto" FromRole="Contacto" ToRole="TipoContacto" />
         </EntityType>
         <EntityType Name="Curso">
@@ -723,6 +753,7 @@
           <Property Name="FK_Persona" Type="Int32" Nullable="false" />
           <Property Name="FK_Direccion" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Ciudad" Relationship="SAPEModel.FK_Empresa_Ciudad" FromRole="Empresa" ToRole="Ciudad" />
+          <NavigationProperty Name="Persona" Relationship="SAPEModel.FK_Empresa_Persona" FromRole="Empresa" ToRole="Persona" />
           <NavigationProperty Name="Evaluacion" Relationship="SAPEModel.FK_Evaluacion_Empresa" FromRole="Empresa" ToRole="Evaluacion" />
           <NavigationProperty Name="Proyecto" Relationship="SAPEModel.FK_Proyecto_Empresa" FromRole="Empresa" ToRole="Proyecto" />
         </EntityType>
@@ -780,7 +811,8 @@
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
           <Property Name="Apellido1" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
           <Property Name="Apellido2" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="Contacto" Relationship="SAPEModel.FK_Contacto_Persona" FromRole="Persona" ToRole="Contacto" />
+          <NavigationProperty Name="Contacto" Relationship="SAPEModel.FK_Contacto_Persona1" FromRole="Persona" ToRole="Contacto" />
+          <NavigationProperty Name="Empresa" Relationship="SAPEModel.FK_Empresa_Persona" FromRole="Persona" ToRole="Empresa" />
           <NavigationProperty Name="Estudiante" Relationship="SAPEModel.FK_Estudiante_Persona" FromRole="Persona" ToRole="Estudiante" />
           <NavigationProperty Name="Profesor" Relationship="SAPEModel.FK_Profesor_Persona" FromRole="Persona" ToRole="Profesor" />
           <NavigationProperty Name="Usuario" Relationship="SAPEModel.FK_Usuario_Persona" FromRole="Persona" ToRole="Usuario" />
@@ -805,7 +837,7 @@
           <Property Name="FK_Persona" Type="Int32" Nullable="false" />
           <Property Name="Asesora" Type="Int32" Nullable="false" />
           <Property Name="CargaMinima" Type="Int32" />
-          <Property Name="MargaMaxima" Type="Int32" />
+          <Property Name="CargaMaxima" Type="Int32" />
           <NavigationProperty Name="Evaluacion" Relationship="SAPEModel.FK_Evaluacion_Profesor" FromRole="Profesor" ToRole="Evaluacion" />
           <NavigationProperty Name="Persona" Relationship="SAPEModel.FK_Profesor_Persona" FromRole="Profesor" ToRole="Persona" />
           <NavigationProperty Name="PreferenciaProfesor" Relationship="SAPEModel.FK_PreferenciaProfesor_Profesor" FromRole="Profesor" ToRole="PreferenciaProfesor" />
@@ -834,6 +866,16 @@
           <NavigationProperty Name="Empresa" Relationship="SAPEModel.FK_Proyecto_Empresa" FromRole="Proyecto" ToRole="Empresa" />
           <NavigationProperty Name="EstadoProyecto" Relationship="SAPEModel.FK_Proyecto_EstadoProyecto" FromRole="Proyecto" ToRole="EstadoProyecto" />
           <NavigationProperty Name="Estudiante" Relationship="SAPEModel.FK_Estudiante_Proyecto" FromRole="Proyecto" ToRole="Estudiante" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="TipoContacto">
           <Key>
@@ -896,8 +938,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Contacto_Persona">
-          <End Role="Persona" Type="SAPEModel.Persona" Multiplicity="0..1" />
+        <Association Name="FK_Contacto_Persona1">
+          <End Role="Persona" Type="SAPEModel.Persona" Multiplicity="1" />
           <End Role="Contacto" Type="SAPEModel.Contacto" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Persona">
@@ -941,6 +983,18 @@
             </Principal>
             <Dependent Role="CursoXEstudiante">
               <PropertyRef Name="FK_Estudiante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empresa_Persona">
+          <End Role="Persona" Type="SAPEModel.Persona" Multiplicity="1" />
+          <End Role="Empresa" Type="SAPEModel.Empresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="idPersona" />
+            </Principal>
+            <Dependent Role="Empresa">
+              <PropertyRef Name="FK_Persona" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1235,7 +1289,7 @@
                 <ScalarProperty Name="FK_Persona" ColumnName="FK_Persona" />
                 <ScalarProperty Name="Asesora" ColumnName="Asesora" />
                 <ScalarProperty Name="CargaMinima" ColumnName="CargaMinima" />
-                <ScalarProperty Name="MargaMaxima" ColumnName="MargaMaxima" />
+                <ScalarProperty Name="CargaMaxima" ColumnName="CargaMaxima" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1257,6 +1311,17 @@
                 <ScalarProperty Name="FK_Empresa" ColumnName="FK_Empresa" />
                 <ScalarProperty Name="FK_Estado" ColumnName="FK_Estado" />
                 <ScalarProperty Name="Observacion" ColumnName="Observacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SAPEModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

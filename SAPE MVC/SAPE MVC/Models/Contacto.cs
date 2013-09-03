@@ -14,19 +14,12 @@ namespace SAPE_MVC.Models
     
     public partial class Contacto
     {
-        public Contacto()
-        {
-            this.Empresa = new HashSet<Empresa>();
-        }
-    
         public int idContacto { get; set; }
         public string Valor { get; set; }
         public int FK_TipoContacto { get; set; }
-        public Nullable<int> FK_Empresa { get; set; }
-        public Nullable<int> FK_Persona { get; set; }
+        public int FK_Persona { get; set; }
     
         public virtual Persona Persona { get; set; }
         public virtual TipoContacto TipoContacto { get; set; }
-        public virtual ICollection<Empresa> Empresa { get; set; }
     }
 }

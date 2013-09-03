@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "RegistroEmpresas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Empresas registradas en el sistema</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th><input type="checkbox" name="select-all" value="all" id="select-all"></th>
+            <th>Nombre</th>
+            <th>Ubicacion</th>
+            <th>Contacto</th>
+            <th>Correo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (SAPE_MVC.Models.Empresa empresa in ViewBag.Empresas)
+        {
+            <tr>
+                <td><input type="checkbox" name="@empresa.idEmpresa" value="@empresa.idEmpresa"></td>
+                <td>@empresa.Nombre</td>
+                <td>@empresa.Ciudad.Nombre, @empresa.Ciudad.Provincia.Nombre</td>
+                <td>@empresa.FK_Persona</td>
+            </tr>  
+        }
+    </tbody>
+</table>

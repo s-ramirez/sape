@@ -17,6 +17,7 @@ namespace SAPE_MVC.Models
         public Persona()
         {
             this.Contacto = new HashSet<Contacto>();
+            this.Empresa = new HashSet<Empresa>();
             this.Estudiante = new HashSet<Estudiante>();
             this.Profesor = new HashSet<Profesor>();
             this.Usuario = new HashSet<Usuario>();
@@ -28,6 +29,7 @@ namespace SAPE_MVC.Models
         public string Apellido2 { get; set; }
     
         public virtual ICollection<Contacto> Contacto { get; set; }
+        public virtual ICollection<Empresa> Empresa { get; set; }
         public virtual ICollection<Estudiante> Estudiante { get; set; }
         public virtual ICollection<Profesor> Profesor { get; set; }
         public virtual ICollection<Usuario> Usuario { get; set; }

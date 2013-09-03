@@ -33,7 +33,7 @@ namespace SAPE_MVC.Controllers
             if (IsValid(pUsuario.Nombre, pUsuario.Contrasena))
             {
                 FormsAuthentication.SetAuthCookie(pUsuario.Nombre, false);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Main");
             }
             else
             {
@@ -79,7 +79,7 @@ namespace SAPE_MVC.Controllers
                         database.Usuario.Add(newUsuario);
                         database.SaveChanges();
 
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Main");
                     }
                 }
                 else
@@ -107,7 +107,7 @@ namespace SAPE_MVC.Controllers
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Main");
         }
 
         private bool IsValid(string pUsername, string pPassword)

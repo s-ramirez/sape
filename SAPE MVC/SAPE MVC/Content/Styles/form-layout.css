@@ -1,6 +1,11 @@
-﻿.main-layout {
+﻿html {
+    height:100%;
+}
+
+body {
     background-image: url("/Content/Images/login/bg.jpg");  
     padding: 5%;
+    min-height: 100%;
 }
 
 .main-form {
@@ -36,7 +41,7 @@ label {
     border-color: #999999;
 }
 
-.btn-primary:hover {
+.btn-primary:hover, .btn-primary:focus {
     background-color: #404040;
     border-color: #404040;
 }
