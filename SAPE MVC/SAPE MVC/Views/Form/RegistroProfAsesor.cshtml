@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "RegistroProfAsesor";
+    Layout = "~/Views/Shared/_FormLayout.cshtml";
+}
+
+<div class="main-form container">
+    <h2>Registro de Asesores</h2>
+
+    <form role="form" method="post">
+        <div class="form-group">
+            <label for="listaProfesores">Elija su nombre</label>
+            <select id="selectProfesores" class="form-control">
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="respAsesor">Desea ser asesor para el semestre en curso?</label>
+            <select name="respAsesor" class="form-control">
+                <option value="si">Si</option>
+                <option value="no">No</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" class="btn btn-default" name="Enviar">
+        </div>
+    </form>
+</div>

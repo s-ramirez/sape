@@ -1,25 +1,33 @@
-﻿@model SAPE_MVC.Models.Profesor
-
-@{
+﻿@{
     ViewBag.Title = "RegistroProfesores";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_FormLayout.cshtml";
 }
+<div class="main-form container">
+    <h2>Registro de Profesores</h2>
+    <form role="form" method="post">
+        <div class="form-group">
+            <label for="nombreProfesor">Nombre</label>
+            <input id="nombreProfesor" class="form-control" type="text" name="nombreProfesor" />
+        </div>
+        <div class="form-group">
+            <label for="prmApeProf">Primer apellido</label>
+            <input id="prmApeProf" class="form-control" type="text" name="prmApeProf" />
+        </div>
+        <div class="form-group">
+            <label for="sdoApeProf">Segundo apellido</label>
+            <input id="sdoApeProf" class="form-control" type="text" name="sdoApeProf" />
+        </div>
+        <div class="form-group">
+            <label for="teleProfe">Telefono</label>
+            <input id="teleProfe" class="form-control" type="text" name="teleProfe" />
+        </div>
+        <div class="form-group">
+            <label for="correoProfe">Correo</label>
+            <input id="correoProfe" class="form-control" type="text" name="correoProfe" />
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-default" name="Registrar">
+        </div>
+    </form>
+</div>
 
-<h2>Registro de Profesores</h2>
-<form>
-<label for="nombreProfesor">Nombre</label>
-<input id="nombreProfesor" type="text" name="nombreProfesor" />
-<label for="prmApeProf">Primer apellido</label>
-<input id="prmApeProf" type="text" name="prmApeProf" />
-<label for="sdoApeProf">Segundo apellido</label>
-<input id="sdoApeProf" type="text" name="sdoApeProf" />
-<label for="teleProfe">Telefono</label>
-<input id="teleProfe" type="text" name="teleProfe" />
-<label for="correoProfe">Correo</label>
-<input id="correoProfe" type="text" name="correoProfe" />
-<label for="cargaMinima">Carga minima</label>
-<input id="cargaMinima" type="text" name="cargaMinima" />
-<label for="cargaMaxima">Carga maxima</label>
-<input id="cargaMaxima" type="text" name="cargaMaxima" />
-<input type="submit" name="Registrar">
-</form>
