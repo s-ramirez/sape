@@ -84,12 +84,55 @@ namespace SAPE_MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult RegistroProfesores(string nombreProfesor, string pmrApeProfesor, string sdoApeProfesor, string teleProfesor, string correoProfesor, int cargaMinima, int cargaMaxima)
+        public ActionResult RegistroProfesores(string nombreProfesor, string pmrApeProfesor, string sdoApeProfesor, string teleProfesor, string correoProfesor)
         {
             SAPEEntities entities = new SAPEEntities();
+            Profesor nuevoProfesor = new Profesor();
+            Persona nuevaPersona = new Persona();
+            Contacto telProf = new Contacto();
+            Contacto emailProf = new Contacto();
 
+            //Obtener tipo cntacto "Telefono"
+            var result = from tipo in entities.TipoContacto where tipo.Nombre == "Telefono" select tipo;
+            TipoContacto tipoContacto = result.FirstOrDefault<TipoContacto>();
+            telProf.FK_TipoContacto = tipoContacto.idTipoContacto;
 
-            return View();
+            //Obtener tipo contacto "E-mail"
+            result = from tipo in entities.TipoContacto where tipo.Nombre == "E-mail" select tipo;
+            tipoContacto = result.FirstOrDefault<TipoContacto>();
+            emailProf.FK_TipoContacto = tipoContacto.idTipoContacto;
+            
+            //Crear nueva persona para el profesor
+            nuevaPersona.Nombre = nombreProfesor;
+            nuevaPersona.Apellido1 = pmrApeProfesor;
+            nuevaPersona.Apellido2 = sdoApeProfesor;
+
+            //Agregarla a la DB para obtener su id
+            entities.Persona.Add(nuevaPersona);
+            entities.SaveChanges();
+
+            //Asignar los contactos a la nuea persona
+            emailProf.FK_Persona = nuevaPersona.idPersona;
+            telProf.FK_Persona = nuevaPersona.idPersona;
+
+            //Agregar los contactos a la base
+            telProf.Valor = teleProfesor;
+            emailProf.Valor = correoProfesor;
+            entities.Contacto.Add(telProf);
+            entities.Contacto.Add(emailProf);
+
+            //Asignar los datos de persona al profesor
+            nuevoProfesor.FK_Persona = nuevaPersona.idPersona;
+            nuevoProfesor.Asesora = 0;
+            nuevoProfesor.CargaMinima = 0;
+            nuevoProfesor.MargaMaxima = 0;
+            
+
+            //Agregar profesor a la DB
+            entities.Profesor.Add(nuevoProfesor);
+
+            
+            return View("FormSent");
         }
 
         [HttpGet]
