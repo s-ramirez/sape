@@ -25,6 +25,13 @@ namespace SAPE_MVC.Controllers
             return View();
         }
 
+        public ActionResult RegistroProfesores()
+        {
+            SAPEEntities database = new SAPEEntities();
+            ViewBag.Profesores = database.Profesor.OrderBy(persona => persona.Persona.Apellido1);
+            return View();
+        }
+
         [HttpPost]
         public ActionResult RegistroEmpresas(string nombreEmpresa, string practicantes, int cantPracticantes, int ciudad, string nombreContacto, string papellidoContacto, string sapellidoContacto, string telContacto, string  emailContacto)
         {
@@ -73,6 +80,14 @@ namespace SAPE_MVC.Controllers
             entities.SaveChanges();
 
             return View("FormSent");
+        }
+
+        public ActionResult RegistroProfesores(string nombreProfesor, string pmrApeProfesor, string sdoApeProfesor, string teleProfesor, string correoProfesor, int cargaMinima, int cargaMaxima)
+        {
+            SAPEEntities entities = new SAPEEntities();
+
+
+            return View();
         }
     }
 }

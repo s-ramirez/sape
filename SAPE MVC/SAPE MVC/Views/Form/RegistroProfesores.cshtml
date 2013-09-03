@@ -1,0 +1,25 @@
+﻿@model SAPE_MVC.Models.Profesor
+
+@{
+    ViewBag.Title = "RegistroProfesores";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Registro de Profesores</h2>
+<form>
+<label for="nombreProfesor">Nombre</label>
+<input id="nombreProfesor" type="text" name="nombreProfesor" />
+<label for="prmApeProf">Primer apellido</label>
+<input id="prmApeProf" type="text" name="prmApeProf" />
+<label for="sdoApeProf">Segundo apellido</label>
+<input id="sdoApeProf" type="text" name="sdoApeProf" />
+<label for="teleProfe">Telefono</label>
+<input id="teleProfe" type="text" name="teleProfe" />
+<label for="correoProfe">Correo</label>
+<input id="correoProfe" type="text" name="correoProfe" />
+<label for="cargaMinima">Carga minima</label>
+<input id="cargaMinima" type="text" name="cargaMinima" />
+<label for="cargaMaxima">Carga maxima</label>
+<input id="cargaMaxima" type="text" name="cargaMaxima" />
+<input type="submit" name="Registrar">
+</form>
