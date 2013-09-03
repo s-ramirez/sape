@@ -108,5 +108,20 @@ namespace SAPE_MVC.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult RegistroCandidatos()
+        {
+            SAPEEntities database = new SAPEEntities();
+            ViewBag.Profesores = database.Profesor;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult RegistroCandidatos(string nombreCand, string primerApellido, string segundoApellido, int carnetCand, string cursoDebe)
+        {
+            SAPEEntities entities = new SAPEEntities();
+
+            return View();
+        }
     }
 }
