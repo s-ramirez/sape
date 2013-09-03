@@ -16,9 +16,9 @@
     <input type="number" name="cantPracticantes"/>
     Ubicacion
     <select name="ciudad">
-        @foreach (SAPE_MVC.Models.Provincia ciudad in ViewBag.Ciudades)
+        @foreach (SAPE_MVC.Models.Ciudad ciudad in ViewBag.Ciudades)
         {
-         <option value="@ciudad.Nombre">@ciudad.Nombre</option>    
+         <option value="@ciudad.idCiudad">@ciudad.Nombre</option>    
         }
     </select>
     <h2>Informacion de contacto</h2>
@@ -31,5 +31,7 @@
     <input id="sapellidoContacto" type="text" name="sapellidoContacto"/>
     <label for="telContacto">Telefono</label>
     <input id="telContacto" type="text" name="telContacto"/>
+    <label for="emailContacto">E-mail</label>
+    <input id="emailContacto" type="text" name="emailContacto"/>
     <input type="submit" />
 </form>

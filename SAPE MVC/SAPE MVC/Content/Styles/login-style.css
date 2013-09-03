@@ -1,0 +1,68 @@
+﻿body {
+    background: url(/Content/Images/Login/bg.jpg) repeat top center;
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.wrapper {
+    position: absolute;
+    width: 500px;
+    height: auto;
+    text-align: center;
+}
+
+h1, h2 {
+    color: white;
+    font-weight: 300;
+    font-size: 30px;
+    margin: 0px 0px 5px 0px;
+    text-shadow: 1px 1px 2px black;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+a:link, a:hover, a:active, a:visited {
+    color: white;
+    text-shadow: 1px 1px 2px black;
+}
+
+input {
+    height: 40px;
+    width: 250px;
+    margin-bottom: 30px;
+    color: #acacac;
+    border: 0;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}
+
+    input:focus {
+        color: #787878;
+    }
+
+    input[type="text"] {
+        background: url(/Content/Images/Login/avatar.png) no-repeat scroll 7px 10px white;
+        background-size: 23px 23px;
+        padding-left: 35px;
+        padding-right: 15px;
+    }
+
+    input[type="password"] {
+        background: url(/Content/Images/Login/lock.png) no-repeat scroll 10px 8px white;
+        background-size: 30px 24px;
+        padding-left: 35px;
+        padding-right: 15px;
+    }
+
+    input[type="submit"] {
+        font-size: 16px;
+        cursor: pointer;
+        color: white;
+        width: 250px;
+        height: 45px;
+        margin-bottom: 3px;
+    }

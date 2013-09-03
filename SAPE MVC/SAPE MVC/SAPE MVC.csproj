@@ -195,6 +195,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Content\Images\Login\avatar.png" />
+    <Content Include="Content\Images\Login\bg.jpg" />
+    <Content Include="Content\Images\Login\lock.png" />
+    <Content Include="Content\Scripts\bootstrap.min.js" />
+    <Content Include="Content\Styles\bootstrap-theme.min.css" />
+    <Content Include="Content\Styles\bootstrap.min.css" />
+    <Content Include="Content\Styles\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Styles\login-style.css" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -255,6 +263,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Form\RegistroEmpresas.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Styles\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\Styles\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\Styles\fonts\glyphicons-halflings-regular.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Form\FormSent.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -7,4 +7,8 @@ INSERT INTO [dbo].[Provincia] ([Nombre], [FK_Pais])VALUES('Alajuela', 1)
 INSERT INTO [dbo].[Provincia] ([Nombre], [FK_Pais])VALUES('Limon', 1) 
 INSERT INTO [dbo].[Provincia] ([Nombre], [FK_Pais])VALUES('Cartago', 1) 
 INSERT INTO [dbo].[Provincia] ([Nombre], [FK_Pais])VALUES('Puntarenas', 1) 
+
+INSERT INTO [dbo].[TipoContacto] ([Nombre]) VALUES ('Telefono')
+INSERT INTO [dbo].[TipoContacto] ([Nombre]) VALUES ('E-mail')
+
 GO

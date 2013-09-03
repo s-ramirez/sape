@@ -5,22 +5,45 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>LogIn</h2>
+@section Scripts {
+    <link rel="stylesheet" href="/Content/Styles/login-style.css" type="text/css"/>
+    <script>
+        $(function () {
+            $('.wrapper').css({
+                position: 'absolute',
+                left: ($(window).width() - $('.wrapper').outerWidth()) / 2,
+                top: ($(window).height() - $('.wrapper').outerHeight()) / 2
+            });
+            $("body").css("height", $(window).height());
+        })
+    </script>
+}
 @using (Html.BeginForm())
 {
     @Html.ValidationSummary(true, "Login Failed, check details");
-    <div>
+@*<div>
         <fieldset>
             <legend>Login Form</legend>
-            <div class="editor-label">@Html.LabelFor(usuario=> usuario.Nombre)</div>
-            <div class="editor-field">@Html.TextBoxFor(usuario=> usuario.Nombre)
-                @Html.ValidationMessageFor(usuario=>usuario.Nombre)
+            <div class="editor-label">@Html.LabelFor(usuario => usuario.Nombre)</div>
+            <div class="editor-field">@Html.TextBoxFor(usuario => usuario.Nombre)
+                @Html.ValidationMessageFor(usuario => usuario.Nombre)
             </div>
-            <div class="editor-label">@Html.LabelFor(usuario=> usuario.Contrasena)</div>
-            <div  class="editor-field">@Html.PasswordFor(usuario=> usuario.Contrasena)
-                @Html.ValidationMessageFor(usuario=> usuario.Contrasena)
+            <div class="editor-label">@Html.LabelFor(usuario => usuario.Contrasena)</div>
+            <div class="editor-field">@Html.PasswordFor(usuario => usuario.Contrasena)
+                @Html.ValidationMessageFor(usuario => usuario.Contrasena)
             </div>
             <input type="submit" value="Log In" />
         </fieldset>
-    </div>
+    </div>*@
+    <div class="wrapper" style="position: absolute; left: 390px; top: 145.5px;">
+        <h1>Iniciar sesión</h1>
+        <form>
+            <h2>Sistema administrador de prácticas profesionales.</h2>
+            <br>
+            <div class="editor-field">@Html.TextBoxFor(usuario => usuario.Nombre)@Html.ValidationMessageFor(usuario => usuario.Nombre)</div>
+            <div class="editor-field">@Html.PasswordFor(usuario => usuario.Contrasena)@Html.ValidationMessageFor(usuario => usuario.Contrasena)</div>
+            <input type="submit" class="btn btn-primary" value="Iniciar"><br>
+            <small><a href="/forgot_password">¿Olvidó su contraseña?</a></small>
+        </form>
+    </div> 
 }
