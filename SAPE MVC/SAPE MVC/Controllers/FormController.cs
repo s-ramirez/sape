@@ -144,9 +144,10 @@ namespace SAPE_MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult RegistroProfAsesor(string nombreProfesor, string esAsesor)
+        public ActionResult RegistroProfAsesor(string selectProfesores, string respAsesor)
         {
             SAPEEntities entities = new SAPEEntities();
+            Profesor actualizaProfesor = new Profesor();
 
             return View();
         }
@@ -160,11 +161,52 @@ namespace SAPE_MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult RegistroCandidatos(string nombreCand, string primerApellido, string segundoApellido, int carnetCand, string cursoDebe)
+        public ActionResult RegistroCandidatos(string nombreCand, string prmApellidoCand, string sdoApellidoCand, int carnetCand, string telCand, string correoCand, string cursoDebe)
         {
             SAPEEntities entities = new SAPEEntities();
+            Estudiante nuevoCandidato = new Estudiante();
+            Persona nuevaPersona = new Persona();
+            Contacto telCandidato = new Contacto();
+            Contacto emailCandidato = new Contacto();
 
-            return View();
+            //Obtener tipo cntacto "Telefono"
+            var result = from tipo in entities.TipoContacto where tipo.Nombre == "Telefono" select tipo;
+            TipoContacto tipoContacto = result.FirstOrDefault<TipoContacto>();
+            telCandidato.FK_TipoContacto = tipoContacto.idTipoContacto;
+
+            //Obtener tipo contacto "E-mail"
+            result = from tipo in entities.TipoContacto where tipo.Nombre == "E-mail" select tipo;
+            tipoContacto = result.FirstOrDefault<TipoContacto>();
+            emailCandidato.FK_TipoContacto = tipoContacto.idTipoContacto;
+
+            //Crear nueva persona para el profesor
+            nuevaPersona.Nombre = nombreCand;
+            nuevaPersona.Apellido1 = prmApellidoCand;
+            nuevaPersona.Apellido2 = sdoApellidoCand;
+
+            //Agregarla a la DB para obtener su id
+            entities.Persona.Add(nuevaPersona);
+            entities.SaveChanges();
+
+            //Asignar clos contactos a la nueva persona
+            emailCandidato.FK_Persona = nuevaPersona.idPersona;
+            telCandidato.FK_Persona = nuevaPersona.idPersona;
+
+            //Agregar los contactos a la base
+            telCandidato.Valor = telCand;
+            emailCandidato.Valor = correoCand;
+            entities.Contacto.Add(telCandidato);
+            entities.Contacto.Add(emailCandidato);
+
+            //Asignar los datos de persona al estudiante
+            nuevoCandidato.FK_Persona = nuevaPersona.idPersona;
+            nuevoCandidato.Carnet = carnetCand;
+
+            //Agregar profesor a la DB
+            entities.Estudiante.Add(nuevoCandidato);
+            entities.SaveChanges();
+            
+            return View("FormSent");
         }
     }
 }
