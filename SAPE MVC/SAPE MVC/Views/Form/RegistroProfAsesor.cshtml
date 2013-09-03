@@ -10,6 +10,10 @@
         <div class="form-group">
             <label for="listaProfesores">Elija su nombre</label>
             <select id="selectProfesores" class="form-control">
+                @foreach (SAPE_MVC.Models.Profesor profesor in ViewBag.Profesores)
+                {
+                    <option value="@profesor.idProfesor">@profesor.Persona.Nombre @profesor.Persona.Apellido1 @profesor.Persona.Apellido2</option>    
+                }
             </select>
         </div>
 
@@ -22,7 +26,7 @@
         </div>
 
         <div class="form-group">
-            <input type="submit" class="btn btn-primary" name="Enviar">
+            <input type="submit" class="btn btn-primary pull-right" name="Enviar" value="Enviar">
         </div>
     </form>
 </div>

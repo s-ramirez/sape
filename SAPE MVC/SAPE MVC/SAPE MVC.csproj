@@ -112,10 +112,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\FormController.cs" />
-    <Compile Include="Models\Registro.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
+    <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Models\Ciudad.cs">
       <DependentUpon>SAPE_Entities.tt</DependentUpon>
     </Compile>
@@ -157,6 +154,10 @@
     </Compile>
     <Compile Include="Models\Proyecto.cs">
       <DependentUpon>SAPE_Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Registro.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\SAPE_Entities.Context.cs">
       <AutoGen>True</AutoGen>
@@ -206,7 +207,9 @@
     <Content Include="Content\Styles\form-layout.css" />
     <Content Include="Content\Styles\login-style.css" />
     <Content Include="Global.asax" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -220,27 +223,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="Models\SAPE_Entities.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SAPE_Entities.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Models\SAPE_Entities.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SAPE_Entities.edmx</DependentUpon>
-      <LastGenOutput>SAPE_Entities.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\SAPE_Entities.edmx.diagram">
-      <DependentUpon>SAPE_Entities.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\SAPE_Entities.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SAPE_Entities.edmx</DependentUpon>
-      <LastGenOutput>SAPE_Entities.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -282,6 +264,30 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Form\RegistroCandidatos.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Main\RegistroEmpresas.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Models\SAPE_Entities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SAPE_Entities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Models\SAPE_Entities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SAPE_Entities.edmx</DependentUpon>
+      <LastGenOutput>SAPE_Entities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\SAPE_Entities.edmx.diagram">
+      <DependentUpon>SAPE_Entities.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\SAPE_Entities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SAPE_Entities.edmx</DependentUpon>
+      <LastGenOutput>SAPE_Entities.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
