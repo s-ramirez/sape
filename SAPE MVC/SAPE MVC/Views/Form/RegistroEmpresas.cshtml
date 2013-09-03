@@ -2,36 +2,54 @@
     ViewBag.Title = "RegistroEmpresas";
     Layout = "~/Views/Shared/_FormLayout.cshtml";
 }
-
-<h2>Registro de Empresas</h2>
-<form method="post">
-    <label for="nombreEmpresa">Nombre de la empresa</label>
-    <input id="nombreEmpresa" type="text" name="nombreEmpresa" />
-    Desea recibir practicantes el semestre que viene?
-    <select name="practicantes">
-        <option value="si">Si</option>
-        <option value="no">No</option>
-    </select>
-    Cuantos? (aprox.)
-    <input type="number" name="cantPracticantes"/>
-    Ubicacion
-    <select name="ciudad">
-        @foreach (SAPE_MVC.Models.Ciudad ciudad in ViewBag.Ciudades)
-        {
-         <option value="@ciudad.idCiudad">@ciudad.Nombre</option>    
-        }
-    </select>
-    <h2>Informacion de contacto</h2>
-    <h3>Nombre de la Persona Contacto</h3>
-    <label for="nombreContacto">Nombre</label>
-    <input id="nombreContacto" type="text" name="nombreContacto"/>
-    <label for="papellidoContacto">Primer Apellido</label>
-    <input id="papellidoContacto" type="text" name="papellidoContacto"/>
-    <label for="sapellidoContacto">Segundo Apellido</label>
-    <input id="sapellidoContacto" type="text" name="sapellidoContacto"/>
-    <label for="telContacto">Telefono</label>
-    <input id="telContacto" type="text" name="telContacto"/>
-    <label for="emailContacto">E-mail</label>
-    <input id="emailContacto" type="text" name="emailContacto"/>
-    <input type="submit" />
-</form>
+<div class="main-form container">
+    <h2>Registro de Empresas</h2>
+    <form role="form" method="post">
+        <div class="form-group">
+            <label for="nombreEmpresa">Nombre de la empresa</label>
+            <input id="nombreEmpresa" class="form-control" type="text" name="nombreEmpresa" />
+        </div>
+        <div class="form-group">
+            <label for="practicantes">Desea recibir practicantes el semestre que viene?</label>
+            <select id="practicantes" name="practicantes" class="form-control">
+                <option value="si">Si</option>
+                <option value="no">No</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="cantPracticantes">Cuantos?</label>
+            <input type="number" id="cantPracticantes" name="cantPracticantes" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="ciudad">Ubicacion</label>
+            <select name="ciudad" id="ciudad" class="form-control">
+                @foreach (SAPE_MVC.Models.Ciudad ciudad in ViewBag.Ciudades)
+                {
+                    <option value="@ciudad.idCiudad">@ciudad.Nombre</option>    
+                }
+            </select>
+        </div>
+        <h3>Informacion de contacto</h3>
+        <div class="form-group">
+            <label for="nombreContacto">Nombre</label>
+            <input id="nombreContacto" type="text" name="nombreContacto" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="papellidoContacto">Primer Apellido</label>
+            <input id="papellidoContacto" type="text" name="papellidoContacto" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="sapellidoContacto">Segundo Apellido</label>
+            <input id="sapellidoContacto" type="text" name="sapellidoContacto" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="telContacto">Telefono</label>
+            <input id="telContacto" type="text" name="telContacto" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="emailContacto">E-mail</label>
+            <input id="emailContacto" type="email" name="emailContacto" class="form-control" />
+        </div>
+        <input type="submit" class="btn btn-primary pull-right" value="Enviar"/>
+    </form>
+</div>

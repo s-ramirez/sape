@@ -1,0 +1,42 @@
+﻿.main-layout {
+    background-image: url("/Content/Images/login/bg.jpg");  
+    padding: 5%;
+}
+
+.main-form {
+    background-image: url("/Content/Images/Form/form-bg.png");
+    padding: 3%;
+    max-width: 600px;
+}
+
+h2 {
+    text-align:center;
+    margin-bottom: 10%;
+    color: #595850;
+}
+
+h3 {
+    color: #595850;
+}
+
+label {
+    color: #404040;
+    margin-left: 20px;
+}
+
+.form-control {
+    max-width: 300px;
+    margin-left: 20px;
+}
+
+.btn-primary {
+    margin-top: 10px;
+    padding: 6px 30px;
+    background-color: #999999;
+    border-color: #999999;
+}
+
+.btn-primary:hover {
+    background-color: #404040;
+    border-color: #404040;
+}
