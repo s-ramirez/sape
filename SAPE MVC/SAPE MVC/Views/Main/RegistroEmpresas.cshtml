@@ -12,6 +12,7 @@
             <th>Ubicacion</th>
             <th>Contacto</th>
             <th>Correo</th>
+            <th>Telefono</th>
         </tr>
     </thead>
     <tbody>
@@ -21,7 +22,9 @@
                 <td><input type="checkbox" name="@empresa.idEmpresa" value="@empresa.idEmpresa"></td>
                 <td>@empresa.Nombre</td>
                 <td>@empresa.Ciudad.Nombre, @empresa.Ciudad.Provincia.Nombre</td>
-                <td>@empresa.FK_Persona</td>
+                <td>@empresa.Persona.Nombre @empresa.Persona.Apellido1 @empresa.Persona.Apellido2</td>
+                <td></td>
+                <td></td>
             </tr>  
         }
     </tbody>

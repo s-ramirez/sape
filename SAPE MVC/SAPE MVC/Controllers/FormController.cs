@@ -157,6 +157,7 @@ namespace SAPE_MVC.Controllers
         {
             SAPEEntities database = new SAPEEntities();
             ViewBag.Profesores = database.Profesor;
+            ViewBag.Curso = database.Curso;
             return View();
         }
 
