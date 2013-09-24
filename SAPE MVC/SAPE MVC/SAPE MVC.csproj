@@ -113,6 +113,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\FormController.cs" />
     <Compile Include="Controllers\MainController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Models\Ciudad.cs">
       <DependentUpon>SAPE_Entities.tt</DependentUpon>
     </Compile>
@@ -288,6 +289,9 @@
       <DependentUpon>SAPE_Entities.edmx</DependentUpon>
       <LastGenOutput>SAPE_Entities.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Report\ReporteCandidatos.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
