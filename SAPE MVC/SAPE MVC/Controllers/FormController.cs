@@ -156,7 +156,7 @@ namespace SAPE_MVC.Controllers
         public ActionResult RegistroCandidatos()
         {
             SAPEEntities database = new SAPEEntities();
-            ViewBag.Profesores = database.Profesor;
+            ViewBag.Curso = database.Curso.OrderBy(curso => curso.idCurso);
             return View();
         }
 

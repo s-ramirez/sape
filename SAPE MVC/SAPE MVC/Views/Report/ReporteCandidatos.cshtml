@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "ReporteCandidatos";
+}
+
+<div id="Container">
+    <table id="ReporteCandidatos" >
+        <tr id="header">
+            <td id="tdElegible">Elegible</td>
+            <td id="tdNombre">Nombre</td>
+            <td id="tdApellido1">Primer Apellido</td>
+            <td id="tdApellido2">Segundo Apellido</td>
+            <td id="tdTelefono">Telefono</td>
+            <td id="tdDebeCurso">Debe algun curso</td>
+            <td id="tdCursoDebe">Curso que debe</td>
+        </tr>
+
+        <!-- Inserta los candidatos -->
+        @foreach (SAPE_MVC.Models.Estudiante candidato in ViewBag.Candidatos)
+        {
+            <tr>
+                <td id="tdElegibleN"><input type="checkbox" id="@candidato.Carnet"/></td>
+                <td id="tdNombreN"></td>
+                <td id="tdApellido1N">Primer Apellido</td>
+                <td id="tdApellido2N">Segundo Apellido</td>
+                <td id="tdTelefonoN">Telefono</td>
+                <td id="tdDebeCursoN">Debe algun curso</td>
+                <td id="tdCursoDebeN">Curso que debe</td>
+            </tr>
+        } 
+
+    </table>
+</div>
