@@ -201,12 +201,20 @@
     <Content Include="Content\Images\Login\avatar.png" />
     <Content Include="Content\Images\Login\bg.jpg" />
     <Content Include="Content\Images\Login\lock.png" />
+    <Content Include="Content\Images\Table\asc.gif" />
+    <Content Include="Content\Images\Table\bg.gif" />
+    <Content Include="Content\Images\Table\desc.gif" />
+    <Content Include="Content\Scripts\jquery.tablesorter.min.js" />
     <Content Include="Content\Scripts\bootstrap.min.js" />
+    <Content Include="Content\Scripts\main-script.js" />
+    <Content Include="Content\Scripts\registro-empresas.js" />
     <Content Include="Content\Styles\bootstrap-theme.min.css" />
     <Content Include="Content\Styles\bootstrap.min.css" />
     <Content Include="Content\Styles\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Styles\form-layout.css" />
     <Content Include="Content\Styles\login-style.css" />
+    <Content Include="Content\Styles\main-style.css" />
+    <Content Include="Content\Styles\registro-empresas.css" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -239,9 +247,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Account\LogOut.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_FormLayout.cshtml" />
@@ -292,6 +297,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Report\ReporteCandidatos.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Main\Index.cshtml">
+      <SubType>Code</SubType>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

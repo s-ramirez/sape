@@ -1,0 +1,40 @@
+﻿#tabla-empresas {
+    max-width: 80%;
+    margin-left: 10%;
+    border: 2px solid #B3B3B3;
+}
+
+#titulo-tabla {
+    margin-left: 10%;
+    font-family: 'Open Sans', sans-serif;
+    color: #666666;
+}
+
+/* TABLES */
+table.tablesorter thead tr .header {
+    background-image: url("/Content/Images/Table/bg.gif");
+    background-repeat: no-repeat;
+    background-position: center right;
+    cursor: pointer;
+}
+
+table.tablesorter thead tr .headerSortUp {
+    background-image: url("/Content/Images/Table/asc.gif");
+}
+
+table.tablesorter thead tr .headerSortDown {
+    background-image: url("/Content/Images/Table/desc.gif");
+}
+
+thead {
+    background-color: #404040;
+    color: white;
+}
+
+tfoot {
+    background-color: #666666;
+}
+
+#select-all-th {
+    background-image: none;
+}

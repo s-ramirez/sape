@@ -4,12 +4,37 @@
     <meta charset="utf-8" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sistema Administrador de Practicas de Especialidad</title>
+    <title>Sistema Administrador de Practicas de Especialidad | @ViewBag.Title</title>
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="/Content/Styles/bootstrap.min.css" type="text/css" />
-    @RenderSection("Scripts", required: false)
+    <link rel="stylesheet" href="/Content/Styles/main-style.css" type="text/css" />
 </head>
 <body>
-    @RenderBody()
+    <div id="top-navbar" class="row">
+        <div class="col-md-2 top-side-bar"></div>
+        <div class="col-md-10 top-bar"></div>
+    </div>
+    <div class="row" id="main-content">
+        <div class="col-md-2 top-side-bar">
+            <div id="sidebar" class="list-group">
+                <a class="list-group-item list-group-title">GESTIONAR</a>
+                <a href="#" class="list-group-item">Practicantes</a>
+                <a href="#" class="list-group-item">Calificaciones</a>
+                <a href="#" class="list-group-item">Reportes</a>
+                <a class="list-group-item"></a>
+                <a class="list-group-item list-group-title">REGISTRO</a>
+                <a id="item-RegistroEmpresas" href="/Main/RegistroEmpresas" class="list-group-item">Empresas</a>
+                <a href="#" class="list-group-item">Profesores</a>
+                <a href="/Report/ReporteCandidatos" class="list-group-item">Candidatos</a>
+            </div>
+        </div>
+        <div class="col-md-10">
+            @RenderBody()
+        </div>
+    </div>
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="/Content/Scripts/bootstrap.min.js"></script>
+    <script src="/Content/Scripts/main-script.js"></script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
