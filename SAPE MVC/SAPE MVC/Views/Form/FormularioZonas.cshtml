@@ -1,0 +1,102 @@
+﻿@{
+    ViewBag.Title = "FormularioZonas";
+    Layout = "~/Views/Shared/_FormLayout.cshtml";
+}
+
+<div class="main-form container">
+    <h2>Formulario de zonas por preferencia</h2>
+    <form role="form" method="post">
+        <div class="form-group">
+            <label for="nombreProfesor">Seleccione su nombre:</label>
+            <select id="nombreProfesor" class="form-control">
+                @foreach (SAPE_MVC.Models.Profesor profesor in ViewBag.Profesores)
+                {
+                    <option value="@profesor.idProfesor">@profesor.Persona.Nombre + @profesor.Persona.Apellido1 + @profesor.Persona.Apellido2</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="Zona1">Preferencia 1</label>
+            <select id="Zona1" class="form-control">
+                <option>Cualquier zona</option>
+                <option>Escazú, Santa Ana, Belén, Barrial</option>
+                <option>Tibás, Uruca, Guadalupe, Moravia</option>
+                <option>Paseo Colón, Sabana, Centro San José</option>
+                <option>Curridabat, San Pedro</option>
+                <option>Cartago</option>
+                <option>En el exterior</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="Zona2">Preferencia 2</label>
+            <select id="Zona2" class="form-control">
+                <option>Cualquier zona</option>
+                <option>Escazú, Santa Ana, Belén, Barrial</option>
+                <option>Tibás, Uruca, Guadalupe, Moravia</option>
+                <option>Paseo Colón, Sabana, Centro San José</option>
+                <option>Curridabat, San Pedro</option>
+                <option>Cartago</option>
+                <option>En el exterior</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="Zona3">Preferencia 3</label>
+            <select id="Zona3" class="form-control">
+                <option>Cualquier zona</option>
+                <option>Escazú, Santa Ana, Belén, Barrial</option>
+                <option>Tibás, Uruca, Guadalupe, Moravia</option>
+                <option>Paseo Colón, Sabana, Centro San José</option>
+                <option>Curridabat, San Pedro</option>
+                <option>Cartago</option>
+                <option>En el exterior</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="Zona4">Preferencia 4</label>
+            <select id="Zona4" class="form-control">
+                <option>Cualquier zona</option>
+                <option>Escazú, Santa Ana, Belén, Barrial</option>
+                <option>Tibás, Uruca, Guadalupe, Moravia</option>
+                <option>Paseo Colón, Sabana, Centro San José</option>
+                <option>Curridabat, San Pedro</option>
+                <option>Cartago</option>
+                <option>En el exterior</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="Zona5">Preferencia 5</label>
+            <select id="Zona5" class="form-control">
+                <option>Cualquier zona</option>
+                <option>Escazú, Santa Ana, Belén, Barrial</option>
+                <option>Tibás, Uruca, Guadalupe, Moravia</option>
+                <option>Paseo Colón, Sabana, Centro San José</option>
+                <option>Curridabat, San Pedro</option>
+                <option>Cartago</option>
+                <option>En el exterior</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="Zona6">Preferencia 6</label>
+            <select id="Zona6" class="form-control">
+                <option>Cualquier zona</option>
+                <option>Escazú, Santa Ana, Belén, Barrial</option>
+                <option>Tibás, Uruca, Guadalupe, Moravia</option>
+                <option>Paseo Colón, Sabana, Centro San José</option>
+                <option>Curridabat, San Pedro</option>
+                <option>Cartago</option>
+                <option>En el exterior</option>
+            </select>
+        </div>
+
+        <div class="">
+            <label for="comentarios">Comentarios</label>
+            <textarea id="comentarios" class="form-control"></textarea>
+        </div>
+    </form>
+</div>

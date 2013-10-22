@@ -1,33 +1,71 @@
 ﻿@{
-    ViewBag.Title = "ReporteCandidatos";
+    ViewBag.Title = "RegistroCandidatos";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@section Scripts{
+    <link rel="stylesheet" href="/Content/Styles/registro-empresas.css" type="text/css" />
+    <script src="/Content/Scripts/jquery.tablesorter.min.js"></script>
+    <script src="/Content/Scripts/registro-empresas.js"></script>
+}
+
+
 <div id="Container">
-    <table id="ReporteCandidatos" >
-        <tr id="header">
-            <td id="tdElegible">Elegible</td>
-            <td id="tdNombre">Nombre</td>
-            <td id="tdApellido1">Primer Apellido</td>
-            <td id="tdApellido2">Segundo Apellido</td>
-            <td id="tdTelefono">Telefono</td>
-            <td id="tdDebeCurso">Debe algun curso</td>
-            <td id="tdCursoDebe">Curso que debe</td>
-        </tr>
-
-        <!-- Inserta los candidatos -->
-        @foreach (SAPE_MVC.Models.Estudiante candidato in ViewBag.Candidatos)
-        {
+    <h2 id="titulo-tabla">Candidatos registrados en el sistema</h2>
+    <table id="tabla-candidatos" class="tablesorter table table-striped">
+        <thead>
             <tr>
-                <td id="tdElegibleN"><input type="checkbox" id="@candidato.Carnet"/></td>
-                <td id="tdNombreN"></td>
-                <td id="tdApellido1N">Primer Apellido</td>
-                <td id="tdApellido2N">Segundo Apellido</td>
-                <td id="tdTelefonoN">Telefono</td>
-                <td id="tdDebeCursoN">Debe algun curso</td>
-                <td id="tdCursoDebeN">Curso que debe</td>
+                <th id="select-all-th">
+                    <input type="checkbox" name="select-all" value="all" id="select-all"></th>
+                <th>Elegible</th>
+                <th>Nombre</th>
+                <th>Primer Apellido</th>
+                <th>Segundo Apellido</th>
+                <th>Telefono</th>
+                <th>Debe algun curso</th>
+                <th>Curso que debe</th>
             </tr>
-        } 
-
+        </thead>
+        <tbody>
+            <!-- Inserta los candidatos -->
+            @foreach (SAPE_MVC.Models.Estudiante candidato in ViewBag.Candidatos)
+            {
+                <tr>
+                    <td>
+                        <input type="checkbox" id="@candidato.Carnet" /></td>
+                    <td>
+                        <select class="form-control">
+                            <option>No</option>
+                            <option>Si</option>
+                        </select>
+                    </td>
+                    <td>@candidato.Persona.Nombre</td>
+                    <td>@candidato.Persona.Apellido1</td>
+                    <td>@candidato.Persona.Apellido2</td>
+                    <td>
+                        @foreach (SAPE_MVC.Models.Contacto contacto in ViewBag.Contactos)
+                        {
+                            if (contacto.FK_Persona == candidato.FK_Persona && contacto.TipoContacto.Nombre.Equals("Telefono"))
+                            {
+                                @contacto.Valor;
+                                break;
+                            }
+                        }
+                    </td>
+                    <td>Debe Curso</td>
+                    <td>Curso que debe</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="7"></td>
+                <td>
+                    <a type="button" class="btn btn-primary" data-toggle="modal" href="#sendMailModal"><span class="glyphicon glyphicon-send"></span></a>
+                    <button type="button" class="btn btn-success" onclick="editItem()"><span class="glyphicon glyphicon-pencil"></span></button>
+                    <button type="button" class="btn btn-danger" onclick="deleteItem()"><span class="glyphicon glyphicon-trash"></span></button>
+                </td>
+            </tr>
+        </tfoot>
     </table>
 </div>
