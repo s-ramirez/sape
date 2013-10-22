@@ -219,13 +219,30 @@ namespace SAPE_MVC.Controllers
 
             ViewBag.Profesores = database.Profesor;
             ViewBag.Personas = database.Persona;
-            ViewBag.Ciudades = database.Ciudad;
 
             return View();
         }
 
         [HttpPost]
         public ActionResult FormularioZonas(string profesor)
+        {
+            return View("FormSent");
+        }
+
+
+        [HttpGet]
+        public ActionResult FormListaNegra()
+        {
+            SAPEEntities database = new SAPEEntities();
+
+            ViewBag.Profesores = database.Profesor;
+            ViewBag.Personas = database.Persona;
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult FormListaNegra(string carnet)
         {
             return View("FormSent");
         }
