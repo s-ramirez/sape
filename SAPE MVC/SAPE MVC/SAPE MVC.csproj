@@ -144,6 +144,9 @@
     <Compile Include="Models\Persona.cs">
       <DependentUpon>SAPE_Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PreferenciaDireccion.cs">
+      <DependentUpon>SAPE_Entities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\PreferenciaProfesor.cs">
       <DependentUpon>SAPE_Entities.tt</DependentUpon>
     </Compile>
@@ -204,6 +207,9 @@
     <Content Include="Content\Images\Table\asc.gif" />
     <Content Include="Content\Images\Table\bg.gif" />
     <Content Include="Content\Images\Table\desc.gif" />
+    <Content Include="Content\Scripts\calificaciones.js" />
+    <Content Include="Content\Scripts\form-lista-negra.js" />
+    <Content Include="Content\Scripts\jquery.js" />
     <Content Include="Content\Scripts\jquery.tablesorter.min.js" />
     <Content Include="Content\Scripts\bootstrap.min.js" />
     <Content Include="Content\Scripts\main-script.js" />
@@ -275,6 +281,20 @@
     <Content Include="Views\Main\RegistroEmpresas.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\Report\ReporteCandidatos.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Main\Index.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Form\FormularioZonas.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Form\FormListaNegra.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
     <EntityDeploy Include="Models\SAPE_Entities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SAPE_Entities.Designer.cs</LastGenOutput>
@@ -296,18 +316,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Report\ReporteCandidatos.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Main\Index.cshtml">
-      <SubType>Code</SubType>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Form\FormularioZonas.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Form\FormListaNegra.cshtml" />
+    <Content Include="Views\Main\Calificaciones.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

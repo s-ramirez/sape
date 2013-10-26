@@ -27,6 +27,14 @@ namespace SAPE_MVC.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult Calificaciones()
+        {
+            SAPEEntities database = new SAPEEntities();
+            ViewBag.Estudiantes = database.Estudiante;
+            return View();
+        }
+
         [HttpPost]
         public ActionResult EnviarCorreo(string emailList, string mailSubject, string mailContent)
         {

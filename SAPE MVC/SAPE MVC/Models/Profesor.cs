@@ -17,8 +17,8 @@ namespace SAPE_MVC.Models
         public Profesor()
         {
             this.Evaluacion = new HashSet<Evaluacion>();
+            this.PreferenciaDireccion = new HashSet<PreferenciaDireccion>();
             this.PreferenciaProfesor = new HashSet<PreferenciaProfesor>();
-            this.Ciudad = new HashSet<Ciudad>();
         }
     
         public int idProfesor { get; set; }
@@ -26,10 +26,11 @@ namespace SAPE_MVC.Models
         public int Asesora { get; set; }
         public Nullable<int> CargaMinima { get; set; }
         public Nullable<int> CargaMaxima { get; set; }
+        public string Comentario { get; set; }
     
         public virtual ICollection<Evaluacion> Evaluacion { get; set; }
         public virtual Persona Persona { get; set; }
+        public virtual ICollection<PreferenciaDireccion> PreferenciaDireccion { get; set; }
         public virtual ICollection<PreferenciaProfesor> PreferenciaProfesor { get; set; }
-        public virtual ICollection<Ciudad> Ciudad { get; set; }
     }
 }

@@ -22,12 +22,7 @@
           <EntitySet Name="Evaluacion" EntityType="SAPEModel.Store.Evaluacion" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Pais" EntityType="SAPEModel.Store.Pais" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Persona" EntityType="SAPEModel.Store.Persona" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="PreferenciaDireccion" EntityType="SAPEModel.Store.PreferenciaDireccion" store:Type="Tables" store:Schema="dbo" store:Name="PreferenciaDireccion">
-            <DefiningQuery>SELECT 
-      [PreferenciaDireccion].[FK_Profesor] AS [FK_Profesor], 
-      [PreferenciaDireccion].[FK_Direccion] AS [FK_Direccion]
-      FROM [dbo].[PreferenciaDireccion] AS [PreferenciaDireccion]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="PreferenciaDireccion" EntityType="SAPEModel.Store.PreferenciaDireccion" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PreferenciaProfesor" EntityType="SAPEModel.Store.PreferenciaProfesor" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Profesor" EntityType="SAPEModel.Store.Profesor" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Provincia" EntityType="SAPEModel.Store.Provincia" store:Type="Tables" Schema="dbo" />
@@ -152,7 +147,7 @@
             <PropertyRef Name="idCurso" />
           </Key>
           <Property Name="idCurso" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="100" />
         </EntityType>
         <!--Errors Found During Generation:
       warning 6002: The table/view 'SAPE.dbo.CursoXEstudiante' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
@@ -220,16 +215,14 @@
           <Property Name="Apellido1" Type="varchar" Nullable="false" MaxLength="20" />
           <Property Name="Apellido2" Type="varchar" Nullable="false" MaxLength="20" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'SAPE.dbo.PreferenciaDireccion' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
         <EntityType Name="PreferenciaDireccion">
           <Key>
-            <PropertyRef Name="FK_Profesor" />
-            <PropertyRef Name="FK_Direccion" />
+            <PropertyRef Name="id" />
           </Key>
           <Property Name="FK_Profesor" Type="int" Nullable="false" />
           <Property Name="FK_Direccion" Type="int" Nullable="false" />
+          <Property Name="Prioridad" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PreferenciaProfesor">
           <Key>
@@ -250,6 +243,7 @@
           <Property Name="Asesora" Type="int" Nullable="false" />
           <Property Name="CargaMinima" Type="int" />
           <Property Name="CargaMaxima" Type="int" />
+          <Property Name="Comentario" Type="varchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="Provincia">
           <Key>
@@ -604,6 +598,7 @@
           <EntitySet Name="Evaluacion" EntityType="SAPEModel.Evaluacion" />
           <EntitySet Name="Pais" EntityType="SAPEModel.Pais" />
           <EntitySet Name="Persona" EntityType="SAPEModel.Persona" />
+          <EntitySet Name="PreferenciaDireccion" EntityType="SAPEModel.PreferenciaDireccion" />
           <EntitySet Name="PreferenciaProfesor" EntityType="SAPEModel.PreferenciaProfesor" />
           <EntitySet Name="Profesor" EntityType="SAPEModel.Profesor" />
           <EntitySet Name="Provincia" EntityType="SAPEModel.Provincia" />
@@ -620,6 +615,10 @@
           <AssociationSet Name="FK_Empresa_Ciudad" Association="SAPEModel.FK_Empresa_Ciudad">
             <End Role="Ciudad" EntitySet="Ciudad" />
             <End Role="Empresa" EntitySet="Empresa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PreferenciasDireccion_Ciudad" Association="SAPEModel.FK_PreferenciasDireccion_Ciudad">
+            <End Role="Ciudad" EntitySet="Ciudad" />
+            <End Role="PreferenciaDireccion" EntitySet="PreferenciaDireccion" />
           </AssociationSet>
           <AssociationSet Name="FK_Contacto_Persona1" Association="SAPEModel.FK_Contacto_Persona1">
             <End Role="Persona" EntitySet="Persona" />
@@ -689,6 +688,10 @@
             <End Role="Persona" EntitySet="Persona" />
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
+          <AssociationSet Name="FK_PreferenciaDireccion_Profesor" Association="SAPEModel.FK_PreferenciaDireccion_Profesor">
+            <End Role="Profesor" EntitySet="Profesor" />
+            <End Role="PreferenciaDireccion" EntitySet="PreferenciaDireccion" />
+          </AssociationSet>
           <AssociationSet Name="FK_PreferenciaProfesor_Profesor" Association="SAPEModel.FK_PreferenciaProfesor_Profesor">
             <End Role="Profesor" EntitySet="Profesor" />
             <End Role="PreferenciaProfesor" EntitySet="PreferenciaProfesor" />
@@ -696,10 +699,6 @@
           <AssociationSet Name="FK_Usuario_TipoUsuario" Association="SAPEModel.FK_Usuario_TipoUsuario">
             <End Role="TipoUsuario" EntitySet="TipoUsuario" />
             <End Role="Usuario" EntitySet="Usuario" />
-          </AssociationSet>
-          <AssociationSet Name="PreferenciaDireccion" Association="SAPEModel.PreferenciaDireccion">
-            <End Role="Profesor" EntitySet="Profesor" />
-            <End Role="Ciudad" EntitySet="Ciudad" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Ciudad">
@@ -711,7 +710,7 @@
           <Property Name="FK_Provincia" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Provincia" Relationship="SAPEModel.FK_Ciudad_Provincia" FromRole="Ciudad" ToRole="Provincia" />
           <NavigationProperty Name="Empresa" Relationship="SAPEModel.FK_Empresa_Ciudad" FromRole="Ciudad" ToRole="Empresa" />
-          <NavigationProperty Name="Profesor" Relationship="SAPEModel.PreferenciaDireccion" FromRole="Ciudad" ToRole="Profesor" />
+          <NavigationProperty Name="PreferenciaDireccion" Relationship="SAPEModel.FK_PreferenciasDireccion_Ciudad" FromRole="Ciudad" ToRole="PreferenciaDireccion" />
         </EntityType>
         <EntityType Name="Contacto">
           <Key>
@@ -729,7 +728,7 @@
             <PropertyRef Name="idCurso" />
           </Key>
           <Property Name="idCurso" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="CursoXEstudiante" Relationship="SAPEModel.FK_CursoXEstudiante_Curso" FromRole="Curso" ToRole="CursoXEstudiante" />
         </EntityType>
         <EntityType Name="CursoXEstudiante">
@@ -817,6 +816,17 @@
           <NavigationProperty Name="Profesor" Relationship="SAPEModel.FK_Profesor_Persona" FromRole="Persona" ToRole="Profesor" />
           <NavigationProperty Name="Usuario" Relationship="SAPEModel.FK_Usuario_Persona" FromRole="Persona" ToRole="Usuario" />
         </EntityType>
+        <EntityType Name="PreferenciaDireccion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="FK_Profesor" Type="Int32" Nullable="false" />
+          <Property Name="FK_Direccion" Type="Int32" Nullable="false" />
+          <Property Name="Prioridad" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Ciudad" Relationship="SAPEModel.FK_PreferenciasDireccion_Ciudad" FromRole="PreferenciaDireccion" ToRole="Ciudad" />
+          <NavigationProperty Name="Profesor" Relationship="SAPEModel.FK_PreferenciaDireccion_Profesor" FromRole="PreferenciaDireccion" ToRole="Profesor" />
+        </EntityType>
         <EntityType Name="PreferenciaProfesor">
           <Key>
             <PropertyRef Name="idPreferencia" />
@@ -838,10 +848,11 @@
           <Property Name="Asesora" Type="Int32" Nullable="false" />
           <Property Name="CargaMinima" Type="Int32" />
           <Property Name="CargaMaxima" Type="Int32" />
+          <Property Name="Comentario" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="Evaluacion" Relationship="SAPEModel.FK_Evaluacion_Profesor" FromRole="Profesor" ToRole="Evaluacion" />
           <NavigationProperty Name="Persona" Relationship="SAPEModel.FK_Profesor_Persona" FromRole="Profesor" ToRole="Persona" />
+          <NavigationProperty Name="PreferenciaDireccion" Relationship="SAPEModel.FK_PreferenciaDireccion_Profesor" FromRole="Profesor" ToRole="PreferenciaDireccion" />
           <NavigationProperty Name="PreferenciaProfesor" Relationship="SAPEModel.FK_PreferenciaProfesor_Profesor" FromRole="Profesor" ToRole="PreferenciaProfesor" />
-          <NavigationProperty Name="Ciudad" Relationship="SAPEModel.PreferenciaDireccion" FromRole="Profesor" ToRole="Ciudad" />
         </EntityType>
         <EntityType Name="Provincia">
           <Key>
@@ -934,6 +945,18 @@
               <PropertyRef Name="idCiudad" />
             </Principal>
             <Dependent Role="Empresa">
+              <PropertyRef Name="FK_Direccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PreferenciasDireccion_Ciudad">
+          <End Role="Ciudad" Type="SAPEModel.Ciudad" Multiplicity="1" />
+          <End Role="PreferenciaDireccion" Type="SAPEModel.PreferenciaDireccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ciudad">
+              <PropertyRef Name="idCiudad" />
+            </Principal>
+            <Dependent Role="PreferenciaDireccion">
               <PropertyRef Name="FK_Direccion" />
             </Dependent>
           </ReferentialConstraint>
@@ -1142,6 +1165,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PreferenciaDireccion_Profesor">
+          <End Role="Profesor" Type="SAPEModel.Profesor" Multiplicity="1" />
+          <End Role="PreferenciaDireccion" Type="SAPEModel.PreferenciaDireccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesor">
+              <PropertyRef Name="idProfesor" />
+            </Principal>
+            <Dependent Role="PreferenciaDireccion">
+              <PropertyRef Name="FK_Profesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PreferenciaProfesor_Profesor">
           <End Role="Profesor" Type="SAPEModel.Profesor" Multiplicity="1" />
           <End Role="PreferenciaProfesor" Type="SAPEModel.PreferenciaProfesor" Multiplicity="*" />
@@ -1165,10 +1200,6 @@
               <PropertyRef Name="FK_TipoUsuario" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
-        <Association Name="PreferenciaDireccion">
-          <End Role="Profesor" Type="SAPEModel.Profesor" Multiplicity="*" />
-          <End Role="Ciudad" Type="SAPEModel.Ciudad" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -1271,6 +1302,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="PreferenciaDireccion">
+            <EntityTypeMapping TypeName="SAPEModel.PreferenciaDireccion">
+              <MappingFragment StoreEntitySet="PreferenciaDireccion">
+                <ScalarProperty Name="FK_Profesor" ColumnName="FK_Profesor" />
+                <ScalarProperty Name="FK_Direccion" ColumnName="FK_Direccion" />
+                <ScalarProperty Name="Prioridad" ColumnName="Prioridad" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="PreferenciaProfesor">
             <EntityTypeMapping TypeName="SAPEModel.PreferenciaProfesor">
               <MappingFragment StoreEntitySet="PreferenciaProfesor">
@@ -1290,6 +1331,7 @@
                 <ScalarProperty Name="Asesora" ColumnName="Asesora" />
                 <ScalarProperty Name="CargaMinima" ColumnName="CargaMinima" />
                 <ScalarProperty Name="CargaMaxima" ColumnName="CargaMaxima" />
+                <ScalarProperty Name="Comentario" ColumnName="Comentario" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1361,14 +1403,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="PreferenciaDireccion" TypeName="SAPEModel.PreferenciaDireccion" StoreEntitySet="PreferenciaDireccion">
-            <EndProperty Name="Profesor">
-              <ScalarProperty Name="idProfesor" ColumnName="FK_Profesor" />
-            </EndProperty>
-            <EndProperty Name="Ciudad">
-              <ScalarProperty Name="idCiudad" ColumnName="FK_Direccion" />
-            </EndProperty>
-          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

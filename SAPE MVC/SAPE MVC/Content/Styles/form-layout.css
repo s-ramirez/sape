@@ -47,3 +47,19 @@ label {
     background-color: #404040;
     border-color: #404040;
 }
+
+#checkCarne {
+    left: -125px;
+    position: relative;
+    top: -45px;
+}
+
+#form-body {
+    display: none;
+}
+
+#adjunta {
+  left: -135px;
+  position: relative;
+  top: -135px;
+}

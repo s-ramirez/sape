@@ -219,13 +219,15 @@ namespace SAPE_MVC.Controllers
 
             ViewBag.Profesores = database.Profesor;
             ViewBag.Personas = database.Persona;
-
+            ViewBag.Ciudad = database.Ciudad;
             return View();
         }
 
         [HttpPost]
-        public ActionResult FormularioZonas(string profesor)
+        public ActionResult FormularioZonas(string nombreProfesor, string zona1, string zona2, string zona3, string zona4, string zona5, string zona6, string comentarios)
         {
+            SAPEEntities entities = new SAPEEntities();
+
             return View("FormSent");
         }
 
@@ -247,5 +249,25 @@ namespace SAPE_MVC.Controllers
             return View("FormSent");
         }
 
+
+        [HttpGet]
+        public JsonResult CheckCarne(int carne)
+        {
+            using (SAPEEntities ctx = new SAPEEntities())
+            {
+                var result = from estudiante in ctx.Estudiante
+                             where estudiante.Carnet == carne
+                             select estudiante;
+                try
+                {
+                    Estudiante res = result.FirstOrDefault<Estudiante>();
+                    string json_resp = "true, "+res.Carnet+","+res.Persona.Apellido1+" "+res.Persona.Apellido2+" "+res.Persona.Nombre;
+                    return Json(json_resp, JsonRequestBehavior.AllowGet);
+                }
+                catch {
+                    return Json("false, null", JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
     }
 }

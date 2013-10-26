@@ -17,7 +17,7 @@ namespace SAPE_MVC.Models
         public Ciudad()
         {
             this.Empresa = new HashSet<Empresa>();
-            this.Profesor = new HashSet<Profesor>();
+            this.PreferenciaDireccion = new HashSet<PreferenciaDireccion>();
         }
     
         public int idCiudad { get; set; }
@@ -26,6 +26,6 @@ namespace SAPE_MVC.Models
     
         public virtual Provincia Provincia { get; set; }
         public virtual ICollection<Empresa> Empresa { get; set; }
-        public virtual ICollection<Profesor> Profesor { get; set; }
+        public virtual ICollection<PreferenciaDireccion> PreferenciaDireccion { get; set; }
     }
 }

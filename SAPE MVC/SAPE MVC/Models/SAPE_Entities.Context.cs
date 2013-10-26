@@ -35,6 +35,7 @@ namespace SAPE_MVC.Models
         public DbSet<Evaluacion> Evaluacion { get; set; }
         public DbSet<Pais> Pais { get; set; }
         public DbSet<Persona> Persona { get; set; }
+        public DbSet<PreferenciaDireccion> PreferenciaDireccion { get; set; }
         public DbSet<PreferenciaProfesor> PreferenciaProfesor { get; set; }
         public DbSet<Profesor> Profesor { get; set; }
         public DbSet<Provincia> Provincia { get; set; }
