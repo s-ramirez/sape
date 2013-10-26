@@ -10,17 +10,6 @@
             <input id="nombreEmpresa" class="form-control" type="text" name="nombreEmpresa" />
         </div>
         <div class="form-group">
-            <label for="practicantes">Desea recibir practicantes el semestre que viene?</label>
-            <select id="practicantes" name="practicantes" class="form-control">
-                <option value="si">Si</option>
-                <option value="no">No</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="cantPracticantes">Cuantos?</label>
-            <input type="number" id="cantPracticantes" name="cantPracticantes" class="form-control" />
-        </div>
-        <div class="form-group">
             <label for="ciudad">Ubicacion</label>
             <select name="ciudad" id="ciudad" class="form-control">
                 @foreach (SAPE_MVC.Models.Ciudad ciudad in ViewBag.Ciudades)

@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "RegistroEmpresas";
+    Layout = "~/Views/Shared/_FormLayout.cshtml";
+}
+
+
+<div class="main-form container">
+    <h2>Registro de Empresas Interesadas</h2>
+    <form role="form" method="post">
+        <div class="form-group">
+            <label for="nombreEmpresa">Nombre de la empresa</label>
+            <select name="nombreEmpresa" id="nombreEmpresa" class="form-control">
+                @foreach (SAPE_MVC.Models.Empresa empresa in ViewBag.Empresas)
+                {
+                    <option value="@empresa.idEmpresa">@empresa.Nombre</option> 
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="practicantes">Desea recibir practicantes el semestre que viene?</label>
+            <select id="practicantes" name="practicantes" class="form-control" onchange="mostrarPracticantes()">
+                <option value="no">No</option>
+                <option value="si">Si</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="cantPracticantes">Cuantos?</label>
+            <input type="number" value="0" min="0" id="cantPracticantes" name="cantPracticantes" class="form-control" />
+        </div>
+<input type="submit" class="btn btn-primary pull-right" value="Enviar" />
+</form>
+</div>

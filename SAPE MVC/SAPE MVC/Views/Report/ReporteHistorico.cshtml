@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "ReporteHistorico";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts{
+    <link rel="stylesheet" href="/Content/Styles/registro-empresas.css" type="text/css" />
+    <script src="/Content/Scripts/jquery.tablesorter.min.js"></script>
+    <script src="/Content/Scripts/registro-empresas.js"></script>
+}
+
+@if (TempData["Message"] != null) 
+{
+    <div class="alert alert-warning fade in">
+        <a class="close" data-dismiss="alert" href="#">&times;</a>
+        @TempData["Message"]
+    </div>
+}
+
+<h2 id="titulo-tabla">Registro histórico de empresas registradas en el sistema</h2>
+<table id="tabla-empresas" class="tablesorter table table-striped">
+    <thead>
+        <tr>
+            <th id="select-all-th">
+                <input type="checkbox" name="select-all" value="all" id="select-all"></th>
+            <th>Nombre</th>
+            <th>Ubicacion</th>
+            <th>Contacto</th>
+            <th>Correo</th>
+            <th>Telefono</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (SAPE_MVC.Models.Empresa empresa in ViewBag.Empresas)
+        {
+            <tr>
+                <td><input type="checkbox" name="@empresa.idEmpresa" value="@empresa.idEmpresa"></td>
+                <td>@empresa.Nombre</td>
+                <td>@empresa.Ciudad.Nombre, @empresa.Ciudad.Provincia.Nombre</td>
+                <td>@empresa.Persona.Nombre @empresa.Persona.Apellido1 @empresa.Persona.Apellido2</td>
+                <td>@foreach (SAPE_MVC.Models.Contacto contacto in ViewBag.Contactos)
+                    {
+                        if (contacto.FK_Persona == empresa.FK_Persona && contacto.TipoContacto.Nombre.Equals("E-mail"))
+                        {
+                            @contacto.Valor;
+                            break;
+                        }
+                    }</td>
+                <td>
+                    @foreach (SAPE_MVC.Models.Contacto contacto in ViewBag.Contactos)
+                    {
+                        if (contacto.FK_Persona == empresa.FK_Persona && contacto.TipoContacto.Nombre.Equals("Telefono"))
+                        {
+                            @contacto.Valor;
+                            break;
+                        }
+                    }
+                </td>
+            </tr>  
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <a type="button" class="btn btn-primary" data-toggle="modal" href="#sendMailModal"><span class="glyphicon glyphicon-send"></span></a>
+                <button type="button" class="btn btn-success" onclick="editItem()"><span class="glyphicon glyphicon-pencil"></span></button>
+                <button type="button" class="btn btn-danger" onclick="deleteItem()"><span class="glyphicon glyphicon-trash"></span></button>
+            </td>
+        </tr>
+    </tfoot>
+</table>
