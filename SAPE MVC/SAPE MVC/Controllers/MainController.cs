@@ -38,6 +38,12 @@ namespace SAPE_MVC.Controllers
         [HttpPost]
         public ActionResult EnviarCorreo(string emailList, string mailSubject, string mailContent)
         {
+            if (String.IsNullOrEmpty(emailList))
+            {
+                TempData["Message"] = "No se ha seleccionado ninguna empresa para enviar correo";
+                return RedirectToAction("RegistroEmpresas");
+            }
+
             try
             {
 

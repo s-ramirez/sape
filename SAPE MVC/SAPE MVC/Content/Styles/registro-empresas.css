@@ -48,3 +48,13 @@ tfoot {
 #select-all-th {
     background-image: none;
 }
+
+.table-btn {
+    float: right;
+    margin: 0 2px;
+}
+
+/* FORMS */
+#mailContent {
+    max-width: 100%;
+}

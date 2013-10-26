@@ -1,5 +1,4 @@
 sape
 ====
 
-Sistema Administrador de Practicas Profesionales hola estoy en develop
-sigo trabajando aqui
+Sistema Administrador de Practicas Profesionales

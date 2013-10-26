@@ -24,6 +24,8 @@ namespace SAPE_MVC.Models
         public string Nombre { get; set; }
         public int FK_Persona { get; set; }
         public int FK_Direccion { get; set; }
+        public int Interesada { get; set; }
+        public int Cant_Practicantes { get; set; }
     
         public virtual Ciudad Ciudad { get; set; }
         public virtual Persona Persona { get; set; }

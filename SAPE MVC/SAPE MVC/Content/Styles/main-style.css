@@ -1,4 +1,9 @@
-﻿/* GENERAL */
+﻿/* MODAL FIX */
+.modal-open, .modal-open .navbar-fixed-top {
+  margin-right: 0 !important;
+}
+
+/* GENERAL */
 .row {
     margin-right: 0px;
 }
@@ -37,7 +42,11 @@
         background-color: #404040;
     }
 
-a.list-group-title, a.list-group-title:hover, a.list-group-title:focus {
+.list-separator {
+    margin: 5px;
+}
+
+.list-group-title, .list-group-title:hover, .list-group-title:focus {
     padding-left: 25px;
     font-weight: bold;
     color: #999999;
@@ -47,4 +56,11 @@ a.list-group-title, a.list-group-title:hover, a.list-group-title:focus {
 
 #main-content {
     background-color: #F2F2F2;
+}
+
+/* Error div */
+#errorAlert {
+  font-size: 15px;
+  margin-left: 15px;
+  text-align: center;
 }

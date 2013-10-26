@@ -141,6 +141,10 @@
     <Compile Include="Models\Pais.cs">
       <DependentUpon>SAPE_Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Partial\Contacto.cs" />
+    <Compile Include="Models\Partial\Empresa.cs" />
+    <Compile Include="Models\Partial\Persona.cs" />
+    <Compile Include="Models\Partial\TipoContacto.cs" />
     <Compile Include="Models\Persona.cs">
       <DependentUpon>SAPE_Entities.tt</DependentUpon>
     </Compile>

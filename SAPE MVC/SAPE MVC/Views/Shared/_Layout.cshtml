@@ -21,18 +21,26 @@
                 <a href="#" class="list-group-item">Practicantes</a>
                 <a id="item-Calificaciones" href="/Main/Calificaciones" class="list-group-item">Calificaciones</a>
                 <a href="#" class="list-group-item">Reportes</a>
-                <a class="list-group-item"></a>
+                <a class="list-separator"></a>
                 <a class="list-group-item list-group-title">REGISTRO</a>
                 <a id="item-RegistroEmpresas" href="/Main/RegistroEmpresas" class="list-group-item">Empresas</a>
                 <a href="#" class="list-group-item">Profesores</a>
                 <a href="/Report/ReporteCandidatos" class="list-group-item">Candidatos</a>
             </div>
         </div>
+        @if (TempData["Message"] != null)
+        {
+            <div id="errorAlert" class="alert alert-warning fade in">
+                <a class="close" data-dismiss="alert" href="#">&times;</a>
+                @TempData["Message"]
+            </div>
+        }
+
         <div class="col-md-10">
             @RenderBody()
         </div>
     </div>
-    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="/Content/Scripts/jquery.js"></script>
     <script src="/Content/Scripts/bootstrap.min.js"></script>
     <script src="/Content/Scripts/main-script.js"></script>
     @RenderSection("Scripts", required: false)
