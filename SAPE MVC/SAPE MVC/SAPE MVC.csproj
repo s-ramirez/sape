@@ -182,9 +182,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SAPE_Entities.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>SAPE_Entities.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\TipoContacto.cs">
       <DependentUpon>SAPE_Entities.tt</DependentUpon>
     </Compile>
@@ -299,6 +296,15 @@
     <Content Include="Views\Form\FormListaNegra.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\Main\Calificaciones.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Form\FormEmpresasInteresadas.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Report\ReporteInteresadas.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
     <EntityDeploy Include="Models\SAPE_Entities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SAPE_Entities.Designer.cs</LastGenOutput>
@@ -320,7 +326,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Main\Calificaciones.cshtml" />
+    <Content Include="Views\Report\ReporteHistorico.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

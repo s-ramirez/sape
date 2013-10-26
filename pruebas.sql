@@ -30,3 +30,9 @@ insert into TipoUsuario(Nombre, Permisos) values ('Administrador', 1)
 
 insert into Usuario(Nombre, Contrasena, FK_idPersona, FK_TipoUsuario) values ('rujova','pato', 1004, 1)
 select * from Persona
+
+
+insert into Persona(Nombre, Apellido1, Apellido2) values('Manuel', 'Soto', 'Morales');
+insert into Contacto(Valor, FK_TipoContacto, FK_Persona) values('93824301', 1, 3002);
+
+insert into Empresa(Nombre, FK_Persona, FK_Direccion, Cant_Practicantes, Interesada) values ('Avantica', 3002, 1, 0, 0);

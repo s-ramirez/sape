@@ -34,7 +34,7 @@ namespace SAPE_MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult RegistroEmpresas(string nombreEmpresa, string practicantes, int cantPracticantes, int ciudad, string nombreContacto, string papellidoContacto, string sapellidoContacto, string telContacto, string  emailContacto)
+        public ActionResult RegistroEmpresas(string nombreEmpresa, int ciudad, string nombreContacto, string papellidoContacto, string sapellidoContacto, string telContacto, string  emailContacto)
         {
             SAPEEntities entities = new SAPEEntities();
             Empresa nuevaEmpresa = new Empresa();
@@ -269,5 +269,17 @@ namespace SAPE_MVC.Controllers
                 }
             }
         }
+    
+    
+        //Empresas interesadas
+        [HttpGet]
+        public ActionResult FormEmpresasInteresadas()
+        {
+            SAPEEntities database = new SAPEEntities();
+            ViewBag.Empresas = database.Empresa;
+            
+            return View();
+        }
+    
     }
 }

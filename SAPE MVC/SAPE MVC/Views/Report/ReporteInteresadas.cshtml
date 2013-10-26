@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "ReporteInteresadas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts{
+    <link rel="stylesheet" href="/Content/Styles/registro-empresas.css" type="text/css" />
+    <script src="/Content/Scripts/jquery.tablesorter.min.js"></script>
+    <script src="/Content/Scripts/registro-empresas.js"></script>
+}
+
+<h2 id="titulo-tabla">Empresasinteresadas en practicantes</h2>
+<table id="tabla-empresas" class="tablesorter table table-striped">
+    <thead>
+        <tr>
+            <th id="select-all-th">
+                <input type="checkbox" name="select-all" value="all" id="select-all"></th>
+            <th>Empresa</th>
+            <th>Interesada</th>
+            <th>Cantidad</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (SAPE_MVC.Models.Empresa empresa in ViewBag.Empresas)
+        {
+            if (empresa.Interesada == 0)
+            {
+            <tr>
+                <td>
+                    <input type="checkbox" id="@empresa.idEmpresa" /></td>
+                <td>@empresa.Nombre</td>
+                @if (@empresa.Interesada == 0)
+                {
+                    <td>
+                        No
+                    </td>
+                }
+                else{<td>Si</td>}
+
+
+
+                <td>@empresa.Cant_Practicantes</td>
+            </tr>
+               
+            }
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <a type="button" class="btn btn-primary" data-toggle="modal" href="#sendMailModal"><span class="glyphicon glyphicon-send"></span></a>
+                <button type="button" class="btn btn-success" onclick="editItem()"><span class="glyphicon glyphicon-pencil"></span></button>
+                <button type="button" class="btn btn-danger" onclick="deleteItem()"><span class="glyphicon glyphicon-trash"></span></button>
+            </td>
+        </tr>
+    </tfoot>
+</table>

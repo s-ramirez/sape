@@ -4,23 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="629ef43ca9f34c96abbd37898add8fff" Name="Diagram1">
+      <Diagram DiagramId="3b1c1be4f0da4f46aa1663cf35e2d3f8" Name="Diagrama1">
         <EntityTypeShape EntityType="SAPEModel.Ciudad" Width="1.5" PointX="3.75" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="SAPEModel.Contacto" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SAPEModel.Curso" Width="1.5" PointX="10.5" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SAPEModel.Curso" Width="1.5" PointX="10.5" PointY="6.25" IsExpanded="true" />
         <EntityTypeShape EntityType="SAPEModel.CursoXEstudiante" Width="1.5" PointX="12.75" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="SAPEModel.Empresa" Width="1.5" PointX="6" PointY="10.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SAPEModel.EstadoProyecto" Width="1.5" PointX="6" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SAPEModel.Empresa" Width="1.5" PointX="6" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SAPEModel.EstadoProyecto" Width="1.5" PointX="6" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SAPEModel.Estudiante" Width="1.5" PointX="10.5" PointY="9.625" IsExpanded="true" />
         <EntityTypeShape EntityType="SAPEModel.Evaluacion" Width="1.5" PointX="8.25" PointY="13.25" IsExpanded="true" />
         <EntityTypeShape EntityType="SAPEModel.Pais" Width="1.5" PointX="1.5" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SAPEModel.Persona" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SAPEModel.PreferenciaDireccion" Width="1.5" PointX="5.25" PointY="16.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SAPEModel.PreferenciaProfesor" Width="1.5" PointX="12.75" PointY="13.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SAPEModel.Profesor" Width="1.5" PointX="3" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SAPEModel.PreferenciaDireccion" Width="1.5" PointX="5.25" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SAPEModel.PreferenciaProfesor" Width="1.5" PointX="12.75" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SAPEModel.Profesor" Width="1.5" PointX="3" PointY="16.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SAPEModel.Provincia" Width="1.5" PointX="1.5" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="SAPEModel.Proyecto" Width="1.5" PointX="8.25" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SAPEModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="SAPEModel.TipoContacto" Width="1.5" PointX="0.75" PointY="13.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SAPEModel.TipoEvaluacion" Width="1.5" PointX="6" PointY="14" IsExpanded="true" />
         <EntityTypeShape EntityType="SAPEModel.TipoUsuario" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />

@@ -17,7 +17,7 @@ namespace SAPE_MVC.Controllers
             return View();
         }
 
-        
+
         //Reporte Candidatos de practica
         [HttpGet]
         public ActionResult ReporteCandidatos()
@@ -28,5 +28,25 @@ namespace SAPE_MVC.Controllers
             return View();
         }
 
+
+        //Reporte de empresas interesadas
+        [HttpGet]
+        public ActionResult ReporteInteresadas()
+        {
+            SAPEEntities database = new SAPEEntities();
+            ViewBag.Empresas = database.Empresa;
+            return View();
+        }
+
+
+        //Falta el post
+
+        [HttpGet]
+        public ActionResult ReporteHistorico()
+        {
+            SAPEEntities database = new SAPEEntities();
+            ViewBag.Empresas = database.Empresa;
+            return View();
+        }
     }
 }
