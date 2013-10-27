@@ -141,6 +141,10 @@
     <Compile Include="Models\Pais.cs">
       <DependentUpon>SAPE_Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Partial\Contacto.cs" />
+    <Compile Include="Models\Partial\Empresa.cs" />
+    <Compile Include="Models\Partial\Persona.cs" />
+    <Compile Include="Models\Partial\TipoContacto.cs" />
     <Compile Include="Models\Persona.cs">
       <DependentUpon>SAPE_Entities.tt</DependentUpon>
     </Compile>
@@ -204,11 +208,17 @@
     <Content Include="Content\Images\Table\asc.gif" />
     <Content Include="Content\Images\Table\bg.gif" />
     <Content Include="Content\Images\Table\desc.gif" />
+    <Content Include="Content\Scripts\validity\arrow.gif" />
     <Content Include="Content\Scripts\calificaciones.js" />
+    <Content Include="Content\Scripts\form-empresas.js" />
     <Content Include="Content\Scripts\form-lista-negra.js" />
+    <Content Include="Content\Scripts\jquery.autocomplete.min.js" />
     <Content Include="Content\Scripts\jquery.js" />
     <Content Include="Content\Scripts\jquery.tablesorter.min.js" />
     <Content Include="Content\Scripts\bootstrap.min.js" />
+    <Content Include="Content\Scripts\validity\jquery.validity.css" />
+    <Content Include="Content\Scripts\validity\jquery.validity.lang.es.js" />
+    <Content Include="Content\Scripts\validity\jquery.validity.min.js" />
     <Content Include="Content\Scripts\main-script.js" />
     <Content Include="Content\Scripts\registro-empresas.js" />
     <Content Include="Content\Styles\bootstrap-theme.min.css" />

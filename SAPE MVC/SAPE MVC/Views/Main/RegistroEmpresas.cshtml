@@ -9,14 +9,6 @@
     <script src="/Content/Scripts/registro-empresas.js"></script>
 }
 
-@if (TempData["Message"] != null) 
-{
-    <div class="alert alert-warning fade in">
-        <a class="close" data-dismiss="alert" href="#">&times;</a>
-        @TempData["Message"]
-    </div>
-}
-
 <h2 id="titulo-tabla">Empresas registradas en el sistema</h2>
 <table id="tabla-empresas" class="tablesorter table table-striped">
     <thead>
@@ -24,13 +16,13 @@
             <th id="select-all-th">
                 <input type="checkbox" name="select-all" value="all" id="select-all"></th>
             <th>Nombre</th>
-            <th>Ubicacion</th>
+            <th>Ubicación</th>
             <th>Contacto</th>
             <th>Correo</th>
-            <th>Telefono</th>
+            <th>Teléfono</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="tabla-body">
         @foreach (SAPE_MVC.Models.Empresa empresa in ViewBag.Empresas)
         {
             <tr>
@@ -38,24 +30,8 @@
                 <td>@empresa.Nombre</td>
                 <td>@empresa.Ciudad.Nombre, @empresa.Ciudad.Provincia.Nombre</td>
                 <td>@empresa.Persona.Nombre @empresa.Persona.Apellido1 @empresa.Persona.Apellido2</td>
-                <td>@foreach (SAPE_MVC.Models.Contacto contacto in ViewBag.Contactos)
-                    {
-                        if (contacto.FK_Persona == empresa.FK_Persona && contacto.TipoContacto.Nombre.Equals("E-mail"))
-                        {
-                            @contacto.Valor;
-                            break;
-                        }
-                    }</td>
-                <td>
-                    @foreach (SAPE_MVC.Models.Contacto contacto in ViewBag.Contactos)
-                    {
-                        if (contacto.FK_Persona == empresa.FK_Persona && contacto.TipoContacto.Nombre.Equals("Telefono"))
-                        {
-                            @contacto.Valor;
-                            break;
-                        }
-                    }
-                </td>
+                <td class="emailEmpresa">@SAPE_MVC.Models.Contacto.getContactoEmpresa(@empresa.idEmpresa,"E-mail")</td>
+                <td>@SAPE_MVC.Models.Contacto.getContactoEmpresa(@empresa.idEmpresa,"Telefono")</td>
             </tr>  
         }
     </tbody>
@@ -67,9 +43,8 @@
             <td></td>
             <td></td>
             <td>
-                <a type="button" class="btn btn-primary" data-toggle="modal" href="#sendMailModal"><span class="glyphicon glyphicon-send"></span></a>
-                <button type="button" class="btn btn-success" onclick="editItem()"><span class="glyphicon glyphicon-pencil"></span></button>
-                <button type="button" class="btn btn-danger" onclick="deleteItem()"><span class="glyphicon glyphicon-trash"></span></button>
+                <a class="btn btn-primary table-btn" data-toggle="modal" onclick="openMailModal()"><span class="glyphicon glyphicon-send"></span></a>
+                <button type="button" class="btn btn-success table-btn" onclick="editItem()"><span class="glyphicon glyphicon-pencil"></span></button>
             </td>
         </tr>
     </tfoot>
@@ -86,7 +61,7 @@
             @using (Html.BeginForm("EnviarCorreo", null, FormMethod.Post, new { id = "sendMailForm" }))
             {
                 <div class="modal-body">
-                    <input type="hidden" id="idempresas" name="emaillist" value="ruvajo@gmail.com" />
+                    <input type="hidden" id="mailList" name="emaillist" />
                     <div class="form-group">
                         <label for="mailSubject">Asunto</label>
                         <input type="text" class="form-control" id="mailSubject" name="mailSubject" />

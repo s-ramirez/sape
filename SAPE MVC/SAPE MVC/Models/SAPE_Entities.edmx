@@ -142,6 +142,12 @@
           <Property Name="idCurso" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="100" />
         </EntityType>
+<<<<<<< HEAD
+=======
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'SAPE.dbo.CursoXEstudiante' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+>>>>>>> 4eb02ea2a0dffa84e479c3c4ba94f360bdcdee7e
         <EntityType Name="CursoXEstudiante">
           <Key>
             <PropertyRef Name="idCursoXEstudiante" />
@@ -730,12 +736,12 @@
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
           <Property Name="FK_Persona" Type="Int32" Nullable="false" />
           <Property Name="FK_Direccion" Type="Int32" Nullable="false" />
-          <Property Name="Interesada" Type="Int32" Nullable="false" />
-          <Property Name="Cant_Practicantes" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Ciudad" Relationship="SAPEModel.FK_Empresa_Ciudad" FromRole="Empresa" ToRole="Ciudad" />
           <NavigationProperty Name="Persona" Relationship="SAPEModel.FK_Empresa_Persona" FromRole="Empresa" ToRole="Persona" />
           <NavigationProperty Name="Evaluacion" Relationship="SAPEModel.FK_Evaluacion_Empresa" FromRole="Empresa" ToRole="Evaluacion" />
           <NavigationProperty Name="Proyecto" Relationship="SAPEModel.FK_Proyecto_Empresa" FromRole="Empresa" ToRole="Proyecto" />
+          <Property Type="Int32" Name="Interesada" Nullable="false" />
+          <Property Type="Int32" Name="Cant_Practicantes" Nullable="false" />
         </EntityType>
         <EntityType Name="EstadoProyecto">
           <Key>
@@ -1219,13 +1225,13 @@
           <EntitySetMapping Name="Empresa">
             <EntityTypeMapping TypeName="SAPEModel.Empresa">
               <MappingFragment StoreEntitySet="Empresa">
+                <ScalarProperty Name="Cant_Practicantes" ColumnName="Cant_Practicantes" />
+                <ScalarProperty Name="Interesada" ColumnName="Interesada" />
                 <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="FK_Persona" ColumnName="FK_Persona" />
                 <ScalarProperty Name="FK_Direccion" ColumnName="FK_Direccion" />
-                <ScalarProperty Name="Interesada" ColumnName="Interesada" />
-                <ScalarProperty Name="Cant_Practicantes" ColumnName="Cant_Practicantes" />
-              </MappingFragment>
+                </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EstadoProyecto">
