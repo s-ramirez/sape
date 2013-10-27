@@ -2,12 +2,16 @@
     ViewBag.Title = "RegistroEmpresas";
     Layout = "~/Views/Shared/_FormLayout.cshtml";
 }
+
+@section Scripts {
+    <script src="/Content/Scripts/form-empresas.js"></script>
+}
 <div class="main-form container">
     <h2>Registro de Empresas</h2>
     <form role="form" method="post">
         <div class="form-group">
             <label for="nombreEmpresa">Nombre de la empresa</label>
-            <input id="nombreEmpresa" class="form-control" type="text" name="nombreEmpresa" />
+            <input id="nombreEmpresa" class="form-control" type="text" name="nombreEmpresa" autocomplete="off"/>
         </div>
         <div class="form-group">
             <label for="ciudad">Ubicacion</label>
@@ -39,6 +43,6 @@
             <label for="emailContacto">E-mail</label>
             <input id="emailContacto" type="email" name="emailContacto" class="form-control" />
         </div>
-        <input type="submit" class="btn btn-primary pull-right" value="Enviar"/>
+        <input type="submit" class="btn btn-primary pull-right" value="Enviar" />
     </form>
 </div>

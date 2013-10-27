@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace SAPE_MVC.Controllers
 {
@@ -26,6 +27,23 @@ namespace SAPE_MVC.Controllers
         }
 
         [HttpGet]
+        public string getEmpresas()
+        {
+            var empresas = new List<object>();
+            SAPEEntities database = new SAPEEntities();
+
+            foreach (Empresa emp in database.Empresa)
+            {
+                empresas.Add(new
+                {
+                    value = emp.Nombre
+                });
+            }
+            var serializer = new JavaScriptSerializer();
+            return serializer.Serialize(empresas);
+        }
+
+        [HttpGet]
         public ActionResult RegistroProfesores()
         {
             SAPEEntities database = new SAPEEntities();
@@ -37,7 +55,9 @@ namespace SAPE_MVC.Controllers
         public ActionResult RegistroEmpresas(string nombreEmpresa, int ciudad, string nombreContacto, string papellidoContacto, string sapellidoContacto, string telContacto, string  emailContacto)
         {
             SAPEEntities entities = new SAPEEntities();
-            Empresa nuevaEmpresa = new Empresa();
+            Empresa nuevaEmpresa = Empresa.getByNombre(nombreEmpresa);
+            if(nuevaEmpresa == null)
+                nuevaEmpresa = new Empresa();
             Persona nuevaPersona = new Persona();
             Contacto tel = new Contacto();
             Contacto email = new Contacto();

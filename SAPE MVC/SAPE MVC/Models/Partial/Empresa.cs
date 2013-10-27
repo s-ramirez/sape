@@ -18,6 +18,17 @@ namespace SAPE_MVC.Models
             }
         }
 
+        public static Empresa getByNombre(string Nombre)
+        {
+            using (SAPEEntities ctx = new SAPEEntities())
+            {
+                var res_empresas = from empresas in ctx.Empresa
+                                   where empresas.Nombre == Nombre
+                                   select empresas;
+                return res_empresas.FirstOrDefault<Empresa>();
+            }
+        }
+
         public static bool Update(int id, string nombre, Persona persona, Ciudad direccion, int interes, int cant_pract)
         {
             using (SAPEEntities ctx = new SAPEEntities()) {
