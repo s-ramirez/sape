@@ -9,7 +9,7 @@
     <script src="/Content/Scripts/registro-empresas.js"></script>
 }
 
-@if (TempData["Message"] != null) 
+@if (TempData["Message"] != null)
 {
     <div class="alert alert-warning fade in">
         <a class="close" data-dismiss="alert" href="#">&times;</a>
@@ -25,45 +25,27 @@
                 <input type="checkbox" name="select-all" value="all" id="select-all"></th>
             <th>Nombre</th>
             <th>Ubicacion</th>
-            <th>Contacto</th>
-            <th>Correo</th>
-            <th>Telefono</th>
         </tr>
     </thead>
     <tbody>
         @foreach (SAPE_MVC.Models.Empresa empresa in ViewBag.Empresas)
         {
-            <tr>
-                <td><input type="checkbox" name="@empresa.idEmpresa" value="@empresa.idEmpresa"></td>
-                <td>@empresa.Nombre</td>
-                <td>@empresa.Ciudad.Nombre, @empresa.Ciudad.Provincia.Nombre</td>
-                <td>@empresa.Persona.Nombre @empresa.Persona.Apellido1 @empresa.Persona.Apellido2</td>
-                <td>@foreach (SAPE_MVC.Models.Contacto contacto in ViewBag.Contactos)
-                    {
-                        if (contacto.FK_Persona == empresa.FK_Persona && contacto.TipoContacto.Nombre.Equals("E-mail"))
-                        {
-                            @contacto.Valor;
-                            break;
-                        }
-                    }</td>
-                <td>
-                    @foreach (SAPE_MVC.Models.Contacto contacto in ViewBag.Contactos)
-                    {
-                        if (contacto.FK_Persona == empresa.FK_Persona && contacto.TipoContacto.Nombre.Equals("Telefono"))
-                        {
-                            @contacto.Valor;
-                            break;
-                        }
-                    }
-                </td>
-            </tr>  
+            foreach (SAPE_MVC.Models.Proyecto proyecto in ViewBag.Proyectos)
+            {
+                if (proyecto.FK_Empresa == empresa.idEmpresa)
+                {
+                    <tr>
+                        <td><input type="checkbox" name="@empresa.idEmpresa" value="@empresa.idEmpresa"></td>
+                        <td>@empresa.Nombre</td>
+                        <td>@empresa.Ciudad.Nombre</td>      
+                    </tr>  
+                }
+                break;
+            }
         }
     </tbody>
     <tfoot>
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
             <td></td>
             <td></td>
             <td>

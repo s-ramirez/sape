@@ -17,6 +17,7 @@ namespace SAPE_MVC.Models
         public int FK_Estudiante { get; set; }
         public int FK_Curso { get; set; }
         public string Cursado { get; set; }
+        public int idCursoXEstudiante { get; set; }
     
         public virtual Curso Curso { get; set; }
         public virtual Estudiante Estudiante { get; set; }

@@ -301,6 +301,9 @@
     <Content Include="Views\Report\ReporteInteresadas.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\Report\ReporteHistorico.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
     <EntityDeploy Include="Models\SAPE_Entities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SAPE_Entities.Designer.cs</LastGenOutput>
@@ -320,9 +323,6 @@
       <DependentUpon>SAPE_Entities.edmx</DependentUpon>
       <LastGenOutput>SAPE_Entities.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Report\ReporteHistorico.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

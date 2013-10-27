@@ -25,6 +25,8 @@ namespace SAPE_MVC.Controllers
             SAPEEntities database = new SAPEEntities();
             ViewBag.Candidatos = database.Estudiante.OrderBy(estudiante => estudiante.Carnet);
             ViewBag.Contactos = database.Contacto;
+            ViewBag.Cursos = database.Curso;
+            ViewBag.CursoDebe = database.CursoXEstudiante;
             return View();
         }
 
@@ -46,6 +48,7 @@ namespace SAPE_MVC.Controllers
         {
             SAPEEntities database = new SAPEEntities();
             ViewBag.Empresas = database.Empresa;
+            ViewBag.Proyectos = database.Proyecto;
             return View();
         }
     }

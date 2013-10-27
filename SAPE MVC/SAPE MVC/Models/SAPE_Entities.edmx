@@ -4,18 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SAPEModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SAPEModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="SAPEModelStoreContainer">
           <EntitySet Name="Ciudad" EntityType="SAPEModel.Store.Ciudad" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Contacto" EntityType="SAPEModel.Store.Contacto" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Curso" EntityType="SAPEModel.Store.Curso" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="CursoXEstudiante" EntityType="SAPEModel.Store.CursoXEstudiante" store:Type="Tables" store:Schema="dbo" store:Name="CursoXEstudiante">
-            <DefiningQuery>SELECT 
-      [CursoXEstudiante].[FK_Estudiante] AS [FK_Estudiante], 
-      [CursoXEstudiante].[FK_Curso] AS [FK_Curso], 
-      [CursoXEstudiante].[Cursado] AS [Cursado]
-      FROM [dbo].[CursoXEstudiante] AS [CursoXEstudiante]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="CursoXEstudiante" EntityType="SAPEModel.Store.CursoXEstudiante" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Empresa" EntityType="SAPEModel.Store.Empresa" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="EstadoProyecto" EntityType="SAPEModel.Store.EstadoProyecto" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Estudiante" EntityType="SAPEModel.Store.Estudiante" store:Type="Tables" Schema="dbo" />
@@ -148,18 +142,14 @@
           <Property Name="idCurso" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="100" />
         </EntityType>
-        <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'SAPE.dbo.CursoXEstudiante' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
-      -->
         <EntityType Name="CursoXEstudiante">
           <Key>
-            <PropertyRef Name="FK_Estudiante" />
-            <PropertyRef Name="FK_Curso" />
-            <PropertyRef Name="Cursado" />
+            <PropertyRef Name="idCursoXEstudiante" />
           </Key>
           <Property Name="FK_Estudiante" Type="int" Nullable="false" />
           <Property Name="FK_Curso" Type="int" Nullable="false" />
           <Property Name="Cursado" Type="varchar" Nullable="false" MaxLength="2" />
+          <Property Name="idCursoXEstudiante" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="Empresa">
           <Key>
@@ -574,8 +564,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SAPEModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -724,13 +713,12 @@
         </EntityType>
         <EntityType Name="CursoXEstudiante">
           <Key>
-            <PropertyRef Name="FK_Estudiante" />
-            <PropertyRef Name="FK_Curso" />
-            <PropertyRef Name="Cursado" />
+            <PropertyRef Name="idCursoXEstudiante" />
           </Key>
           <Property Name="FK_Estudiante" Type="Int32" Nullable="false" />
           <Property Name="FK_Curso" Type="Int32" Nullable="false" />
           <Property Name="Cursado" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="idCursoXEstudiante" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Curso" Relationship="SAPEModel.FK_CursoXEstudiante_Curso" FromRole="CursoXEstudiante" ToRole="Curso" />
           <NavigationProperty Name="Estudiante" Relationship="SAPEModel.FK_CursoXEstudiante_Estudiante" FromRole="CursoXEstudiante" ToRole="Estudiante" />
         </EntityType>
@@ -1224,6 +1212,7 @@
                 <ScalarProperty Name="FK_Estudiante" ColumnName="FK_Estudiante" />
                 <ScalarProperty Name="FK_Curso" ColumnName="FK_Curso" />
                 <ScalarProperty Name="Cursado" ColumnName="Cursado" />
+                <ScalarProperty Name="idCursoXEstudiante" ColumnName="idCursoXEstudiante" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

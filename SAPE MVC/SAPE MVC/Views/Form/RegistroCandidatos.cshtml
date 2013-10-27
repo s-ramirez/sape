@@ -32,8 +32,7 @@
         </div>
         <div class="form-group">
             <label for="cursoDebe">Si debe algun curso, seleccionelo <br />de la siguiente lista</label>
-            <select id="cursoDebe" class="form-control">
-                <option value="ninguno">Ninguno</option>
+            <select id="cursoDebe" class="form-control" name="cursoDebe">
                 @foreach (SAPE_MVC.Models.Curso curso in ViewBag.Curso)
                 {
                     <option value="@curso.idCurso">@curso.Nombre</option>    

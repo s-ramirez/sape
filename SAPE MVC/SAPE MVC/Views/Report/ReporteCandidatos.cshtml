@@ -51,9 +51,23 @@
                                 break;
                             }
                         }
-                    </td>
-                    <td>Debe Curso</td>
-                    <td>Curso que debe</td>
+                    </td>   
+                    @foreach (SAPE_MVC.Models.CursoXEstudiante cxe in ViewBag.CursoDebe)
+                    {
+                        if (candidato.idEstudiante == cxe.FK_Estudiante && cxe.Curso.Nombre.Equals("Ninguno")) 
+                        {
+                            <td>No</td>
+                            <td>@cxe.Curso.Nombre</td>
+                            break;
+                            }
+                        if (candidato.idEstudiante == cxe.FK_Estudiante && !cxe.Curso.Nombre.Equals("Ninguno")) 
+                        {
+                            <td>Si</td>
+                            <td>@cxe.Curso.Nombre</td>
+                            break;
+                            }
+                        
+                    }
                 </tr>
             }
         </tbody>
