@@ -9,13 +9,7 @@
           <EntitySet Name="Ciudad" EntityType="SAPEModel.Store.Ciudad" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Contacto" EntityType="SAPEModel.Store.Contacto" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Curso" EntityType="SAPEModel.Store.Curso" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="CursoXEstudiante" EntityType="SAPEModel.Store.CursoXEstudiante" store:Type="Tables" store:Schema="dbo" store:Name="CursoXEstudiante">
-            <DefiningQuery>SELECT 
-      [CursoXEstudiante].[FK_Estudiante] AS [FK_Estudiante], 
-      [CursoXEstudiante].[FK_Curso] AS [FK_Curso], 
-      [CursoXEstudiante].[Cursado] AS [Cursado]
-      FROM [dbo].[CursoXEstudiante] AS [CursoXEstudiante]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="CursoXEstudiante" EntityType="SAPEModel.Store.CursoXEstudiante" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Empresa" EntityType="SAPEModel.Store.Empresa" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="EstadoProyecto" EntityType="SAPEModel.Store.EstadoProyecto" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Estudiante" EntityType="SAPEModel.Store.Estudiante" store:Type="Tables" Schema="dbo" />
@@ -148,18 +142,20 @@
           <Property Name="idCurso" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="100" />
         </EntityType>
+<<<<<<< HEAD
+=======
         <!--Errors Found During Generation:
       warning 6002: The table/view 'SAPE.dbo.CursoXEstudiante' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
+>>>>>>> 4eb02ea2a0dffa84e479c3c4ba94f360bdcdee7e
         <EntityType Name="CursoXEstudiante">
           <Key>
-            <PropertyRef Name="FK_Estudiante" />
-            <PropertyRef Name="FK_Curso" />
-            <PropertyRef Name="Cursado" />
+            <PropertyRef Name="idCursoXEstudiante" />
           </Key>
           <Property Name="FK_Estudiante" Type="int" Nullable="false" />
           <Property Name="FK_Curso" Type="int" Nullable="false" />
           <Property Name="Cursado" Type="varchar" Nullable="false" MaxLength="2" />
+          <Property Name="idCursoXEstudiante" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="Empresa">
           <Key>
@@ -723,13 +719,12 @@
         </EntityType>
         <EntityType Name="CursoXEstudiante">
           <Key>
-            <PropertyRef Name="FK_Estudiante" />
-            <PropertyRef Name="FK_Curso" />
-            <PropertyRef Name="Cursado" />
+            <PropertyRef Name="idCursoXEstudiante" />
           </Key>
           <Property Name="FK_Estudiante" Type="Int32" Nullable="false" />
           <Property Name="FK_Curso" Type="Int32" Nullable="false" />
           <Property Name="Cursado" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="idCursoXEstudiante" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Curso" Relationship="SAPEModel.FK_CursoXEstudiante_Curso" FromRole="CursoXEstudiante" ToRole="Curso" />
           <NavigationProperty Name="Estudiante" Relationship="SAPEModel.FK_CursoXEstudiante_Estudiante" FromRole="CursoXEstudiante" ToRole="Estudiante" />
         </EntityType>
@@ -1223,6 +1218,7 @@
                 <ScalarProperty Name="FK_Estudiante" ColumnName="FK_Estudiante" />
                 <ScalarProperty Name="FK_Curso" ColumnName="FK_Curso" />
                 <ScalarProperty Name="Cursado" ColumnName="Cursado" />
+                <ScalarProperty Name="idCursoXEstudiante" ColumnName="idCursoXEstudiante" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

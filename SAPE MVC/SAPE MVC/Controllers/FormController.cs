@@ -196,6 +196,7 @@ namespace SAPE_MVC.Controllers
             Persona nuevaPersona = new Persona();
             Contacto telCandidato = new Contacto();
             Contacto emailCandidato = new Contacto();
+            CursoXEstudiante nuevoCursoDebe = new CursoXEstudiante();
 
             //Obtener tipo cntacto "Telefono"
             var result = from tipo in entities.TipoContacto where tipo.Nombre == "Telefono" select tipo;
@@ -207,7 +208,7 @@ namespace SAPE_MVC.Controllers
             tipoContacto = result.FirstOrDefault<TipoContacto>();
             emailCandidato.FK_TipoContacto = tipoContacto.idTipoContacto;
 
-            //Crear nueva persona para el profesor
+            //Crear nueva persona para el estudiante
             nuevaPersona.Nombre = nombreCand;
             nuevaPersona.Apellido1 = prmApellidoCand;
             nuevaPersona.Apellido2 = sdoApellidoCand;
@@ -225,13 +226,23 @@ namespace SAPE_MVC.Controllers
             emailCandidato.Valor = correoCand;
             entities.Contacto.Add(telCandidato);
             entities.Contacto.Add(emailCandidato);
+            entities.SaveChanges();
 
             //Asignar los datos de persona al estudiante
             nuevoCandidato.FK_Persona = nuevaPersona.idPersona;
             nuevoCandidato.Carnet = carnetCand;
+            nuevoCandidato.Estado = "C";
 
-            //Agregar profesor a la DB
+            //Agregar estudiante a la DB
             entities.Estudiante.Add(nuevoCandidato);
+            entities.SaveChanges();
+
+            //Agregar nuevo curso que se debe
+            nuevoCursoDebe.FK_Curso = int.Parse(cursoDebe);
+
+            nuevoCursoDebe.FK_Estudiante = nuevaPersona.idPersona;
+            
+            entities.CursoXEstudiante.Add(nuevoCursoDebe);
             entities.SaveChanges();
             
             return View("FormSent");
