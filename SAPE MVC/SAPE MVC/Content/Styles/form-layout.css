@@ -64,6 +64,11 @@ label {
   top: -135px;
 }
 
+.form-sent-title {
+    text-align: center;
+    color: #595850;
+}
+
 /* AutoComplete */
 .autocomplete-suggestions { border: 1px solid #999; background: #fff; cursor: default; overflow: auto; }
 .autocomplete-suggestion { padding: 10px 5px; font-size: 14px; white-space: nowrap; overflow: hidden; }

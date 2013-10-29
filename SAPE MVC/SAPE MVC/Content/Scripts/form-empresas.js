@@ -7,4 +7,18 @@
            }
        });
    });
+
+    $("form").validity(function () {
+        $("#nombreEmpresa").require();
+        $("#nombreContacto").require();
+        $("#papellidoContacto").require();
+        $("#sapellidoContacto").require();
+        $("#telContacto")
+            .require()
+            .match("number");
+        $("#emailContacto")
+            .require()
+            .match("email");
+    });
+
 });

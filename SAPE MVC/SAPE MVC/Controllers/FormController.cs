@@ -54,10 +54,14 @@ namespace SAPE_MVC.Controllers
         [HttpPost]
         public ActionResult RegistroEmpresas(string nombreEmpresa, int ciudad, string nombreContacto, string papellidoContacto, string sapellidoContacto, string telContacto, string  emailContacto)
         {
+            bool update = true;
             SAPEEntities entities = new SAPEEntities();
             Empresa nuevaEmpresa = Empresa.getByNombre(nombreEmpresa);
-            if(nuevaEmpresa == null)
+            if (nuevaEmpresa == null)
+            {
                 nuevaEmpresa = new Empresa();
+                update = false;
+            }
             Persona nuevaPersona = new Persona();
             Contacto tel = new Contacto();
             Contacto email = new Contacto();
@@ -97,7 +101,8 @@ namespace SAPE_MVC.Controllers
             nuevaEmpresa.FK_Persona = nuevaPersona.idPersona;
 
             //Agregar empresa a la DB
-            entities.Empresa.Add(nuevaEmpresa);
+            if(!update)
+                entities.Empresa.Add(nuevaEmpresa);
             entities.SaveChanges();
 
             return View("FormSent");

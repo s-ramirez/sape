@@ -1,5 +1,5 @@
 $.extend($.validity.messages, {
-    require:"#{field} requerido.",
+    require:"#{field} es requerido.",
     // Format validators:
     match:"#{field} está en un formato no válido.",
     integer:"#{field} debe ser un número entero positivo.",
