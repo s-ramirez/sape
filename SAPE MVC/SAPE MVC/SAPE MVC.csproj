@@ -143,7 +143,9 @@
     </Compile>
     <Compile Include="Models\Partial\Contacto.cs" />
     <Compile Include="Models\Partial\Empresa.cs" />
+    <Compile Include="Models\Partial\Estudiante.cs" />
     <Compile Include="Models\Partial\Persona.cs" />
+    <Compile Include="Models\Partial\Profesor.cs" />
     <Compile Include="Models\Partial\TipoContacto.cs" />
     <Compile Include="Models\Persona.cs">
       <DependentUpon>SAPE_Entities.tt</DependentUpon>
@@ -181,6 +183,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SAPE_Entities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>SAPE_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TipoContacto.cs">
       <DependentUpon>SAPE_Entities.tt</DependentUpon>

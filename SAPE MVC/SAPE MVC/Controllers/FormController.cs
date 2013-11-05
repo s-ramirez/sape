@@ -1,6 +1,7 @@
 ﻿using SAPE_MVC.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -22,7 +23,7 @@ namespace SAPE_MVC.Controllers
         public ActionResult RegistroEmpresas()
         {
             SAPEEntities database = new SAPEEntities();
-            ViewBag.Ciudades = database.Ciudad.OrderBy(ciudad=> ciudad.Nombre);
+            ViewBag.Ciudades = database.Ciudad.OrderBy(ciudad => ciudad.Nombre);
             return View();
         }
 
@@ -52,7 +53,7 @@ namespace SAPE_MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult RegistroEmpresas(string nombreEmpresa, int ciudad, string nombreContacto, string papellidoContacto, string sapellidoContacto, string telContacto, string  emailContacto)
+        public ActionResult RegistroEmpresas(string nombreEmpresa, int ciudad, string nombreContacto, string papellidoContacto, string sapellidoContacto, string telContacto, string emailContacto)
         {
             bool update = true;
             SAPEEntities entities = new SAPEEntities();
@@ -80,7 +81,7 @@ namespace SAPE_MVC.Controllers
             nuevaPersona.Nombre = nombreContacto;
             nuevaPersona.Apellido1 = papellidoContacto;
             nuevaPersona.Apellido2 = sapellidoContacto;
-            
+
             //Agregarla a la DB para obtener su id
             entities.Persona.Add(nuevaPersona);
             entities.SaveChanges();
@@ -101,8 +102,13 @@ namespace SAPE_MVC.Controllers
             nuevaEmpresa.FK_Persona = nuevaPersona.idPersona;
 
             //Agregar empresa a la DB
-            if(!update)
+            if (!update)
                 entities.Empresa.Add(nuevaEmpresa);
+            else
+            {
+                entities.Empresa.Attach(nuevaEmpresa);
+                entities.Entry(nuevaEmpresa).State = EntityState.Modified;
+            }
             entities.SaveChanges();
 
             return View("FormSent");
@@ -126,7 +132,7 @@ namespace SAPE_MVC.Controllers
             result = from tipo in entities.TipoContacto where tipo.Nombre == "E-mail" select tipo;
             tipoContacto = result.FirstOrDefault<TipoContacto>();
             emailProf.FK_TipoContacto = tipoContacto.idTipoContacto;
-            
+
             //Crear nueva persona para el profesor
             nuevaPersona.Nombre = nombreProfesor;
             nuevaPersona.Apellido1 = pmrApeProf;
@@ -151,12 +157,12 @@ namespace SAPE_MVC.Controllers
             nuevoProfesor.Asesora = 0;
             nuevoProfesor.CargaMinima = 0;
             nuevoProfesor.CargaMaxima = 0;
-            
+
 
             //Agregar profesor a la DB
             entities.Profesor.Add(nuevoProfesor);
             entities.SaveChanges();
-            
+
             return View("FormSent");
         }
 
@@ -241,10 +247,10 @@ namespace SAPE_MVC.Controllers
             nuevoCursoDebe.FK_Curso = int.Parse(cursoDebe);
 
             nuevoCursoDebe.FK_Estudiante = nuevaPersona.idPersona;
-            
+
             entities.CursoXEstudiante.Add(nuevoCursoDebe);
             entities.SaveChanges();
-            
+
             return View("FormSent");
         }
 
@@ -262,11 +268,30 @@ namespace SAPE_MVC.Controllers
         [HttpPost]
         public ActionResult FormularioZonas(string nombreProfesor, string zona1, string zona2, string zona3, string zona4, string zona5, string zona6, string comentarios)
         {
+
             SAPEEntities entities = new SAPEEntities();
+            List<string> Zonas = new List<string>(new string[] { zona1, zona2, zona3, zona4, zona5, zona6 });
+            for (int counter = 1; counter <= Zonas.Count; counter++)
+            {
+                if (!Zonas[counter - 1].Equals("-1"))
+                {
+                    PreferenciaDireccion nuevaPreferencia = new PreferenciaDireccion();
+                    nuevaPreferencia.Prioridad = counter;
+                    nuevaPreferencia.FK_Profesor = int.Parse(nombreProfesor);
+                    nuevaPreferencia.FK_Direccion = int.Parse(Zonas[counter - 1]);
+                    nuevaPreferencia.Fecha = DateTime.Now;
+                    entities.PreferenciaDireccion.Add(nuevaPreferencia);
+                    entities.SaveChanges();
+                }
+            }
+            Profesor profe_actual = Profesor.getById(int.Parse(nombreProfesor));
+            profe_actual.Comentario = comentarios;
+            entities.Profesor.Attach(profe_actual);
+            entities.Entry(profe_actual).State = EntityState.Modified;
+            entities.SaveChanges();
 
             return View("FormSent");
         }
-
 
         [HttpGet]
         public ActionResult FormListaNegra()
@@ -280,11 +305,41 @@ namespace SAPE_MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult FormListaNegra(string carnet)
+        public ActionResult FormListaNegra(string carne, int Pref1, int Pref2, int Pref3, int Pref4, int Pref5,
+            int NoPref1, int NoPref2, int NoPref3, int NoPref4, int NoPref5,
+            string Cmnt1, string Cmnt2, string Cmnt3, string Cmnt4, string Cmnt5)
         {
+            int idEstudiante = Estudiante.getByCarne(int.Parse(carne)).idEstudiante;
+            SAPEEntities entities = new SAPEEntities();
+            List<int> Likes = new List<int>(new int[] { Pref1, Pref2, Pref3, Pref4, Pref5 });
+            List<int> Dislikes = new List<int>(new int[] { NoPref1, NoPref2, NoPref3, NoPref4, NoPref5 });
+            List<string> Comments = new List<string>(new string[] { Cmnt1, Cmnt2, Cmnt3, Cmnt4, Cmnt5 });
+
+            for (int counter = 1; counter <= 5; counter++)
+            {
+                if (Likes[counter - 1] > -1)
+                {
+                    PreferenciaProfesor nuevaPref = new PreferenciaProfesor();
+                    nuevaPref.FK_Estudiante = idEstudiante;
+                    nuevaPref.FK_Profesor = Likes[counter - 1];
+                    nuevaPref.Valor = counter;
+                    entities.PreferenciaProfesor.Add(nuevaPref);
+                }
+
+                if (Dislikes[counter - 1] > -1)
+                {
+                    PreferenciaProfesor nuevoDisl = new PreferenciaProfesor();
+                    nuevoDisl.FK_Estudiante = idEstudiante;
+                    nuevoDisl.FK_Profesor = Dislikes[counter - 1];
+                    nuevoDisl.Valor = -1;
+                    nuevoDisl.Comentario = Comments[counter - 1];
+                    entities.PreferenciaProfesor.Add(nuevoDisl);
+                }
+                entities.SaveChanges();
+            }
+
             return View("FormSent");
         }
-
 
         [HttpGet]
         public JsonResult CheckCarne(int carne)
@@ -297,25 +352,24 @@ namespace SAPE_MVC.Controllers
                 try
                 {
                     Estudiante res = result.FirstOrDefault<Estudiante>();
-                    string json_resp = "true, "+res.Carnet+","+res.Persona.Apellido1+" "+res.Persona.Apellido2+" "+res.Persona.Nombre;
+                    string json_resp = "true, " + res.Carnet + "," + res.Persona.Apellido1 + " " + res.Persona.Apellido2 + " " + res.Persona.Nombre;
                     return Json(json_resp, JsonRequestBehavior.AllowGet);
                 }
-                catch {
+                catch
+                {
                     return Json("false, null", JsonRequestBehavior.AllowGet);
                 }
             }
         }
-    
-    
-        //Empresas interesadas
+
         [HttpGet]
         public ActionResult FormEmpresasInteresadas()
         {
             SAPEEntities database = new SAPEEntities();
             ViewBag.Empresas = database.Empresa;
-            
+
             return View();
         }
-    
+
     }
 }

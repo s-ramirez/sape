@@ -12,13 +12,12 @@ namespace SAPE_MVC.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class CursoXEstudiante
+    public partial class sysdiagrams
     {
-        public int FK_Estudiante { get; set; }
-        public int FK_Curso { get; set; }
-        public string Cursado { get; set; }
-    
-        public virtual Curso Curso { get; set; }
-        public virtual Estudiante Estudiante { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

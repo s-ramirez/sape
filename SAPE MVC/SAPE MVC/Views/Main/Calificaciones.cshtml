@@ -14,15 +14,9 @@
     <thead>
         <tr>
             <th>Practicante</th>
-            <th>1er Informe Empresa</th>
-            <th>1er Informe Profesor</th>
-            <th>2do Informe Empresa</th>
-            <th>2do Informe Profesor</th>
-            <th>3er Informe Empresa</th>
-            <th>3er Informe Profesor</th>
-            <th>Nota Paper</th>
-            <th>Nota Presentacion</th>
-            <th>Nota Coordinacion</th>
+            @foreach (SAPE_MVC.Models.TipoEvaluacion tipoEval in ViewBag.Tipos) { 
+                <th>@tipoEval.Nombre</th>
+            }
         </tr>
     </thead>
     <tbody>

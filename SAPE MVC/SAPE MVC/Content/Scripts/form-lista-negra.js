@@ -1,4 +1,6 @@
-﻿$(document).ready(function () {
+﻿var cantDislikes = 1;
+
+$(document).ready(function () {
     var prefInputs = document.getElementsByClassName('pref');
 });
 
@@ -20,5 +22,8 @@ function slideDivDown() {
 }
 
 function addMore () {
-    $('.dislikeProf').clone().insertAfter("#adjunta");
+    if (cantDislikes < 5) {
+        cantDislikes += 1;
+        $("#dislike"+cantDislikes).slideDown('slow');
+    }
 }

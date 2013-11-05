@@ -16,9 +16,11 @@
             </select>
         </div>
 
+        <h4>Selecciona las zonas de preferencia en orden de mayor a menor (siendo 1 la zona de más alta preferencia)</h4>
         <div class="form-group">
             <label for="Zona1">Preferencia 1</label>
             <select id="Zona1" name="zona1" class="form-control">
+                <option value="-1" selected="selected">Ninguna</option>
                 @foreach (SAPE_MVC.Models.Ciudad ciudad in ViewBag.Ciudad)
                 {
                     <option value ="@ciudad.idCiudad">@ciudad.Nombre, @ciudad.Provincia.Nombre</option> 
@@ -29,6 +31,7 @@
         <div class="form-group">
             <label for="Zona2">Preferencia 2</label>
             <select id="Zona2" name="zona2" class="form-control">
+                <option value="-1" selected="selected">Ninguna</option>
                 @foreach (SAPE_MVC.Models.Ciudad ciudad in ViewBag.Ciudad)
                 {
                     <option value ="@ciudad.idCiudad">@ciudad.Nombre, @ciudad.Provincia.Nombre</option> 
@@ -39,6 +42,7 @@
         <div class="form-group">
             <label for="Zona3">Preferencia 3</label>
             <select id="Zona3" name="zona3" class="form-control">
+                <option value="-1" selected="selected">Ninguna</option>
                 @foreach (SAPE_MVC.Models.Ciudad ciudad in ViewBag.Ciudad)
                 {
                     <option value ="@ciudad.idCiudad">@ciudad.Nombre, @ciudad.Provincia.Nombre</option> 
@@ -49,6 +53,7 @@
         <div class="form-group">
             <label for="Zona4">Preferencia 4</label>
             <select id="Zona4" name="zona4" class="form-control">
+                <option value="-1" selected="selected">Ninguna</option>
                 @foreach (SAPE_MVC.Models.Ciudad ciudad in ViewBag.Ciudad)
                 {
                     <option value ="@ciudad.idCiudad">@ciudad.Nombre, @ciudad.Provincia.Nombre</option> 
@@ -59,6 +64,7 @@
         <div class="form-group">
             <label for="Zona5">Preferencia 5</label>
             <select id="Zona5" name="zona5" class="form-control">
+                <option value="-1" selected="selected">Ninguna</option>
                 @foreach (SAPE_MVC.Models.Ciudad ciudad in ViewBag.Ciudad)
                 {
                     <option value ="@ciudad.idCiudad">@ciudad.Nombre, @ciudad.Provincia.Nombre</option> 
@@ -69,6 +75,7 @@
         <div class="form-group">
             <label for="Zona6">Preferencia 6</label>
             <select id="Zona6" name="zona6" class="form-control">
+                <option value="-1" selected="selected">Ninguna</option>
                 @foreach (SAPE_MVC.Models.Ciudad ciudad in ViewBag.Ciudad)
                 {
                     <option value ="@ciudad.idCiudad">@ciudad.Nombre, @ciudad.Provincia.Nombre</option> 

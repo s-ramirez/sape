@@ -18,7 +18,7 @@
             <select name="ciudad" id="ciudad" class="form-control">
                 @foreach (SAPE_MVC.Models.Ciudad ciudad in ViewBag.Ciudades)
                 {
-                    <option value="@ciudad.idCiudad">@ciudad.Nombre</option>    
+                    <option value="@ciudad.idCiudad">@ciudad.Nombre, @ciudad.Provincia.Nombre</option>    
                 }
             </select>
         </div>
