@@ -28,6 +28,15 @@ namespace SAPE_MVC.Controllers
         }
 
         [HttpGet]
+        public ActionResult GestionarPracticantes()
+        {
+            SAPEEntities database = new SAPEEntities();
+            ViewBag.Practicantes = Estudiante.getPracticantes();
+            return View();
+        }
+
+
+        [HttpGet]
         public ActionResult Calificaciones()
         {
             SAPEEntities database = new SAPEEntities();

@@ -17,5 +17,27 @@ namespace SAPE_MVC.Models
                 return res_est.FirstOrDefault<Estudiante>();
             }
         }
+
+        public static IList<Estudiante> getPracticantes()
+        {
+            using (SAPEEntities ctx = new SAPEEntities())
+            {
+                var res_practicantes = from estudiante in ctx.Estudiante
+                                       where estudiante.Estado.Equals('p')
+                                       select estudiante;
+                return res_practicantes.ToList<Estudiante>();
+            }
+        }
+
+        public static IList<Estudiante> getCandidatos()
+        {
+            using (SAPEEntities ctx = new SAPEEntities())
+            {
+                var res_practicantes = from estudiante in ctx.Estudiante
+                                       where estudiante.Estado.Equals('c')
+                                       select estudiante;
+                return res_practicantes.ToList<Estudiante>();
+            }
+        }
     }
 }

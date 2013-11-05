@@ -23,7 +23,7 @@ namespace SAPE_MVC.Controllers
         public ActionResult ReporteCandidatos()
         {
             SAPEEntities database = new SAPEEntities();
-            ViewBag.Candidatos = database.Estudiante.OrderBy(estudiante => estudiante.Carnet);
+            ViewBag.Candidatos = Estudiante.getCandidatos();
             ViewBag.Contactos = database.Contacto;
             ViewBag.Cursos = database.Curso;
             ViewBag.CursoDebe = database.CursoXEstudiante;

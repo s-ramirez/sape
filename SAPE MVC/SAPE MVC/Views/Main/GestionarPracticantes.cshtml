@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "GestionarPracticantes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts{
+    <link rel="stylesheet" href="/Content/Styles/registro-empresas.css" type="text/css" />
+    <script src="/Content/Scripts/jquery.tablesorter.min.js"></script>
+    <script src="/Content/Scripts/calificaciones.js"></script>
+}
+
+<h2 id="titulo-tabla">Gestionar Practicantes</h2>
+<table id="tabla-empresas" class="tablesorter table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre del Alumno</th>
+            <th>Carné</th>
+            <th>Proyecto</th>
+            <th>Empresa</th>
+            <th>Contacto en empresa</th>
+            <th>Correo del contacto</th>
+            <th>Observaciones</th>
+            <th>Estado</th>
+            <th>Profesor asesor</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (SAPE_MVC.Models.Estudiante estudiante in ViewBag.Practicantes)
+        {
+            <tr>
+                <td>@estudiante.Persona.Nombre @estudiante.Persona.Apellido1 @estudiante.Persona.Apellido2</td>
+                <td>@estudiante.Carnet</td>
+                <td>@estudiante.Proyecto.Nombre</td>
+                <td>@estudiante.Proyecto.Empresa.Nombre</td>
+                <td>@SAPE_MVC.Models.Contacto.getContactoEmpresa(@estudiante.Proyecto.Empresa.idEmpresa,"E-mail")</td>
+                <td>@SAPE_MVC.Models.Contacto.getContactoEmpresa(@estudiante.Proyecto.Empresa.idEmpresa,"Telefono")</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>  
+        }
+    </tbody>
+</table>
