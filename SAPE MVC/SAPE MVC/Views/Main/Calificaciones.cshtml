@@ -24,15 +24,10 @@
         {
             <tr>
                 <td>@estudiante.Persona.Nombre @estudiante.Persona.Apellido1 @estudiante.Persona.Apellido2</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                @foreach (SAPE_MVC.Models.TipoEvaluacion tipoEval in ViewBag.Tipos)
+                {
+                    <td>@SAPE_MVC.Models.Evaluacion.get(@tipoEval.idTipoEvaluacion, @estudiante.idEstudiante)</td>   
+                }
             </tr>  
         }
     </tbody>

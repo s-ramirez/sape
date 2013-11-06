@@ -64,6 +64,10 @@
             <End Role="Persona" EntitySet="Persona" />
             <End Role="Estudiante" EntitySet="Estudiante" />
           </AssociationSet>
+          <AssociationSet Name="FK_Estudiante_Profesor" Association="SAPEModel.Store.FK_Estudiante_Profesor">
+            <End Role="Profesor" EntitySet="Profesor" />
+            <End Role="Estudiante" EntitySet="Estudiante" />
+          </AssociationSet>
           <AssociationSet Name="FK_Estudiante_Proyecto" Association="SAPEModel.Store.FK_Estudiante_Proyecto">
             <End Role="Proyecto" EntitySet="Proyecto" />
             <End Role="Estudiante" EntitySet="Estudiante" />
@@ -147,7 +151,7 @@
             <PropertyRef Name="idCurso" />
           </Key>
           <Property Name="idCurso" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="500" />
         </EntityType>
         <!--Errors Found During Generation:
       warning 6002: The table/view 'SAPE.dbo.CursoXEstudiante' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
@@ -189,6 +193,7 @@
           <Property Name="FK_Proyecto" Type="int" />
           <Property Name="Carnet" Type="int" Nullable="false" />
           <Property Name="Estado" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="FK_Asesor" Type="int" />
         </EntityType>
         <EntityType Name="Evaluacion">
           <Key>
@@ -290,7 +295,7 @@
             <PropertyRef Name="idTipoEvaluacion" />
           </Key>
           <Property Name="idTipoEvaluacion" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="250" />
         </EntityType>
         <EntityType Name="TipoUsuario">
           <Key>
@@ -403,6 +408,18 @@
             </Principal>
             <Dependent Role="Estudiante">
               <PropertyRef Name="FK_Persona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estudiante_Profesor">
+          <End Role="Profesor" Type="SAPEModel.Store.Profesor" Multiplicity="0..1" />
+          <End Role="Estudiante" Type="SAPEModel.Store.Estudiante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesor">
+              <PropertyRef Name="idProfesor" />
+            </Principal>
+            <Dependent Role="Estudiante">
+              <PropertyRef Name="FK_Asesor" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -703,6 +720,10 @@
             <End Role="TipoUsuario" EntitySet="TipoUsuario" />
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
+          <AssociationSet Name="FK_Estudiante_Profesor" Association="SAPEModel.FK_Estudiante_Profesor">
+            <End Role="Profesor" EntitySet="Profesor" />
+            <End Role="Estudiante" EntitySet="Estudiante" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Ciudad">
           <Key>
@@ -731,7 +752,7 @@
             <PropertyRef Name="idCurso" />
           </Key>
           <Property Name="idCurso" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="CursoXEstudiante" Relationship="SAPEModel.FK_CursoXEstudiante_Curso" FromRole="Curso" ToRole="CursoXEstudiante" />
         </EntityType>
         <EntityType Name="CursoXEstudiante">
@@ -783,6 +804,8 @@
           <NavigationProperty Name="Proyecto" Relationship="SAPEModel.FK_Estudiante_Proyecto" FromRole="Estudiante" ToRole="Proyecto" />
           <NavigationProperty Name="Evaluacion" Relationship="SAPEModel.FK_Evaluacion_Estudiante" FromRole="Estudiante" ToRole="Evaluacion" />
           <NavigationProperty Name="PreferenciaProfesor" Relationship="SAPEModel.FK_PreferenciaProfesor_Estudiante" FromRole="Estudiante" ToRole="PreferenciaProfesor" />
+          <Property Type="Int32" Name="FK_Asesor" />
+          <NavigationProperty Name="Profesor" Relationship="SAPEModel.FK_Estudiante_Profesor" FromRole="Estudiante" ToRole="Profesor" />
         </EntityType>
         <EntityType Name="Evaluacion">
           <Key>
@@ -860,6 +883,7 @@
           <NavigationProperty Name="Persona" Relationship="SAPEModel.FK_Profesor_Persona" FromRole="Profesor" ToRole="Persona" />
           <NavigationProperty Name="PreferenciaDireccion" Relationship="SAPEModel.FK_PreferenciaDireccion_Profesor" FromRole="Profesor" ToRole="PreferenciaDireccion" />
           <NavigationProperty Name="PreferenciaProfesor" Relationship="SAPEModel.FK_PreferenciaProfesor_Profesor" FromRole="Profesor" ToRole="PreferenciaProfesor" />
+          <NavigationProperty Name="Estudiantes" Relationship="SAPEModel.FK_Estudiante_Profesor" FromRole="Profesor" ToRole="Estudiante" />
         </EntityType>
         <EntityType Name="Provincia">
           <Key>
@@ -908,7 +932,7 @@
             <PropertyRef Name="idTipoEvaluacion" />
           </Key>
           <Property Name="idTipoEvaluacion" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="250" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="Evaluacion" Relationship="SAPEModel.FK_Evaluacion_TipoEvaluacion" FromRole="TipoEvaluacion" ToRole="Evaluacion" />
         </EntityType>
         <EntityType Name="TipoUsuario">
@@ -1208,6 +1232,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Estudiante_Profesor">
+          <End Type="SAPEModel.Profesor" Role="Profesor" Multiplicity="0..1" />
+          <End Type="SAPEModel.Estudiante" Role="Estudiante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesor">
+              <PropertyRef Name="idProfesor" />
+            </Principal>
+            <Dependent Role="Estudiante">
+              <PropertyRef Name="FK_Asesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1273,6 +1309,7 @@
           <EntitySetMapping Name="Estudiante">
             <EntityTypeMapping TypeName="SAPEModel.Estudiante">
               <MappingFragment StoreEntitySet="Estudiante">
+                <ScalarProperty Name="FK_Asesor" ColumnName="FK_Asesor" />
                 <ScalarProperty Name="idEstudiante" ColumnName="idEstudiante" />
                 <ScalarProperty Name="FK_Persona" ColumnName="FK_Persona" />
                 <ScalarProperty Name="FK_Proyecto" ColumnName="FK_Proyecto" />

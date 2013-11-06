@@ -33,11 +33,9 @@
                 <td>@estudiante.Proyecto.Nombre</td>
                 <td>@estudiante.Proyecto.Empresa.Nombre</td>
                 <td>@SAPE_MVC.Models.Contacto.getContactoEmpresa(@estudiante.Proyecto.Empresa.idEmpresa,"E-mail")</td>
-                <td>@SAPE_MVC.Models.Contacto.getContactoEmpresa(@estudiante.Proyecto.Empresa.idEmpresa,"Telefono")</td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td></td>
+                <td>@estudiante.Profesor.Persona.Nombre @estudiante.Profesor.Persona.Apellido1</td>
             </tr>  
         }
     </tbody>

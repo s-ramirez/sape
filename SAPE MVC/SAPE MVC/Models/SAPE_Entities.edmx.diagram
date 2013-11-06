@@ -48,6 +48,7 @@
         <AssociationConnector Association="SAPEModel.FK_PreferenciaDireccion_Profesor" ManuallyRouted="false" />
         <AssociationConnector Association="SAPEModel.FK_PreferenciaProfesor_Profesor" ManuallyRouted="false" />
         <AssociationConnector Association="SAPEModel.FK_Usuario_TipoUsuario" ManuallyRouted="false" />
+        <AssociationConnector Association="SAPEModel.FK_Estudiante_Profesor" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

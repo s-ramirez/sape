@@ -26,11 +26,13 @@ namespace SAPE_MVC.Models
         public Nullable<int> FK_Proyecto { get; set; }
         public int Carnet { get; set; }
         public string Estado { get; set; }
+        public Nullable<int> FK_Asesor { get; set; }
     
         public virtual ICollection<CursoXEstudiante> CursoXEstudiante { get; set; }
         public virtual Persona Persona { get; set; }
         public virtual Proyecto Proyecto { get; set; }
         public virtual ICollection<Evaluacion> Evaluacion { get; set; }
         public virtual ICollection<PreferenciaProfesor> PreferenciaProfesor { get; set; }
+        public virtual Profesor Profesor { get; set; }
     }
 }

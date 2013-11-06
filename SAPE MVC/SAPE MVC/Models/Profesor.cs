@@ -19,6 +19,7 @@ namespace SAPE_MVC.Models
             this.Evaluacion = new HashSet<Evaluacion>();
             this.PreferenciaDireccion = new HashSet<PreferenciaDireccion>();
             this.PreferenciaProfesor = new HashSet<PreferenciaProfesor>();
+            this.Estudiantes = new HashSet<Estudiante>();
         }
     
         public int idProfesor { get; set; }
@@ -32,5 +33,6 @@ namespace SAPE_MVC.Models
         public virtual Persona Persona { get; set; }
         public virtual ICollection<PreferenciaDireccion> PreferenciaDireccion { get; set; }
         public virtual ICollection<PreferenciaProfesor> PreferenciaProfesor { get; set; }
+        public virtual ICollection<Estudiante> Estudiantes { get; set; }
     }
 }

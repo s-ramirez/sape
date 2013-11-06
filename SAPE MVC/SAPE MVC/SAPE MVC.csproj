@@ -40,17 +40,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.0.1\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.0.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -72,6 +67,9 @@
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http">
     </Reference>
@@ -146,8 +144,10 @@
     <Compile Include="Models\Partial\Contacto.cs" />
     <Compile Include="Models\Partial\Empresa.cs" />
     <Compile Include="Models\Partial\Estudiante.cs" />
+    <Compile Include="Models\Partial\Evaluacion.cs" />
     <Compile Include="Models\Partial\Persona.cs" />
     <Compile Include="Models\Partial\Profesor.cs" />
+    <Compile Include="Models\Partial\Proyecto.cs" />
     <Compile Include="Models\Partial\TipoContacto.cs" />
     <Compile Include="Models\Persona.cs">
       <DependentUpon>SAPE_Entities.tt</DependentUpon>
@@ -215,7 +215,6 @@
     <Content Include="Content\Images\Table\asc.gif" />
     <Content Include="Content\Images\Table\bg.gif" />
     <Content Include="Content\Images\Table\desc.gif" />
-    <Content Include="Content\Scripts\form-candidatos.js" />
     <Content Include="Content\Scripts\validity\arrow.gif" />
     <Content Include="Content\Scripts\calificaciones.js" />
     <Content Include="Content\Scripts\form-empresas.js" />
@@ -224,7 +223,6 @@
     <Content Include="Content\Scripts\jquery.js" />
     <Content Include="Content\Scripts\jquery.tablesorter.min.js" />
     <Content Include="Content\Scripts\bootstrap.min.js" />
-    <Content Include="Content\Scripts\form-RegistroProfesores.js" />
     <Content Include="Content\Scripts\validity\jquery.validity.css" />
     <Content Include="Content\Scripts\validity\jquery.validity.lang.es.js" />
     <Content Include="Content\Scripts\validity\jquery.validity.min.js" />
@@ -342,6 +340,9 @@
       <DependentUpon>SAPE_Entities.edmx</DependentUpon>
       <LastGenOutput>SAPE_Entities.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Main\GestionarPracticantes.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
