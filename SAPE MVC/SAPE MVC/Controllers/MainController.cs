@@ -18,6 +18,16 @@ namespace SAPE_MVC.Controllers
             return View();
         }
 
+        protected override void OnActionExecuting(ActionExecutingContext context)
+        {
+            base.OnActionExecuting(context);
+            // check if user is authenticated before executing an action and redirect if not
+            if (Session["CurrentUser"] == null)
+            {
+                context.Result = new RedirectResult("/Account/LogIn");
+            }
+        }
+
         [HttpGet]
         public ActionResult RegistroEmpresas()
         {
@@ -39,10 +49,17 @@ namespace SAPE_MVC.Controllers
         [HttpGet]
         public ActionResult Calificaciones()
         {
+
             SAPEEntities database = new SAPEEntities();
             ViewBag.Tipos = database.TipoEvaluacion;
             ViewBag.Estudiantes = database.Estudiante;
             return View();
+
+        }
+        [HttpPost]
+        public ActionResult login()
+        {
+            return RedirectToAction("LogIn", "Account");
         }
 
         [HttpPost]

@@ -23,7 +23,7 @@ namespace SAPE_MVC.Models
             using (SAPEEntities ctx = new SAPEEntities())
             {
                 var res_practicantes = from estudiante in ctx.Estudiante
-                                       where estudiante.Estado.Equals('p')
+                                       where estudiante.Estado == "p"
                                        select estudiante;
                 return res_practicantes.ToList<Estudiante>();
             }
@@ -34,7 +34,7 @@ namespace SAPE_MVC.Models
             using (SAPEEntities ctx = new SAPEEntities())
             {
                 var res_practicantes = from estudiante in ctx.Estudiante
-                                       where estudiante.Estado.Equals('c')
+                                       where estudiante.Estado == "c"
                                        select estudiante;
                 return res_practicantes.ToList<Estudiante>();
             }

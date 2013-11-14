@@ -30,7 +30,7 @@
             <h1>Iniciar sesión</h1>
             <form>
                 <h2>Sistema administrador de prácticas profesionales.</h2>
-                <br>
+                <br />
                 <div class="editor-field">@Html.TextBoxFor(usuario => usuario.Nombre)@Html.ValidationMessageFor(usuario => usuario.Nombre)</div>
                 <div class="editor-field">@Html.PasswordFor(usuario => usuario.Contrasena)@Html.ValidationMessageFor(usuario => usuario.Contrasena)</div>
                 <input type="submit" class="btn btn-primary" value="Iniciar"/><br/>

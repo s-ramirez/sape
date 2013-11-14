@@ -33,6 +33,7 @@ namespace SAPE_MVC.Controllers
             if (IsValid(pUsuario.Nombre, pUsuario.Contrasena))
             {
                 FormsAuthentication.SetAuthCookie(pUsuario.Nombre, false);
+                Session.Add("CurrentUser", pUsuario.Nombre);
                 return RedirectToAction("Index", "Main");
             }
             else

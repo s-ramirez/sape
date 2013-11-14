@@ -17,7 +17,7 @@
             <tr>
                 <th id="select-all-th">
                     <input type="checkbox" name="select-all" value="all" id="select-all"></th>
-                <th>Elegible</th>
+                @*<th>Elegible</th>*@
                 <th>Nombre</th>
                 <th>Primer Apellido</th>
                 <th>Segundo Apellido</th>
@@ -30,18 +30,19 @@
             <!-- Inserta los candidatos -->
             @foreach (SAPE_MVC.Models.Estudiante candidato in ViewBag.Candidatos)
             {
+                SAPE_MVC.Models.Persona persona = SAPE_MVC.Models.Persona.getById(candidato.FK_Persona);    
                 <tr>
                     <td>
                         <input type="checkbox" id="@candidato.Carnet" /></td>
-                    <td>
+                    @*<td>
                         <select class="form-control">
                             <option>No</option>
                             <option>Si</option>
                         </select>
-                    </td>
-                    <td>@candidato.Persona.Nombre</td>
-                    <td>@candidato.Persona.Apellido1</td>
-                    <td>@candidato.Persona.Apellido2</td>
+                    </td>*@
+                    <td>@persona.Nombre</td>
+                    <td>@persona.Apellido1</td>
+                    <td>@persona.Apellido2</td>
                     <td>
                         @foreach (SAPE_MVC.Models.Contacto contacto in ViewBag.Contactos)
                         {
@@ -73,7 +74,7 @@
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="7"></td>
+                <td colspan="6"></td>
                 <td>
                     <a type="button" class="btn btn-primary" data-toggle="modal" href="#sendMailModal"><span class="glyphicon glyphicon-send"></span></a>
                     <button type="button" class="btn btn-success" onclick="editItem()"><span class="glyphicon glyphicon-pencil"></span></button>
