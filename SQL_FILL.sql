@@ -56,3 +56,6 @@ insert into TipoUsuario (Nombre, Permisos) values ('Administrador', 1);
 
 insert into Persona (Nombre, Apellido1, Apellido2) values('Administrador', 'Administrador', 'Administrador');
 insert into Usuario (Nombre, Contrasena, FK_idPersona, FK_TipoUsuario) values ('Administrador', 'admin123', 1, 1);
+
+
+select * from TipoEvaluacion

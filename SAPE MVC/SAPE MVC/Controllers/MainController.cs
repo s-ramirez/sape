@@ -40,6 +40,7 @@ namespace SAPE_MVC.Controllers
         public ActionResult Calificaciones()
         {
             SAPEEntities database = new SAPEEntities();
+            ViewBag.Tipos = database.TipoEvaluacion;
             ViewBag.Estudiantes = database.Estudiante;
             return View();
         }
