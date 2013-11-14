@@ -8,6 +8,11 @@
     margin-right: 0px;
 }
 
+.col-md-10 {
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
 /* TOP BAR */
 #top-navbar {
     height: 70px;
@@ -49,8 +54,8 @@
 .list-group-title, .list-group-title:hover, .list-group-title:focus {
     padding-left: 25px;
     font-weight: bold;
-    color: #999999;
-    background-color: #333333;
+    color: #999999 !important;
+    background-color: #333333 !important;
     border: 0;
 }
 
