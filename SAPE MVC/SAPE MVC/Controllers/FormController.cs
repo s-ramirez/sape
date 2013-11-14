@@ -372,5 +372,25 @@ namespace SAPE_MVC.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult FormEmpresasInteresadas(int nombreEmpresa, string practicantes, int cantPracticantes)
+        {
+            SAPEEntities entities = new SAPEEntities();
+            Empresa updateEmpresa = Empresa.getById(nombreEmpresa);
+
+            if (practicantes == "si")
+            {
+                updateEmpresa.Interesada = 1;
+                updateEmpresa.Cant_Practicantes = cantPracticantes;
+            }
+            else {
+                updateEmpresa.Interesada = 0;
+                updateEmpresa.Cant_Practicantes = 0;
+            }
+            entities.SaveChanges();            
+
+            return View("FormSent");
+        }
+
     }
 }
