@@ -56,6 +56,37 @@ namespace SAPE_MVC.Controllers
             return View();
 
         }
+
+        [HttpGet]
+        public JsonResult SaveCalifs(string id, string value)
+        {
+            SAPEEntities entities = new SAPEEntities();
+            String idEstudiante = id.Split(',')[0];
+            String idEvaluacion = id.Split(',')[1];
+            Evaluacion eval;
+            try
+            {
+                eval = Evaluacion.get(int.Parse(idEstudiante), int.Parse(idEvaluacion));
+                eval.Nota = decimal.Parse(value);
+                entities.Evaluacion.Attach(eval);
+                entities.Entry(eval).State = System.Data.EntityState.Modified;
+                entities.SaveChanges();
+            }
+            catch
+            {
+                eval = new Evaluacion();
+                eval.Nota = decimal.Parse(value);
+                eval.FK_TipoEvaluacion = int.Parse(idEvaluacion);
+                eval.FK_Estudiante = int.Parse(idEstudiante);
+                entities.Evaluacion.Add(eval);
+                entities.SaveChanges();
+            }
+
+            string json_resp = "true";
+            return Json(json_resp, JsonRequestBehavior.AllowGet);
+
+        }
+
         [HttpPost]
         public ActionResult login()
         {

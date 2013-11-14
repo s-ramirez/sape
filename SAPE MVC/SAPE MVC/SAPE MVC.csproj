@@ -215,6 +215,9 @@
     <Content Include="Content\Images\Table\asc.gif" />
     <Content Include="Content\Images\Table\bg.gif" />
     <Content Include="Content\Images\Table\desc.gif" />
+    <Content Include="Content\Scripts\candidatos.js" />
+    <Content Include="Content\Scripts\jquery.dataTables.min.js" />
+    <Content Include="Content\Scripts\jquery.jeditable.mini.js" />
     <Content Include="Content\Scripts\validity\arrow.gif" />
     <Content Include="Content\Scripts\calificaciones.js" />
     <Content Include="Content\Scripts\form-empresas.js" />
@@ -232,6 +235,7 @@
     <Content Include="Content\Styles\bootstrap.min.css" />
     <Content Include="Content\Styles\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Styles\form-layout.css" />
+    <Content Include="Content\Styles\jquery.dataTables.css" />
     <Content Include="Content\Styles\login-style.css" />
     <Content Include="Content\Styles\main-style.css" />
     <Content Include="Content\Styles\registro-empresas.css" />

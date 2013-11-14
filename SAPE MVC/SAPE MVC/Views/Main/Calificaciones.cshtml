@@ -5,7 +5,9 @@
 
 @section Scripts{
     <link rel="stylesheet" href="/Content/Styles/registro-empresas.css" type="text/css" />
-    <script src="/Content/Scripts/jquery.tablesorter.min.js"></script>
+    <link rel="stylesheet" href="/Content/Styles/jquery.dataTables.css" type="text/css" />
+    <script src="/Content/Scripts/jquery.dataTables.min.js"></script>
+    <script src="/Content/Scripts/jquery.jeditable.mini.js"></script>
     <script src="/Content/Scripts/calificaciones.js"></script>
 }
 
@@ -14,7 +16,8 @@
     <thead>
         <tr>
             <th>Practicante</th>
-            @foreach (SAPE_MVC.Models.TipoEvaluacion tipoEval in ViewBag.Tipos) { 
+            @foreach (SAPE_MVC.Models.TipoEvaluacion tipoEval in ViewBag.Tipos)
+            { 
                 <th>@tipoEval.Nombre</th>
             }
         </tr>
@@ -26,7 +29,7 @@
                 <td>@estudiante.Persona.Nombre @estudiante.Persona.Apellido1 @estudiante.Persona.Apellido2</td>
                 @foreach (SAPE_MVC.Models.TipoEvaluacion tipoEval in ViewBag.Tipos)
                 {
-                    <td>@SAPE_MVC.Models.Evaluacion.get(@tipoEval.idTipoEvaluacion, @estudiante.idEstudiante)</td>   
+                    <td id="@estudiante.idEstudiante,@tipoEval.idTipoEvaluacion" class="editable">@SAPE_MVC.Models.Evaluacion.get(@tipoEval.idTipoEvaluacion, @estudiante.idEstudiante)</td>   
                 }
             </tr>  
         }
